@@ -6,7 +6,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "甘油",
     "common_name_en": "Glycerol",
     "common_name_zh": "丙三醇",
-    "function": ["Humectant", "Solvent"],
+    "function": [
+      "Humectant",
+      "Solvent"
+    ],
     "benefits_en": "Draws moisture from the air into the skin. Improves hydration, skin feel, and barrier function. Suitable for all skin types.",
     "benefits_zh": "从空气中吸收水分到皮肤中。改善皮肤水分、肤感和屏障功能，适合所有肤质。",
     "concerns_en": "Generally considered very safe. High concentrations (>30%) may feel sticky.",
@@ -17,8 +20,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Kao / BASF / multiple",
     "supplier_info": "Widely sourced. Derived from vegetable oils or synthetic.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f5f2e8",
     "added": "2026-05-23",
@@ -31,7 +43,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "烟酰胺",
     "common_name_en": "Vitamin B3",
     "common_name_zh": "维生素B3",
-    "function": ["Active", "Brightening", "Anti-inflammatory"],
+    "function": [
+      "Active",
+      "Brightening",
+      "Anti-inflammatory"
+    ],
     "benefits_en": "Reduces hyperpigmentation, minimizes pore appearance, strengthens skin barrier, reduces inflammation. One of the most studied skincare actives.",
     "benefits_zh": "减少色素沉着，缩小毛孔，加强皮肤屏障，减轻炎症。是研究最为充分的护肤活性成分之一。",
     "concerns_en": "May cause flushing at high concentrations (>5%). Avoid combining with high-dose Vitamin C (may form niacin).",
@@ -42,8 +58,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Lonza / DSM / multiple",
     "supplier_info": "Widely available. USP/cosmetic grade.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#fffdf0",
     "added": "2026-05-23",
@@ -56,7 +81,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "视黄醇",
     "common_name_en": "Vitamin A",
     "common_name_zh": "维生素A",
-    "function": ["Active", "Anti-aging", "Cell-communicating"],
+    "function": [
+      "Active",
+      "Anti-aging",
+      "Cell-communicating"
+    ],
     "benefits_en": "Stimulates collagen production, increases cell turnover, reduces fine lines and wrinkles, fades dark spots. Most studied anti-aging active.",
     "benefits_zh": "刺激胶原蛋白生成，加速细胞更新，减少细纹和皱纹，淡化暗沉。研究最广泛的抗衰老活性成分。",
     "concerns_en": "Irritant — start low (0.025–0.05%), go slow. Avoid during pregnancy. Increases sun sensitivity, must use SPF. Not suitable for compromised or sensitive skin at first.",
@@ -67,8 +96,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "DSM / BASF / multiple",
     "supplier_info": "Available as pure retinol and various encapsulated forms for stability.",
-    "approval": { "EU": "restricted", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "NR", "Lip": "NR", "Nail": "NR" },
+    "approval": {
+      "EU": "restricted",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "NR",
+      "Lip": "NR",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f5d16b",
     "added": "2026-05-23",
@@ -81,7 +119,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "α-熊果苷",
     "common_name_en": "Alpha-Arbutin",
     "common_name_zh": "α-熊果苷",
-    "function": ["Active", "Brightening", "Depigmenting"],
+    "function": [
+      "Active",
+      "Brightening",
+      "Depigmenting"
+    ],
     "benefits_en": "Inhibits tyrosinase, the enzyme responsible for melanin production. Fades dark spots, hyperpigmentation, and uneven skin tone including intimate area darkening. Stable, gentle alternative to hydroquinone. More effective than beta-arbutin.",
     "benefits_zh": "抑制酪氨酸酶（黑色素合成关键酶），淡化色斑、色素沉着和肤色不均，包括私密部位暗沉。是比氢醌更温和稳定的美白成分，效果优于β-熊果苷。",
     "concerns_en": "Very well tolerated. Avoid high concentrations (>2%) during pregnancy. Can degrade to hydroquinone under acidic conditions — keep formulation pH 4–7.",
@@ -92,8 +134,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Pentapharm (DSM) / Symrise / multiple",
     "supplier_info": "Enzymatically synthesized from glucose and hydroquinone. CAS 84380-01-8.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "NR", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "NR",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f0ece4",
     "added": "2026-05-23",
@@ -106,7 +157,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "葡萄籽油",
     "common_name_en": "Grape Seed Oil",
     "common_name_zh": "葡萄籽油",
-    "function": ["Emollient", "Antioxidant"],
+    "function": [
+      "Emollient",
+      "Antioxidant"
+    ],
     "benefits_en": "Rich in linoleic acid and proanthocyanidins (OPCs). Lightweight, fast-absorbing emollient that does not feel greasy. Antioxidant properties help protect skin lipids. Supports skin barrier.",
     "benefits_zh": "富含亚油酸和原花青素（OPC）。质地轻盈，吸收快，不油腻。抗氧化作用保护皮肤脂质，有助于维护皮肤屏障。",
     "concerns_en": "Generally very safe. May cause reactions in those with grape allergy (rare).",
@@ -117,8 +171,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Multiple suppliers",
     "supplier_info": "Cold-pressed from grape seeds, a byproduct of wine/juice production.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#c8d88a",
     "added": "2026-05-23",
@@ -131,7 +194,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "鲸蜡硬脂醇",
     "common_name_en": "Cetearyl Alcohol",
     "common_name_zh": "十六十八醇",
-    "function": ["Emulsifier", "Emollient", "Thickener"],
+    "function": [
+      "Emulsifier",
+      "Emollient",
+      "Thickener"
+    ],
     "benefits_en": "Fatty alcohol — NOT a drying alcohol. Stabilizes emulsions, adds creamy texture, and softens skin. A common, well-tolerated base ingredient in moisturizers and creams.",
     "benefits_zh": "脂肪醇——并非会让皮肤干燥的普通酒精。稳定乳化体系，赋予产品奶油质地，软化皮肤。是润肤霜和乳霜中常见的耐受性良好的基础成分。",
     "concerns_en": "Rare contact allergy possible in very sensitive individuals. Safe for most skin types.",
@@ -142,8 +209,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "BASF / Croda / multiple",
     "supplier_info": "Blend of cetyl alcohol (C16) and stearyl alcohol (C18). Derived from vegetable or synthetic sources.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f8f5f0",
     "added": "2026-05-23",
@@ -156,7 +232,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "丙二醇",
     "common_name_en": "Propylene Glycol",
     "common_name_zh": "1,2-丙二醇",
-    "function": ["Humectant", "Solvent", "Penetration Enhancer"],
+    "function": [
+      "Humectant",
+      "Solvent",
+      "Penetration Enhancer"
+    ],
     "benefits_en": "Draws moisture into skin, improves texture and spreadability. Helps other ingredients penetrate the skin. Very common in cosmetics and pharmaceuticals.",
     "benefits_zh": "吸湿保水，改善产品质地和涂抹感。帮助其他成分渗透皮肤。在化妆品和药品中极为常见。",
     "concerns_en": "Can cause irritation or contact dermatitis in sensitive individuals, especially at higher concentrations (>5%). Generally safe at typical cosmetic use levels.",
@@ -167,8 +247,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Dow / Lyondell / multiple",
     "supplier_info": "Petroleum-derived or bio-based. USP/cosmetic grade required.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f0f0f0",
     "added": "2026-05-23",
@@ -181,7 +270,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "液体石蜡（矿物油）",
     "common_name_en": "Mineral Oil",
     "common_name_zh": "矿物油",
-    "function": ["Emollient", "Occlusive"],
+    "function": [
+      "Emollient",
+      "Occlusive"
+    ],
     "benefits_en": "Creates an occlusive barrier on skin that locks in moisture and prevents transepidermal water loss. Very stable, non-reactive, and non-sensitizing. Cosmetic-grade is highly refined and safe.",
     "benefits_zh": "在皮肤表面形成封闭性薄膜，锁住水分并防止经皮水分流失（TEWL）。性质非常稳定、不活泼，不致敏。化妆品级经高度精炼，安全可靠。",
     "concerns_en": "Sometimes avoided in natural formulations due to petroleum origin. Cosmetic-grade is NOT carcinogenic. May feel heavy on oily or acne-prone skin.",
@@ -192,8 +284,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Sonneborn / Calumet / multiple",
     "supplier_info": "Highly refined petroleum-derived white mineral oil. Must meet USP/BP specifications for cosmetic use.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f8f8f8",
     "added": "2026-05-23",
@@ -206,7 +307,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "聚甘油-26",
     "common_name_en": "Polyethylene Glycol Ether of Glycerin",
     "common_name_zh": "聚乙二醇甘油醚",
-    "function": ["Humectant", "Emollient", "Solubilizer"],
+    "function": [
+      "Humectant",
+      "Emollient",
+      "Solubilizer"
+    ],
     "benefits_en": "Polyethylene glycol ether of glycerin. Excellent moisturizer and skin-feel enhancer. Helps dissolve and evenly distribute ingredients in a formula.",
     "benefits_zh": "甘油的聚乙二醇醚。优秀的保湿剂和肤感改善剂，帮助成分在配方中溶解均匀分散。",
     "concerns_en": "Generally well tolerated. Low irritation potential.",
@@ -217,8 +322,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Croda / Clariant / multiple",
     "supplier_info": "PEG ether derived from glycerin. The 26 refers to the average number of ethylene oxide units.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f2ede8",
     "added": "2026-05-23",
@@ -231,7 +345,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "棕榈酸异丙酯",
     "common_name_en": "IPP",
     "common_name_zh": "棕榈酸异丙酯",
-    "function": ["Emollient", "Texture Agent"],
+    "function": [
+      "Emollient",
+      "Texture Agent"
+    ],
     "benefits_en": "Lightweight ester that gives a smooth, dry, non-greasy feel on skin. Reduces heavy or greasy texture in formulations. Widely used as a skin-conditioning agent.",
     "benefits_zh": "轻质酯类成分，赋予皮肤顺滑干爽、不油腻的肤感。降低配方的厚重油腻感。广泛用作皮肤调理剂。",
     "concerns_en": "Known comedogenic ingredient — rated 4/5. May clog pores and worsen acne in prone individuals. Not recommended for oily or acne-prone skin.",
@@ -242,8 +359,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "IOI Oleochemicals / BASF / multiple",
     "supplier_info": "Ester of isopropanol and palmitic acid. Vegetable-derived palmitic acid available.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f5f0e8",
     "added": "2026-05-23",
@@ -256,7 +382,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "甜菜碱",
     "common_name_en": "Betaine / Trimethylglycine",
     "common_name_zh": "三甲基甘氨酸",
-    "function": ["Humectant", "Anti-irritant", "Osmoprotectant"],
+    "function": [
+      "Humectant",
+      "Anti-irritant",
+      "Osmoprotectant"
+    ],
     "benefits_en": "Naturally derived from sugar beet. Draws moisture to skin and soothes irritation. Reduces stinging and discomfort from high-active formulas. Helps protect skin cells from osmotic stress.",
     "benefits_zh": "天然来源于甜菜。吸湿保水，舒缓刺激。减少高活性成分配方产生的刺痛和不适，帮助皮肤细胞抵抗渗透压应激。",
     "concerns_en": "Excellent safety profile. Suitable for sensitive skin. No known concerns.",
@@ -267,8 +397,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Evonik / DowDuPont / multiple",
     "supplier_info": "Naturally occurring in sugar beet (Beta vulgaris). Also synthetic. CAS 107-43-7.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f8f5f0",
     "added": "2026-05-23",
@@ -281,7 +420,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "PEG/PPG-17/6共聚物",
     "common_name_en": "PEG/PPG Copolymer",
     "common_name_zh": "聚乙二醇/聚丙二醇共聚物",
-    "function": ["Emollient", "Solubilizer", "Texture Agent"],
+    "function": [
+      "Emollient",
+      "Solubilizer",
+      "Texture Agent"
+    ],
     "benefits_en": "Silicone-like polymer providing smooth, silky skin feel without actual silicone. Helps solubilize oils in water-based formulas. Improves spreadability and overall sensory profile.",
     "benefits_zh": "类硅油聚合物，赋予皮肤光滑丝滑感，但不含实际硅油。帮助油脂溶于水基配方，改善涂抹性和整体肤感。",
     "concerns_en": "Generally well tolerated. PEG derivatives may be sensitizing on broken or compromised skin.",
@@ -292,8 +435,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "BASF / Croda / multiple",
     "supplier_info": "Block copolymer of ethylene oxide and propylene oxide units.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f0f0f5",
     "added": "2026-05-23",
@@ -306,7 +458,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "肌肽",
     "common_name_en": "Carnosine",
     "common_name_zh": "β-丙氨酰-L-组氨酸",
-    "function": ["Antioxidant", "Anti-glycation", "Anti-aging"],
+    "function": [
+      "Antioxidant",
+      "Anti-glycation",
+      "Anti-aging"
+    ],
     "benefits_en": "Dipeptide (beta-alanine + histidine) naturally found in muscle tissue. Protects against glycation — the cross-linking of proteins by sugars that causes skin stiffness and aging. Neutralizes reactive carbonyl compounds. Supports collagen integrity over time.",
     "benefits_zh": "由β-丙氨酸和组氨酸组成的二肽，天然存在于肌肉组织中。抵抗糖化——糖分与蛋白质交联导致皮肤硬化和衰老。中和活性羰基化合物，长期维护胶原蛋白完整性。",
     "concerns_en": "No known concerns. Very safe and well tolerated.",
@@ -317,8 +473,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Lonza / multiple",
     "supplier_info": "Synthetic or fermentation-derived. CAS 305-84-0.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f5f2ee",
     "added": "2026-05-23",
@@ -331,7 +496,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "鲸蜡硬脂醇聚醚-6",
     "common_name_en": "Ceteareth-6",
     "common_name_zh": "聚乙二醇(6)鲸蜡硬脂醚",
-    "function": ["Emulsifier", "Surfactant"],
+    "function": [
+      "Emulsifier",
+      "Surfactant"
+    ],
     "benefits_en": "Ethoxylated fatty alcohol used as an emulsifier. Helps form and stabilize oil-in-water emulsions. Typically used in combination with Ceteareth-25 as a dual-emulsifier system.",
     "benefits_zh": "乙氧基化脂肪醇，用作乳化剂，帮助形成并稳定水包油乳化体系。通常与Ceteareth-25配对，构成双乳化剂体系。",
     "concerns_en": "Generally safe. Some reports of skin sensitization at high concentrations.",
@@ -342,8 +510,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Croda / BASF / multiple",
     "supplier_info": "Ethoxylated cetearyl alcohol with 6 moles of ethylene oxide.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f5f5f0",
     "added": "2026-05-23",
@@ -356,7 +533,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "鲸蜡硬脂醇聚醚-25",
     "common_name_en": "Ceteareth-25",
     "common_name_zh": "聚乙二醇(25)鲸蜡硬脂醚",
-    "function": ["Emulsifier", "Surfactant"],
+    "function": [
+      "Emulsifier",
+      "Surfactant"
+    ],
     "benefits_en": "Higher-ethoxylation counterpart to Ceteareth-6. More hydrophilic. Paired with Ceteareth-6 to achieve the correct HLB balance for stable, elegant cream emulsions.",
     "benefits_zh": "Ceteareth-6的高乙氧基化对应版本，亲水性更强。与Ceteareth-6配对使用，实现正确的HLB平衡，制备稳定细腻的乳霜产品。",
     "concerns_en": "Generally safe. Same profile as Ceteareth-6.",
@@ -367,8 +547,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Croda / BASF / multiple",
     "supplier_info": "Ethoxylated cetearyl alcohol with 25 moles of ethylene oxide.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f5f5f0",
     "added": "2026-05-23",
@@ -381,7 +570,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "生育酚乙酸酯",
     "common_name_en": "Vitamin E Acetate",
     "common_name_zh": "维生素E乙酸酯",
-    "function": ["Antioxidant", "Skin Conditioning"],
+    "function": [
+      "Antioxidant",
+      "Skin Conditioning"
+    ],
     "benefits_en": "Stable ester form of Vitamin E. Antioxidant that protects lipids in the formulation and on skin from oxidative damage. Converted to active tocopherol on skin. Helps maintain skin softness.",
     "benefits_zh": "维生素E的稳定酯化形式。抗氧化剂，保护配方和皮肤中的脂质不受氧化损伤。在皮肤上转化为活性生育酚。有助于保持皮肤柔软。",
     "concerns_en": "Well tolerated. Rare contact allergy possible. Less potent than pure tocopherol but far more stable in formulations.",
@@ -392,8 +584,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "DSM / BASF / multiple",
     "supplier_info": "Synthetic or natural (d-alpha-tocopheryl acetate from vegetable oils). CAS 58-95-7.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f5e8a0",
     "added": "2026-05-23",
@@ -406,7 +607,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "1,2-己二醇",
     "common_name_en": "1,2-Hexanediol",
     "common_name_zh": "己二醇",
-    "function": ["Humectant", "Preservative Booster", "Antimicrobial"],
+    "function": [
+      "Humectant",
+      "Preservative Booster",
+      "Antimicrobial"
+    ],
     "benefits_en": "Multifunctional ingredient used as both a humectant and antimicrobial agent. Effective against a broad spectrum of bacteria and fungi. Commonly used as a preservative booster or paraben-free preservation co-ingredient.",
     "benefits_zh": "多功能成分，兼具保湿和抗菌作用。对广谱细菌和真菌有效。常用作防腐增效剂或无防腐剂体系中的协同成分。",
     "concerns_en": "Generally safe. Some skin irritation reports at high concentrations. Less sensitizing than many traditional preservatives.",
@@ -417,8 +622,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Symrise / Lonza / multiple",
     "supplier_info": "Synthetic diol. CAS 6920-22-5.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f0f0ec",
     "added": "2026-05-23",
@@ -431,7 +645,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "4-羟基苯乙酮",
     "common_name_en": "p-Hydroxyacetophenone",
     "common_name_zh": "对羟基苯乙酮",
-    "function": ["Antioxidant", "Preservative Booster", "Anti-inflammatory"],
+    "function": [
+      "Antioxidant",
+      "Preservative Booster",
+      "Anti-inflammatory"
+    ],
     "benefits_en": "Phenolic compound naturally found in plants. Antioxidant and antimicrobial activity makes it effective as a preservative booster. Anti-inflammatory and skin-soothing properties. Often paired with 1,2-Hexanediol as a 'clean' preservation system.",
     "benefits_zh": "天然存在于植物中的酚类化合物。抗氧化和抗菌活性使其成为有效的防腐增效剂。兼具抗炎和舒缓肌肤特性。常与1,2-己二醇配对，构成「清洁」防腐体系。",
     "concerns_en": "Very well tolerated. Considered one of the gentler preservative alternatives.",
@@ -442,8 +660,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Symrise / multiple",
     "supplier_info": "Can be naturally derived or synthetic. CAS 99-93-4.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f5f0e0",
     "added": "2026-05-23",
@@ -456,7 +683,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "马齿苋提取物",
     "common_name_en": "Purslane Extract",
     "common_name_zh": "马齿苋提取物",
-    "function": ["Soothing", "Antioxidant", "Anti-inflammatory"],
+    "function": [
+      "Soothing",
+      "Antioxidant",
+      "Anti-inflammatory"
+    ],
     "benefits_en": "Extract from purslane, a succulent plant consumed as food and used in traditional medicine. Rich in omega-3 fatty acids, vitamins A, B, C, E, and phenolic antioxidants. Soothes redness, calms reactive and sensitive skin. Popular in Chinese and Korean skincare.",
     "benefits_zh": "来自马齿苋（一种食用兼药用的多肉植物）的提取物。富含ω-3脂肪酸、维生素A/B/C/E及酚类抗氧化成分。舒缓泛红，镇静敏感和易激惹肌肤。在中韩护肤品中广泛应用。",
     "concerns_en": "Very safe. No known concerns for topical use.",
@@ -467,8 +698,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Sederma / multiple Chinese suppliers",
     "supplier_info": "Extracted from Portulaca oleracea leaves and stems.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#a8c888",
     "added": "2026-05-23",
@@ -481,8 +721,12 @@ var COSME_INGREDIENTS = [
     "name_zh": "菊花提取物",
     "common_name_en": "Indian Chrysanthemum Extract",
     "common_name_zh": "野菊花提取物",
-    "function": ["Antioxidant", "Soothing", "Brightening"],
-    "benefits_en": "Extract from Indian chrysanthemum flowers. Contains flavonoids including saponarins and luteolin with antioxidant and anti-inflammatory properties. Used in brightening and soothing formulas. Traditional Chinese medicinal herb.",
+    "function": [
+      "Antioxidant",
+      "Soothing",
+      "Brightening"
+    ],
+    "benefits_en": "Extract from Indian chrysanthemum flowers. Contains flavonoids including saponarins and luteolin with antioxidant and anti-inflammatory properties. Used in brightening and soothing formulas. Traditional Chinese medicinal herb (菊花).",
     "benefits_zh": "来自野菊花的提取物，含有皂草苷和木犀草素等黄酮类化合物，具有抗氧化和抗炎特性。用于美白和舒缓配方，是传统中药材。",
     "concerns_en": "Generally safe. Those with Asteraceae/Compositae (daisy family) allergies should patch test.",
     "concerns_zh": "通常安全。对菊科植物（雏菊科）过敏者应先做贴片测试。",
@@ -492,8 +736,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Multiple Chinese suppliers",
     "supplier_info": "Traditional Chinese medicinal herb. Flower heads extracted in water or alcohol.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f0e070",
     "added": "2026-05-23",
@@ -506,7 +759,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "鱼腥草提取物",
     "common_name_en": "Fish Mint / Heartleaf Extract",
     "common_name_zh": "折耳根提取物",
-    "function": ["Antibacterial", "Anti-inflammatory", "Antioxidant"],
+    "function": [
+      "Antibacterial",
+      "Anti-inflammatory",
+      "Antioxidant"
+    ],
     "benefits_en": "Extract from houttuynia cordata (fish mint / heartleaf), a staple Traditional Chinese Medicine plant. Antibacterial, particularly against acne-causing bacteria. Anti-inflammatory and antioxidant. Helps control oil and calm breakout-prone skin.",
     "benefits_zh": "来自鱼腥草（折耳根）的提取物，是重要传统中药材。抗菌作用尤其针对痤疮杆菌。具有抗炎和抗氧化活性，有助于控油和镇静痘痘肌肤。",
     "concerns_en": "Generally safe for topical use. May have a distinctive herbal scent in formulation.",
@@ -517,8 +774,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Multiple Chinese suppliers",
     "supplier_info": "Aerial parts extracted in water or ethanol. Native to Southeast Asia and southern China.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#b8d4a0",
     "added": "2026-05-23",
@@ -531,7 +797,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "丙烯酸酯/C10-30烷基丙烯酸酯交联聚合物",
     "common_name_en": "Carbomer-derived Polymer / Pemulen",
     "common_name_zh": "卡波姆衍生聚合物",
-    "function": ["Thickener", "Stabilizer", "Emulsifier"],
+    "function": [
+      "Thickener",
+      "Stabilizer",
+      "Emulsifier"
+    ],
     "benefits_en": "Synthetic polymer used as a rheology modifier and emulsion stabilizer. Thickens and stabilizes oil-in-water emulsions without heaviness. Creates smooth, non-sticky gel-cream textures. Extremely common in modern skincare.",
     "benefits_zh": "合成聚合物，用作流变改性剂和乳液稳定剂。增稠并稳定水包油乳化体系，不产生厚重感。打造光滑不黏腻的凝胶霜质地，在现代护肤配方中极为普遍。",
     "concerns_en": "Inert and non-irritating. Very safe.",
@@ -542,8 +812,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Lubrizol (Pemulen TR-1/TR-2) / multiple",
     "supplier_info": "Carbomer copolymer with hydrophobic side chains for oil-in-water emulsification. Used at low % with neutralization.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f0f0f0",
     "added": "2026-05-23",
@@ -556,7 +835,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "仙人掌茎提取物",
     "common_name_en": "Prickly Pear Cactus Extract",
     "common_name_zh": "梨果仙人掌提取物",
-    "function": ["Soothing", "Antioxidant", "Humectant"],
+    "function": [
+      "Soothing",
+      "Antioxidant",
+      "Humectant"
+    ],
     "benefits_en": "Extract from cactus stems (Opuntia / prickly pear). Rich in mucilage polysaccharides that hydrate and form a protective film on skin. Antioxidants from betalain pigments. Calms sensitive, irritated, or sun-stressed skin.",
     "benefits_zh": "来自仙人掌茎部（梨果仙人掌）的提取物，富含黏液多糖，在皮肤上保湿并形成保护膜。来自甜菜碱色素的抗氧化成分。舒缓敏感、刺激或日晒受损的皮肤。",
     "concerns_en": "Very safe and gentle. No known concerns.",
@@ -567,8 +850,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Silab / multiple",
     "supplier_info": "Extracted from Opuntia streptacantha cladodes (pads).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#c8e4b8",
     "added": "2026-05-23",
@@ -581,7 +873,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "黄芩根提取物",
     "common_name_en": "Chinese Skullcap Root Extract",
     "common_name_zh": "黄芩提取物",
-    "function": ["Antioxidant", "Anti-inflammatory", "Brightening"],
+    "function": [
+      "Antioxidant",
+      "Anti-inflammatory",
+      "Brightening"
+    ],
     "benefits_en": "Extract from Chinese skullcap root, a major Traditional Chinese Medicine herb. Rich in baicalin and baicalein — potent antioxidants and anti-inflammatories. Inhibits melanin synthesis to brighten skin. Calms redness and acne-related inflammation.",
     "benefits_zh": "来自黄芩根的提取物，是重要传统中药材。富含黄芩苷和黄芩素，强效抗氧化和抗炎成分。抑制黑色素合成以美白提亮肤色，舒缓泛红和痤疮相关炎症。",
     "concerns_en": "Very safe. Rare allergy in those sensitive to Lamiaceae (mint family) plants.",
@@ -592,8 +888,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Multiple Chinese suppliers",
     "supplier_info": "Root of Scutellaria baicalensis Georgi. Extracted in water or ethanol. Rich in baicalin (CAS 21967-41-9).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#d4c080",
     "added": "2026-05-23",
@@ -606,7 +911,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "牡丹皮提取物",
     "common_name_en": "Tree Peony Root Bark Extract",
     "common_name_zh": "牡丹根皮提取物",
-    "function": ["Brightening", "Anti-inflammatory", "Antioxidant"],
+    "function": [
+      "Brightening",
+      "Anti-inflammatory",
+      "Antioxidant"
+    ],
     "benefits_en": "Extract from tree peony (Paeonia suffruticosa) root bark, a key Traditional Chinese Medicine ingredient. Contains paeonol, which inhibits tyrosinase and melanin synthesis. Anti-inflammatory and antioxidant. Widely used in Chinese skincare brightening and whitening formulas.",
     "benefits_zh": "来自树牡丹（牡丹）根皮的提取物，重要传统中药原料。含有丹皮酚，抑制酪氨酸酶和黑色素合成。具有抗炎和抗氧化活性，在中国护肤品美白配方中广泛应用。",
     "concerns_en": "Generally safe. Rare allergic reactions possible.",
@@ -617,8 +926,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Multiple Chinese suppliers",
     "supplier_info": "Root bark of Paeonia suffruticosa. Key active: paeonol (CAS 552-41-0).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#e8d0d8",
     "added": "2026-05-23",
@@ -631,7 +949,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "丁二醇",
     "common_name_en": "1,3-Butylene Glycol",
     "common_name_zh": "1,3-丁二醇",
-    "function": ["Humectant", "Solvent", "Texture Agent"],
+    "function": [
+      "Humectant",
+      "Solvent",
+      "Texture Agent"
+    ],
     "benefits_en": "Diol humectant that draws moisture to skin and provides a smooth, non-sticky skin feel. Solubilizes other ingredients and improves product stability and texture. Less sticky than propylene glycol.",
     "benefits_zh": "二醇类保湿剂，吸湿保水，提供顺滑不黏腻的肤感。溶解其他成分并改善产品稳定性和质地，粘腻感低于丙二醇。",
     "concerns_en": "Very safe. Lower irritation potential than propylene glycol.",
@@ -642,8 +964,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Daicel / multiple",
     "supplier_info": "Synthetic diol. CAS 107-88-0.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f5f2ee",
     "added": "2026-05-23",
@@ -656,7 +987,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "山梨醇聚醚30四油酸酯（聚山梨酯80）",
     "common_name_en": "Polysorbate 80 / Tween 80",
     "common_name_zh": "吐温80/山梨醇聚醚80",
-    "function": ["Emulsifier", "Solubilizer", "Surfactant"],
+    "function": [
+      "Emulsifier",
+      "Solubilizer",
+      "Surfactant"
+    ],
     "benefits_en": "PEG-based emulsifier and solubilizer. Incorporates oils, fragrance, and fat-soluble actives into water-based formulas. Also used as a mild surfactant for cleansing. Powerful non-ionic emulsifier for stable oil-in-water emulsions.",
     "benefits_zh": "PEG基乳化剂和增溶剂。将油脂、香精和脂溶性活性成分融入水基配方，也用作温和清洁表面活性剂。强大的非离子乳化剂，创建稳定的油包水乳液。",
     "concerns_en": "PEG derivatives may be sensitizing on broken skin. Generally safe at low use concentrations. Some controversy around PEG purity and 1,4-dioxane trace contamination (reputable suppliers test for this).",
@@ -667,8 +1002,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Kao (花王 Rheodel 430V) / Croda / multiple",
     "supplier_info": "Polyoxyethylene sorbitan monooleate (Sorbitan Monooleate Polyoxyethylene Derivative). HLB value ~15. CAS 9005-65-6. Kao Rheodel 430V: recommended usage 4-15%. Purchased from Shanghai Huawang DIY 2026-05-21.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f5f5f0",
     "added": "2026-05-23",
@@ -681,7 +1025,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "乙基己基甘油",
     "common_name_en": "Ethylhexylglycerin",
     "common_name_zh": "辛基甘油醚",
-    "function": ["Preservative Booster", "Antimicrobial", "Skin Conditioning"],
+    "function": [
+      "Preservative Booster",
+      "Antimicrobial",
+      "Skin Conditioning"
+    ],
     "benefits_en": "Glycerin-derived ingredient with broad-spectrum antimicrobial properties. Commonly paired with phenoxyethanol as a paraben-free preservative system. Also functions as a skin-conditioning emollient. Allows lower concentrations of harsher preservatives.",
     "benefits_zh": "来源于甘油的成分，具有广谱抗菌特性。常与苯氧乙醇配合，构成无防腐剂体系。同时起到皮肤调理和柔润作用，可降低所需更强防腐剂的用量。",
     "concerns_en": "Very safe and well tolerated. Lower sensitization risk than traditional preservatives.",
@@ -692,8 +1040,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Schulke / Evonik / multiple",
     "supplier_info": "Glyceryl ether. CAS 70445-33-9. Trade name: Sensiva SC 50.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f5f2ec",
     "added": "2026-05-23",
@@ -706,7 +1063,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "二肽二氨基丁酰苄基酰胺二乙酸盐",
     "common_name_en": "Syn-ake / Snake Venom Peptide",
     "common_name_zh": "类蛇毒肽 / Syn-ake",
-    "function": ["Active", "Anti-aging", "Muscle Relaxant"],
+    "function": [
+      "Active",
+      "Anti-aging",
+      "Muscle Relaxant"
+    ],
     "benefits_en": "Synthetic tripeptide mimicking waglerin-1, a peptide from temple viper (Tropidolaemus wagleri) venom. Temporarily reduces muscle contractions responsible for expression lines, particularly frown lines and crow's feet. Often described as a topical Botox alternative. Used in anti-wrinkle eye and face creams.",
     "benefits_zh": "合成三肽，模仿韦氏竹叶青蛇（Tropidolaemus wagleri）毒液中waglerin-1的作用机制。暂时减少表情肌收缩，主要针对皱眉纹和鱼尾纹。常被描述为局部注射肉毒素的替代方案，用于眼部和面部抗皱产品。",
     "concerns_en": "Safe as used in cosmetics at recommended levels (typically 0.5–4%). Topical application does not cause systemic effects. Not an actual venom.",
@@ -717,8 +1078,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "DSM (trade name: Syn-ake)",
     "supplier_info": "Trade name Syn-ake by DSM. Synthetic tripeptide: β-Ala-Pro-Dab-NH-Bzl diacetate. CAS 823202-99-9.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f0ece4",
     "added": "2026-05-23",
@@ -731,7 +1101,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "辛酰羟肟酸",
     "common_name_en": "Caprylhydroxamic Acid",
     "common_name_zh": "辛酰基羟肟酸",
-    "function": ["Preservative", "Chelating Agent", "Antimicrobial"],
+    "function": [
+      "Preservative",
+      "Chelating Agent",
+      "Antimicrobial"
+    ],
     "benefits_en": "Amino acid-derived preservative with broad-spectrum antimicrobial activity against bacteria, yeast, and mold. Chelates metal ions that microbes need for growth. Frequently used with ethylhexylglycerin as a complete paraben-free preservation system.",
     "benefits_zh": "来源于氨基酸的防腐剂，对细菌、酵母和霉菌具有广谱抗菌活性。螯合微生物生长所需的金属离子。常与乙基己基甘油配合，构成完整的无防腐剂体系。",
     "concerns_en": "Very safe. One of the most tolerated modern preservation systems.",
@@ -742,8 +1116,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Schulke / Symrise / multiple",
     "supplier_info": "Derived from caprylic acid (C8 fatty acid). CAS 7377-03-9.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f2f0ec",
     "added": "2026-05-23",
@@ -756,7 +1139,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "辛酸甘油酯",
     "common_name_en": "Glyceryl Caprylate",
     "common_name_zh": "甘油辛酸酯",
-    "function": ["Preservative Booster", "Emollient", "Antimicrobial"],
+    "function": [
+      "Preservative Booster",
+      "Emollient",
+      "Antimicrobial"
+    ],
     "benefits_en": "Glycerin ester of caprylic acid. Dual function: antimicrobial activity enhances preservation systems, while the ester portion provides emollient, skin-softening properties. Listed as EcoCert/COSMOS-approved for natural formulations.",
     "benefits_zh": "甘油与辛酸的酯化产物。双重功能：抗菌活性增强防腐体系，同时酯类部分提供柔润和软化皮肤的特性。已获EcoCert/COSMOS认证，适用于天然配方。",
     "concerns_en": "Very safe. Suitable for natural and clean formulations.",
@@ -767,8 +1154,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Lonza / Evonik / multiple",
     "supplier_info": "Ester of glycerol and caprylic acid (C8). CAS 26402-26-6.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f5f2e8",
     "added": "2026-05-23",
@@ -781,7 +1177,12 @@ var COSME_INGREDIENTS = [
     "name_zh": "寡肽-1",
     "common_name_en": "EGF (Epidermal Growth Factor mimetic)",
     "common_name_zh": "类表皮生长因子（类EGF）",
-    "function": ["Active", "Anti-aging", "Cell-communicating", "Repair"],
+    "function": [
+      "Active",
+      "Anti-aging",
+      "Cell-communicating",
+      "Repair"
+    ],
     "benefits_en": "Small synthetic peptide that mimics human Epidermal Growth Factor (EGF). Signals skin cells to proliferate and repair. Promotes collagen and elastin synthesis, accelerates wound healing, improves skin texture, firmness, and elasticity. Highly researched active in anti-aging.",
     "benefits_zh": "模拟人类表皮生长因子（EGF）的小分子合成肽。向皮肤细胞发出增殖和修复信号。促进胶原蛋白和弹力蛋白合成，加速伤口愈合，改善皮肤纹理、紧致度和弹性。是抗衰老领域研究最广泛的活性成分之一。",
     "concerns_en": "Safe at cosmetic concentrations. Highly unstable — sensitive to heat, light, and pH. Requires careful formulation. Some debate on whether topical EGF penetrates sufficiently to reach viable cells.",
@@ -792,8 +1193,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Biocon / multiple biotech suppliers",
     "supplier_info": "Recombinant or synthetic 53-amino acid peptide. Must be stored cold and protected from light.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f0ece8",
     "added": "2026-05-23",
@@ -806,7 +1216,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "羟丙基四氢吡喃三醇",
     "common_name_en": "Pro-Xylane",
     "common_name_zh": "玻色因",
-    "function": ["Active", "Anti-aging", "Cell-communicating"],
+    "function": [
+      "Active",
+      "Anti-aging",
+      "Cell-communicating"
+    ],
     "benefits_en": "L'Oréal-patented sugar-protein molecule derived from beechwood xylose. Stimulates glycosaminoglycan (GAG) synthesis — the sugar chains that keep skin plump and structurally sound. Firms skin, fills fine lines, and restores density. One of the most clinically validated anti-aging actives in luxury skincare.",
     "benefits_zh": "欧莱雅专利糖-蛋白分子，来源于山毛榉木糖。刺激糖胺聚糖（GAG）合成——维持皮肤饱满度和结构完整性的糖链分子。紧致肌肤、填平细纹、恢复密度。是奢华护肤品中临床验证最充分的抗衰老活性成分之一。",
     "concerns_en": "No known safety concerns. Well tolerated across all skin types.",
@@ -817,8 +1231,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "L'Oréal (patented)",
     "supplier_info": "Proprietary ingredient; CAS 439685-79-7. Derived from xylose extracted from beechwood hemicellulose.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f5eedc",
     "added": "2026-05-23",
@@ -831,7 +1254,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "聚二甲基硅氧烷",
     "common_name_en": "Silicone / PDMS",
     "common_name_zh": "硅油",
-    "function": ["Emollient", "Occlusive", "Film-former"],
+    "function": [
+      "Emollient",
+      "Occlusive",
+      "Film-former"
+    ],
     "benefits_en": "Linear polydimethylsiloxane (silicone). Creates a smooth, non-greasy skin feel. Forms a breathable protective film that reduces transepidermal water loss without clogging pores. Extremely stable and non-reactive. Used widely in moisturizers, primers, and sunscreens for elegant texture.",
     "benefits_zh": "线型聚二甲基硅氧烷（硅油）。赋予皮肤光滑不油腻的肤感。形成透气保护膜，减少经皮水分流失而不堵塞毛孔。极其稳定、不活泼。广泛用于保湿、妆前乳和防晒产品中，提升产品质地。",
     "concerns_en": "Non-irritating, non-comedogenic at normal use levels. Environmental concerns exist about silicone persistence in waterways, but safe for skin use.",
@@ -842,8 +1269,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Dow Corning / Wacker / multiple",
     "supplier_info": "Available in multiple viscosity grades (e.g. 200 cSt, 350 cSt). Higher viscosity = more occlusive.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f8f8f8",
     "added": "2026-05-23",
@@ -856,7 +1292,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "环五聚二甲基硅氧烷",
     "common_name_en": "D5 Silicone / Volatile Silicone",
     "common_name_zh": "D5硅油",
-    "function": ["Emollient", "Solvent", "Texture Agent"],
+    "function": [
+      "Emollient",
+      "Solvent",
+      "Texture Agent"
+    ],
     "benefits_en": "Volatile cyclic silicone that evaporates quickly from skin, leaving a silky, non-greasy finish. Carries other ingredients and improves spreadability. Widely used in serums, foundations, and primers for a weightless feel.",
     "benefits_zh": "挥发性环状硅油，涂抹后迅速从皮肤蒸发，留下丝滑不油腻的肤感。帮助携带其他成分并改善涂抹性。广泛用于精华、粉底和妆前乳，打造无感轻盈质地。",
     "concerns_en": "Restricted in rinse-off products in the EU (>0.1%) due to environmental persistence concerns. Wash-off restriction does not apply to leave-on products.",
@@ -867,8 +1307,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Dow Corning / Momentive / multiple",
     "supplier_info": "CAS 541-02-6. Also referred to as D5. EU rinse-off restriction since 2020.",
-    "approval": { "EU": "restricted", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "S" },
+    "approval": {
+      "EU": "restricted",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f5f5f5",
     "added": "2026-05-23",
@@ -881,7 +1330,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "透明质酸钠",
     "common_name_en": "Hyaluronic Acid Sodium Salt",
     "common_name_zh": "玻尿酸钠",
-    "function": ["Humectant", "Active", "Film-former"],
+    "function": [
+      "Humectant",
+      "Active",
+      "Film-former"
+    ],
     "benefits_en": "Sodium salt form of hyaluronic acid, more stable and better skin-penetrating than the free acid form. Binds up to 1000x its weight in water. Plumps and hydrates skin at multiple layers depending on molecular weight. Lower MW penetrates deeper; higher MW stays on surface for barrier support.",
     "benefits_zh": "透明质酸的钠盐形式，比游离酸形式更稳定、渗透性更好。能结合自身重量1000倍的水分。根据分子量不同，在多个皮肤层次补水保湿。低分子量渗透更深；高分子量留在表面提供屏障支持。",
     "concerns_en": "Extremely safe. No known sensitization or irritation concerns.",
@@ -892,8 +1345,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Bloomage Biotech / Kewpie / multiple",
     "supplier_info": "Produced via microbial fermentation (Streptococcus). Available in multiple MW grades: LMW (<50kDa), MMW, HMW (>1MDa).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#eaf4ff",
     "added": "2026-05-23",
@@ -906,7 +1368,9 @@ var COSME_INGREDIENTS = [
     "name_zh": "苯氧乙醇",
     "common_name_en": "Phenoxyethanol",
     "common_name_zh": "苯氧乙醇",
-    "function": ["Preservative"],
+    "function": [
+      "Preservative"
+    ],
     "benefits_en": "Broad-spectrum preservative effective against bacteria and some yeasts and molds. Most commonly used at 0.5–1%. One of the most common preservatives in modern cosmetics, considered a gentler alternative to parabens.",
     "benefits_zh": "广谱防腐剂，对细菌及部分酵母和霉菌有效。通常使用浓度0.5–1%。是现代化妆品中最常用的防腐剂之一，被认为是比防腐剂更温和的替代方案。",
     "concerns_en": "Can cause contact dermatitis in sensitive individuals. Limited to 1% in EU cosmetics. Avoid in products for infants under 3 years (EU guidance).",
@@ -917,8 +1381,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Clariant / Dow / multiple",
     "supplier_info": "CAS 122-99-6. Maximum 1% in EU (Annex V). Often paired with ethylhexylglycerin or other co-preservatives.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f0f0ec",
     "added": "2026-05-23",
@@ -931,7 +1404,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "甘草酸二钾",
     "common_name_en": "Licorice Root Extract (salt form)",
     "common_name_zh": "甘草根提取物（盐形式）",
-    "function": ["Soothing", "Anti-inflammatory", "Brightening"],
+    "function": [
+      "Soothing",
+      "Anti-inflammatory",
+      "Brightening"
+    ],
     "benefits_en": "Potassium salt of glycyrrhizic acid from licorice root. Potent anti-inflammatory and soothing agent. Inhibits phospholipase A2 to reduce prostaglandin synthesis (similar mechanism to cortisone but without side effects). Calms redness, itching, and reactive skin. Mild brightening effect.",
     "benefits_zh": "来自甘草根的甘草酸二钾盐。强效抗炎和舒缓成分。抑制磷脂酶A2以减少前列腺素合成（与可的松机制类似但无副作用）。消退泛红、瘙痒和敏感肌肤反应，具有温和美白效果。",
     "concerns_en": "Very safe. One of the most tolerated soothing actives in cosmetics.",
@@ -942,8 +1419,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Maruzen / Ichimaru Pharcos / multiple",
     "supplier_info": "CAS 68797-35-3. Derived from Glycyrrhiza glabra (licorice) root extract.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#d4b86a",
     "added": "2026-05-23",
@@ -956,7 +1442,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "苦参根提取物",
     "common_name_en": "Shrubby Sophora / Ku Shen Extract",
     "common_name_zh": "苦参提取物",
-    "function": ["Anti-inflammatory", "Antibacterial", "Soothing"],
+    "function": [
+      "Anti-inflammatory",
+      "Antibacterial",
+      "Soothing"
+    ],
     "benefits_en": "Extract from Sophora flavescens (Ku Shen), a major Traditional Chinese Medicine herb. Contains oxymatrine and matrine alkaloids with potent anti-inflammatory and antibacterial effects. Controls acne bacteria, reduces breakout-related inflammation, and calms sensitive skin. Widely used in Chinese domestic skincare.",
     "benefits_zh": "来自苦参（Ku Shen）的提取物，是重要传统中药材。含有氧化苦参碱和苦参碱生物碱，具有强效抗炎和抗菌效果。控制痤疮杆菌，减轻痘痘相关炎症，舒缓敏感肌肤。在国产护肤品中广泛使用。",
     "concerns_en": "Generally safe topically. High oral doses are hepatotoxic, but topical cosmetic concentrations are not concerning.",
@@ -967,8 +1457,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Multiple Chinese suppliers",
     "supplier_info": "Root extract of Sophora flavescens Aiton. Key actives: oxymatrine (CAS 16837-52-8), matrine (CAS 519-02-8).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#c8b870",
     "added": "2026-05-23",
@@ -981,7 +1480,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "库拉索芦荟叶提取物",
     "common_name_en": "Aloe Vera Extract",
     "common_name_zh": "芦荟提取物",
-    "function": ["Soothing", "Humectant", "Anti-inflammatory"],
+    "function": [
+      "Soothing",
+      "Humectant",
+      "Anti-inflammatory"
+    ],
     "benefits_en": "Extract from aloe vera leaves. Contains polysaccharides (acemannan), vitamins, and enzymes that soothe, hydrate, and calm irritated skin. Speeds minor wound healing. One of the most widely used botanical soothing agents in skincare globally.",
     "benefits_zh": "来自芦荟叶的提取物。含有多糖（乙酰甘露聚糖）、维生素和酶，舒缓、保湿并平复受刺激的皮肤。加速轻微伤口愈合。是全球护肤品中使用最广泛的植物舒缓成分之一。",
     "concerns_en": "Generally very safe. Rare allergic reactions possible in those sensitive to Asphodelaceae family plants. Oral aloe vera has different safety profile — not relevant for topical use.",
@@ -992,8 +1495,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Terry Laboratories / multiple",
     "supplier_info": "Extracted from Aloe barbadensis Miller inner leaf gel. Available as juice, powder (200:1, 100:1), or whole leaf extract.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#b8e4b0",
     "added": "2026-05-23",
@@ -1006,7 +1518,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "田野薄荷叶提取物",
     "common_name_en": "Field Mint / Corn Mint Extract",
     "common_name_zh": "野薄荷提取物",
-    "function": ["Soothing", "Cooling", "Antimicrobial"],
+    "function": [
+      "Soothing",
+      "Cooling",
+      "Antimicrobial"
+    ],
     "benefits_en": "Extract from corn mint (Mentha arvensis). Rich in menthol and menthone which provide a cooling, refreshing sensation and mild analgesic effect. Antimicrobial properties support preservation. Calms minor irritation.",
     "benefits_zh": "来自野薄荷（Mentha arvensis）的提取物，富含薄荷醇和薄荷酮，提供清凉舒爽感觉和轻微镇痛效果。抗菌特性有助于防腐。舒缓轻微刺激。",
     "concerns_en": "May cause sensitization in some individuals. Not recommended around eyes or on mucous membranes at high concentrations. Those with menthol allergy should avoid.",
@@ -1017,8 +1533,17 @@ var COSME_INGREDIENTS = [
     "allergen": true,
     "supplier": "Multiple suppliers",
     "supplier_info": "Aerial parts of Mentha arvensis L. The primary commercial source of natural menthol.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#a0d4a0",
     "added": "2026-05-23",
@@ -1031,7 +1556,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "香叶天竺葵花油",
     "common_name_en": "Rose Geranium Essential Oil",
     "common_name_zh": "玫瑰天竺葵精油",
-    "function": ["Fragrance", "Soothing", "Antimicrobial"],
+    "function": [
+      "Fragrance",
+      "Soothing",
+      "Antimicrobial"
+    ],
     "benefits_en": "Essential oil steam-distilled from rose geranium flowers and leaves. Provides a fresh rose-like floral fragrance. Has mild antimicrobial and astringent properties. Used in perfumery and skincare for scent and minor soothing effects.",
     "benefits_zh": "从玫瑰天竺葵花和叶片蒸汽蒸馏的精油。提供清新玫瑰般的花香。具有温和抗菌和收敛特性。用于香水和护肤品中的香气和轻微舒缓效果。",
     "concerns_en": "Known fragrance allergen — contains geraniol, citronellol, linalool. Patch test recommended for sensitive skin. Potential sensitizer with repeated use.",
@@ -1042,8 +1571,17 @@ var COSME_INGREDIENTS = [
     "allergen": true,
     "supplier": "Givaudan / Firmenich / multiple",
     "supplier_info": "CAS 8000-46-2. Main components: citronellol, geraniol, linalool. South Africa and Egypt are major producing regions.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "NR", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "NR",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#e8c8d8",
     "added": "2026-05-23",
@@ -1056,7 +1594,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "生育酚",
     "common_name_en": "Vitamin E",
     "common_name_zh": "维生素E",
-    "function": ["Antioxidant", "Skin Conditioning"],
+    "function": [
+      "Antioxidant",
+      "Skin Conditioning"
+    ],
     "benefits_en": "Pure active form of Vitamin E. More potent antioxidant than its ester form (tocopheryl acetate). Protects cell membranes and skin lipids from free radical damage. Supports skin healing and barrier repair. Also functions as a stabilizer for formulations containing unsaturated oils.",
     "benefits_zh": "维生素E的纯活性形式。比酯化形式（生育酚乙酸酯）抗氧化效力更强。保护细胞膜和皮肤脂质免受自由基损伤，支持皮肤愈合和屏障修复。同时用作含不饱和油脂配方的稳定剂。",
     "concerns_en": "Very safe. Less stable in formulations than tocopheryl acetate — oxidizes over time. Rare contact sensitization possible.",
@@ -1067,8 +1608,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "DSM / BASF / Cognis / multiple",
     "supplier_info": "Natural d-alpha-tocopherol (from vegetable oils) or synthetic dl-alpha-tocopherol. CAS 59-02-9 (d-alpha) / 10191-41-0 (dl).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f0d870",
     "added": "2026-05-23",
@@ -1081,7 +1631,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "柠檬酸钠",
     "common_name_en": "Sodium Citrate",
     "common_name_zh": "柠檬酸三钠",
-    "function": ["pH-adjuster", "Chelating", "Buffering"],
+    "function": [
+      "pH-adjuster",
+      "Chelating",
+      "Buffering"
+    ],
     "benefits_en": "Sodium salt of citric acid. Used to adjust and stabilize pH of formulations. Also functions as a mild chelating agent that binds metal ions, improving preservation system efficacy. Safe and widely used in food, pharmaceuticals, and cosmetics.",
     "benefits_zh": "柠檬酸的钠盐。用于调节和稳定配方pH，同时具有温和螯合作用，结合金属离子，提高防腐体系有效性。在食品、药品和化妆品中安全且广泛使用。",
     "concerns_en": "No known safety concerns at cosmetic use levels.",
@@ -1092,8 +1646,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Multiple",
     "supplier_info": "CAS 68-04-2. Trisodium citrate dihydrate most common form.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f5f5f0",
     "added": "2026-05-23",
@@ -1106,7 +1669,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "双丙甘醇",
     "common_name_en": "Dipropylene Glycol",
     "common_name_zh": "二丙二醇",
-    "function": ["Solvent", "Humectant", "Fragrance Carrier"],
+    "function": [
+      "Solvent",
+      "Humectant",
+      "Fragrance Carrier"
+    ],
     "benefits_en": "Diol solvent used to dissolve fragrances and other oil-soluble ingredients into water-based formulas. Mild humectant. Reduces surface tension, improving ingredient distribution. Has good skin feel — less sticky than propylene glycol.",
     "benefits_zh": "二醇类溶剂，用于将香精和其他油溶性成分溶入水基配方。温和保湿剂，降低表面张力，改善成分分布。肤感好，粘腻性低于丙二醇。",
     "concerns_en": "Very safe. Low irritation potential.",
@@ -1117,8 +1684,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Dow / LG Chem / multiple",
     "supplier_info": "CAS 25265-71-8. Mixture of isomers.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f5f2ee",
     "added": "2026-05-23",
@@ -1131,7 +1707,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "藻提取物",
     "common_name_en": "Seaweed Extract",
     "common_name_zh": "海藻提取物",
-    "function": ["Humectant", "Antioxidant", "Soothing"],
+    "function": [
+      "Humectant",
+      "Antioxidant",
+      "Soothing"
+    ],
     "benefits_en": "General term for extracts from marine algae. Rich in polysaccharides, minerals, amino acids, and antioxidants. Hydrates skin, supports barrier function, and provides mild antioxidant protection. Properties vary by algae species used.",
     "benefits_zh": "来自海藻的提取物的通称。富含多糖、矿物质、氨基酸和抗氧化成分。保湿皮肤，支持屏障功能，提供温和抗氧化保护。特性因所用海藻品种而异。",
     "concerns_en": "Generally safe. Those with shellfish or seafood allergies should use caution (cross-reactivity rare but possible).",
@@ -1142,8 +1722,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Multiple marine ingredient suppliers",
     "supplier_info": "Generic term; actual source algae varies. May be macro- or micro-algae.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#a8c8b0",
     "added": "2026-05-23",
@@ -1156,7 +1745,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "全缘叶澳洲坚果籽油",
     "common_name_en": "Macadamia Nut Oil",
     "common_name_zh": "澳洲坚果油",
-    "function": ["Emollient", "Occlusive", "Antioxidant"],
+    "function": [
+      "Emollient",
+      "Occlusive",
+      "Antioxidant"
+    ],
     "benefits_en": "Cold-pressed oil from macadamia nuts. Exceptionally high in palmitoleic acid (C16:1) — an omega-7 fatty acid that mirrors the skin's own sebum composition. Deeply nourishing, fast-absorbing, and non-greasy. Exceptional skin compatibility and barrier restoration properties.",
     "benefits_zh": "澳洲坚果冷压油。棕榈油酸（C16:1）含量极高——这是一种与皮肤自身皮脂成分高度相似的omega-7脂肪酸。深层滋养，吸收快，不油腻。皮肤相容性和屏障修复性能卓越。",
     "concerns_en": "Generally very safe. May cause reactions in those with tree nut allergies (macadamia-specific allergy very rare).",
@@ -1167,8 +1760,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Multiple suppliers (Australia, South Africa)",
     "supplier_info": "Cold-pressed from Macadamia integrifolia seeds. Very high palmitoleic acid content (~17–22%).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f0e0a0",
     "added": "2026-05-23",
@@ -1181,7 +1783,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "咖啡因",
     "common_name_en": "Caffeine",
     "common_name_zh": "咖啡碱",
-    "function": ["Active", "Anti-puffiness", "Antioxidant"],
+    "function": [
+      "Active",
+      "Anti-puffiness",
+      "Antioxidant"
+    ],
     "benefits_en": "Methylxanthine alkaloid naturally found in coffee, tea, and guarana. Constricts blood vessels when applied topically, reducing puffiness and under-eye circles. Antioxidant properties protect against UV-induced free radical damage. Promotes lipolysis in fat cells (used in anti-cellulite products). Stimulates microcirculation.",
     "benefits_zh": "天然存在于咖啡、茶和瓜拿纳中的甲基黄嘌呤生物碱。外用时收缩血管，减轻浮肿和黑眼圈。抗氧化特性保护皮肤免受紫外线诱导的自由基损伤。促进脂肪细胞脂肪分解（用于抗橘皮产品）。刺激微循环。",
     "concerns_en": "Very safe topically. No systemic absorption concerns at cosmetic concentrations.",
@@ -1192,8 +1798,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "BASF / multiple",
     "supplier_info": "CAS 58-08-2. Synthetic or natural (from coffee bean extract).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#c8a870",
     "added": "2026-05-23",
@@ -1206,7 +1821,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "薰衣草油",
     "common_name_en": "Lavender Essential Oil",
     "common_name_zh": "真正薰衣草精油",
-    "function": ["Fragrance", "Soothing", "Antimicrobial"],
+    "function": [
+      "Fragrance",
+      "Soothing",
+      "Antimicrobial"
+    ],
     "benefits_en": "Essential oil from true lavender (Lavandula angustifolia). Provides a classic floral, herbal fragrance. Has mild anti-inflammatory, antimicrobial, and calming properties. Used extensively in aromatherapy and skincare for scent and minor soothing effects.",
     "benefits_zh": "来自真正薰衣草（Lavandula angustifolia）的精油。提供经典的花香草本香气。具有温和的抗炎、抗菌和镇静特性。广泛用于芳疗和护肤品中提供香气和轻微舒缓效果。",
     "concerns_en": "Known fragrance allergen — contains linalool and linalyl acetate. EU requires labeling at >0.01% in leave-on products. Potential sensitizer with repeated use. Not recommended near eyes.",
@@ -1217,8 +1836,17 @@ var COSME_INGREDIENTS = [
     "allergen": true,
     "supplier": "Givaudan / Firmenich / multiple",
     "supplier_info": "CAS 8000-28-0. Steam-distilled from Lavandula angustifolia flowers. France (Provence) and Bulgaria are major sources.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "NR", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "NR",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#c8b0e0",
     "added": "2026-05-23",
@@ -1231,7 +1859,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "泡叶藻提取物",
     "common_name_en": "Knotted Wrack / Egg Wrack Extract",
     "common_name_zh": "结节墨角藻提取物",
-    "function": ["Antioxidant", "Soothing", "Humectant"],
+    "function": [
+      "Antioxidant",
+      "Soothing",
+      "Humectant"
+    ],
     "benefits_en": "Extract from Ascophyllum nodosum, a common North Atlantic brown seaweed. Rich in phlorotannins, fucoidans, and alginic acid. Provides antioxidant protection, hydration, and soothes stressed skin. Fucoidan fraction has documented anti-inflammatory and skin-repairing activity.",
     "benefits_zh": "来自北大西洋常见褐藻——泡叶藻（Ascophyllum nodosum）的提取物。富含间苯三酚聚合物、岩藻依多糖和海藻酸。提供抗氧化保护、保湿并舒缓受压皮肤。岩藻依多糖组分具有记录在案的抗炎和皮肤修复活性。",
     "concerns_en": "Very safe. No known concerns for topical use.",
@@ -1242,8 +1874,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Codif / BiotechMarine / multiple",
     "supplier_info": "Harvested from North Atlantic rocky shores. Extracted in water or glycol.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#90b890",
     "added": "2026-05-23",
@@ -1256,7 +1897,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "掌状海带提取物",
     "common_name_en": "Oarweed / Kombu Kelp Extract",
     "common_name_zh": "海带（掌状）提取物",
-    "function": ["Humectant", "Antioxidant", "Mineral Supply"],
+    "function": [
+      "Humectant",
+      "Antioxidant",
+      "Mineral Supply"
+    ],
     "benefits_en": "Extract from Laminaria digitata (oarweed), a large brown macroalgae. Rich in fucoidan, laminarin, and iodine-containing compounds. Hydrates skin, provides antioxidant protection, and delivers trace minerals. Used in marine-inspired skincare for firming and energizing effects.",
     "benefits_zh": "来自掌状海带（Laminaria digitata）的提取物，一种大型褐色大型藻类。富含岩藻依多糖、海带多糖和含碘化合物。保湿肌肤，提供抗氧化保护，输送微量矿物质。用于海洋风护肤品中提供紧致和活化效果。",
     "concerns_en": "Very safe. High iodine content may be of concern for those with thyroid conditions if used at very high concentrations, but cosmetic concentrations are not systemically absorbed.",
@@ -1267,8 +1912,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Codif / Laboratoires de Biarritz / multiple",
     "supplier_info": "Harvested from North Atlantic and Arctic coasts. Often extracted in water or glycol/water mixture.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#88a870",
     "added": "2026-05-23",
@@ -1281,7 +1935,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "糖海带提取物",
     "common_name_en": "Sugar Kelp Extract",
     "common_name_zh": "糖海带提取物",
-    "function": ["Humectant", "Antioxidant", "Soothing"],
+    "function": [
+      "Humectant",
+      "Antioxidant",
+      "Soothing"
+    ],
     "benefits_en": "Extract from sugar kelp (Laminaria saccharina / Saccharina latissima). Contains laminarin polysaccharides, mannitol, and fucoidan. Hydrates, soothes, and provides antioxidant protection. Particularly used in marine-derived skincare formulations for its skin-calming properties.",
     "benefits_zh": "来自糖海带（Laminaria saccharina / Saccharina latissima）的提取物。含有海带多糖、甘露醇和岩藻依多糖。保湿、舒缓并提供抗氧化保护。特别用于海洋来源护肤配方中，发挥其肌肤镇静特性。",
     "concerns_en": "Very safe. No known concerns.",
@@ -1292,8 +1950,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Codif / multiple",
     "supplier_info": "Also known as Saccharina latissima. Harvested from North Atlantic and Arctic cold waters.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#90b880",
     "added": "2026-05-23",
@@ -1306,7 +1973,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "红铁氧化物",
     "common_name_en": "Red Iron Oxide (CI 77491)",
     "common_name_zh": "红铁氧化物（CI 77491）",
-    "function": ["Colorant", "Pigment"],
+    "function": [
+      "Colorant",
+      "Pigment"
+    ],
     "benefits_en": "Natural inorganic red pigment used in makeup, blush, lipstick, and eyeshadow. Provides warm red, terracotta, and brown tones. Stable, long-lasting color. Safe for all skin types.",
     "benefits_zh": "天然无机红色颜料，用于彩妆、腮红、唇膏和眼影。提供温暖的红色、赤陶和棕色调。稳定持久的着色。适合所有肤质。",
     "concerns_en": "Very safe. No known allergens or irritants at cosmetic-use concentrations.",
@@ -1317,8 +1987,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Suncroma / Huntsman / BASF / multiple",
     "supplier_info": "CI 77491. Synthetic iron oxide, ferric oxide (Fe2O3).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "M" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "M"
+    },
     "photo": "",
     "color_swatch": "#c41e3a",
     "added": "2026-05-23",
@@ -1331,7 +2010,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "黄铁氧化物",
     "common_name_en": "Yellow Iron Oxide (CI 77492)",
     "common_name_zh": "黄铁氧化物（CI 77492）",
-    "function": ["Colorant", "Pigment"],
+    "function": [
+      "Colorant",
+      "Pigment"
+    ],
     "benefits_en": "Natural inorganic yellow pigment used in makeup, foundations, and eyeshadow. Provides warm yellow, golden, and ochre tones. Stable and fade-resistant. Safe for all skin types.",
     "benefits_zh": "天然无机黄色颜料，用于彩妆、粉底和眼影。提供温暖的黄色、金色和土黄色调。稳定且抗褪色。适合所有肤质。",
     "concerns_en": "Very safe. No known allergens or irritants at cosmetic-use concentrations.",
@@ -1342,8 +2024,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Suncroma / Huntsman / BASF / multiple",
     "supplier_info": "CI 77492. Synthetic iron oxide, ferric oxide hydroxide (FeO(OH)).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "M" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "M"
+    },
     "photo": "",
     "color_swatch": "#d4a574",
     "added": "2026-05-23",
@@ -1356,7 +2047,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "黑铁氧化物",
     "common_name_en": "Black Iron Oxide (CI 77499)",
     "common_name_zh": "黑铁氧化物（CI 77499）",
-    "function": ["Colorant", "Pigment"],
+    "function": [
+      "Colorant",
+      "Pigment"
+    ],
     "benefits_en": "Natural inorganic black pigment used in eyeliner, mascara, eyeshadow, and dark foundations. Provides deep black and neutral tones. Excellent color strength and stability. Safe for all skin types.",
     "benefits_zh": "天然无机黑色颜料，用于眼线、睫毛膏、眼影和深色粉底。提供深黑色和中性色调。优异的着色力和稳定性。适合所有肤质。",
     "concerns_en": "Very safe. No known allergens or irritants at cosmetic-use concentrations.",
@@ -1367,8 +2061,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Suncroma / Huntsman / BASF / multiple",
     "supplier_info": "CI 77499. Synthetic iron oxide, magnetite (Fe3O4) or ferroferric oxide.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "S", "Nail": "M" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "S",
+      "Nail": "M"
+    },
     "photo": "",
     "color_swatch": "#1a1a1a",
     "added": "2026-05-23",
@@ -1381,7 +2084,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "二氧化钛",
     "common_name_en": "Titanium Dioxide (CI 77891)",
     "common_name_zh": "二氧化钛（CI 77891）",
-    "function": ["Colorant", "Pigment", "UV Filter"],
+    "function": [
+      "Colorant",
+      "Pigment",
+      "UV Filter"
+    ],
     "benefits_en": "Bright white pigment and UV filter. Widely used in foundations, powders, and sunscreens. Provides opacity and light reflection. Safe inorganic mineral pigment.",
     "benefits_zh": "亮白无机颜料和紫外线过滤剂。广泛用于粉底、散粉和防晒产品。提供遮盖度和光反射。安全的无机矿物颜料。",
     "concerns_en": "Generally recognized as safe (GRAS). Nano-sized particles may have different safety profile — cosmetics typically use micronized forms. No known issues at standard concentrations.",
@@ -1392,8 +2099,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Kronos / Huntsman / BASF / multiple",
     "supplier_info": "CI 77891. Available in various grades (micronized, nano, coated).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "M" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "M"
+    },
     "photo": "",
     "color_swatch": "#ffffff",
     "added": "2026-05-23",
@@ -1406,7 +2122,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "云母",
     "common_name_en": "Mica",
     "common_name_zh": "云母（CI 77019）",
-    "function": ["Pigment", "Film-former"],
+    "function": [
+      "Pigment",
+      "Film-former"
+    ],
     "benefits_en": "Natural or synthetic plate-like mineral. Provides shimmer, sparkle, and light-diffusing properties. Improves product texture and spreadability. Often combined with color cosmetics and eyeshadow.",
     "benefits_zh": "天然或合成片状矿物。提供闪烁、光泽和光漫射特性。改善产品质地和延展性。常与彩妆和眼影搭配使用。",
     "concerns_en": "Generally safe. Talc-free mica is preferred. Inhalation risk if aerosolized — use proper application techniques.",
@@ -1417,8 +2136,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Merck / Imerys / Suncroma / multiple",
     "supplier_info": "CI 77019. Available in various particle sizes and treatments (coated, color-treated).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "S", "Nail": "M" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "S",
+      "Nail": "M"
+    },
     "photo": "",
     "color_swatch": "#e8e6e0",
     "added": "2026-05-23",
@@ -1431,7 +2159,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "云母粉（800目干法）",
     "common_name_en": "Ultra-fine Mica Powder - 800 Mesh (Dry-ground)",
     "common_name_zh": "超细云母粉 - 800目（干法）",
-    "function": ["Pigment", "Film-former", "Absorbent"],
+    "function": [
+      "Pigment",
+      "Film-former",
+      "Absorbent"
+    ],
     "benefits_en": "Ultra-fine mica powder, 800 mesh dry-ground. Extremely fine particle size provides superior smoothness and light-diffusing properties. Ideal for makeup powders, primers, and high-end cosmetics. Enhances product texture and creates smooth, blurred finish.",
     "benefits_zh": "超细云母粉，800目干法研磨。极细的颗粒尺寸提供卓越的光滑度和光漫射特性。非常适合彩妆粉、妆前乳和高端化妆品。增强产品质地并创造光滑、模糊效果。",
     "concerns_en": "Very safe. Fine particles require proper handling to avoid inhalation during application. Use with appropriate ventilation or damp application techniques.",
@@ -1441,9 +2173,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "真淳贸易商行 (purchased 2026-04-26)",
-    "supplier_info": "800目（干法）。超细绢云母粉。500克规格。Not talc-containing.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "NR", "Nail": "M" },
+    "supplier_info": "800目（干法）。超细绢云母粉。500克规格。Not talc-containing. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "NR",
+      "Nail": "M"
+    },
     "photo": "",
     "color_swatch": "#f0ede8",
     "added": "2026-05-21",
@@ -1456,7 +2197,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "氧化铬绿",
     "common_name_en": "Chromium Oxide Green (CI 77288)",
     "common_name_zh": "氧化铬绿（CI 77288）",
-    "function": ["Pigment", "Colorant"],
+    "function": [
+      "Pigment",
+      "Colorant"
+    ],
     "benefits_en": "Bright, stable green pigment. Provides rich green color for eyeshadows and color cosmetics. Durable and fade-resistant. FDA-approved color additive permanently listed for external cosmetic use.",
     "benefits_zh": "鲜亮、稳定的绿色颜料。为眼影和彩妆提供丰富的绿色。耐用且抗褪色。美国FDA批准的永久列表颜料，用于外用化妆品。",
     "concerns_en": "FDA-approved for externally applied cosmetics including eye area, but strictly prohibited in lip care products due to ingestion and irritation risks. Restricted in EU for some applications.",
@@ -1467,8 +2211,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Suncroma / multiple",
     "supplier_info": "CI 77288. Synthetic inorganic chromium oxide. FDA Color Additives Status List.",
-    "approval": { "EU": "restricted", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "X", "Nail": "S" },
+    "approval": {
+      "EU": "restricted",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "X",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#3d7d3d",
     "added": "2026-05-23",
@@ -1481,7 +2234,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "铁氰化铁",
     "common_name_en": "Prussian Blue (CI 77510)",
     "common_name_zh": "普鲁士蓝（CI 77510）",
-    "function": ["Pigment", "Colorant"],
+    "function": [
+      "Pigment",
+      "Colorant"
+    ],
     "benefits_en": "Bright, vivid blue pigment. Provides deep blue tones for eyeshadow and makeup. Excellent color strength and stability.",
     "benefits_zh": "鲜亮、鲜艳的蓝色颜料。为眼影和彩妆提供深蓝色调。优异的着色力和稳定性。",
     "concerns_en": "X = Prohibited in U.S. for cosmetics. Restricted in EU for some applications. Check regional regulations before use.",
@@ -1492,8 +2248,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Suncroma / BASF / multiple",
     "supplier_info": "CI 77510. Synthetic ferric ferrocyanide (Prussian Blue).",
-    "approval": { "EU": "restricted", "USA": "prohibited", "China": "approved" },
-    "usage_area": { "Face": "X", "Eye": "X", "Lip": "NR", "Nail": "NR" },
+    "approval": {
+      "EU": "restricted",
+      "USA": "prohibited",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "X",
+      "Eye": "X",
+      "Lip": "NR",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#002e8f",
     "added": "2026-05-23",
@@ -1506,7 +2271,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "锰紫",
     "common_name_en": "Manganese Violet (CI 77742)",
     "common_name_zh": "锰紫（CI 77742）",
-    "function": ["Pigment", "Colorant"],
+    "function": [
+      "Pigment",
+      "Colorant"
+    ],
     "benefits_en": "Rich purple/violet pigment. Provides vibrant purple tones for eyeshadow and color cosmetics. Good lightfastness.",
     "benefits_zh": "丰富的紫色/紫罗兰色颜料。为眼影和彩妆提供鲜艳的紫色调。良好的耐光性。",
     "concerns_en": "Generally safe at cosmetic concentrations. No major restrictions in major markets.",
@@ -1517,8 +2285,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Suncroma / BASF / multiple",
     "supplier_info": "CI 77742. Synthetic manganese ammonium pyrophosphate or similar complex.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "S", "Nail": "M" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "S",
+      "Nail": "M"
+    },
     "photo": "",
     "color_swatch": "#662d7a",
     "added": "2026-05-23",
@@ -1531,7 +2308,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "群青",
     "common_name_en": "Ultramarins (CI 77007 / Ultramarine Blue, Pink, Violet)",
     "common_name_zh": "群青（CI 77007/群青蓝、群青粉、群青紫）",
-    "function": ["Pigment", "Colorant"],
+    "function": [
+      "Pigment",
+      "Colorant"
+    ],
     "benefits_en": "Deep blue pigment derived from lapis lazuli or synthetically produced. Provides intense blue color for eyeshadow and general external cosmetics. Available as Ultramarine Blue, Pink, and Violet. High color strength and excellent lightfastness.",
     "benefits_zh": "源自青金石或合成的深蓝色颜料。为眼影和外用彩妆提供强烈的蓝色。可获得群青蓝、群青粉和群青紫。着色力强，耐光性优异。",
     "concerns_en": "FDA-approved for external cosmetics and eye makeup. Prohibited in lip products (risk of ingestion via mucous membranes). NOT permitted in sunscreens or products with SPF claims (classified as OTC drugs). Restricted in EU for some applications.",
@@ -1542,8 +2322,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Suncroma / BASF / multiple",
     "supplier_info": "CI 77007. Synthetic ultramarins (aluminum silicate with lapis-like structure). Available in blue, pink, and violet shades.",
-    "approval": { "EU": "restricted", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "X", "Nail": "S" },
+    "approval": {
+      "EU": "restricted",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "X",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#0047ab",
     "added": "2026-05-23",
@@ -1556,7 +2345,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "胭脂虫红",
     "common_name_en": "Carmine (CI 75470)",
     "common_name_zh": "胭脂虫红（CI 75470）",
-    "function": ["Pigment", "Colorant"],
+    "function": [
+      "Pigment",
+      "Colorant"
+    ],
     "benefits_en": "Deep red pigment derived from cochineal insects or synthetically produced. Provides rich red and pink tones for lipstick and blush. High tinting strength.",
     "benefits_zh": "源自胭脂虫或合成的深红色颜料。为唇膏和腮红提供丰富的红色和粉色调。着色力强。",
     "concerns_en": "Natural carmine is a known allergen — can cause contact dermatitis and oral reactions. Synthetic alternative (naphthol carmine lake) is more tolerated. Label carefully.",
@@ -1567,8 +2359,17 @@ var COSME_INGREDIENTS = [
     "allergen": true,
     "supplier": "Suncroma / Sensient / Clariant / multiple",
     "supplier_info": "CI 75470. Natural carmine derived from Dactylopius coccus, or synthetic (naphthol carmine lake).",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "M", "Nail": "M" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "M",
+      "Nail": "M"
+    },
     "photo": "",
     "color_swatch": "#c41e3a",
     "added": "2026-05-23",
@@ -1581,7 +2382,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "二氧化钛（水合/涂层）",
     "common_name_en": "Titanium Dioxide (CI 77891) - Hydrated or Coated",
     "common_name_zh": "二氧化钛（CI 77891）水合或涂层产品",
-    "function": ["Pigment", "UV Filter", "Opacifying Agent"],
+    "function": [
+      "Pigment",
+      "UV Filter",
+      "Opacifying Agent"
+    ],
     "benefits_en": "Alternative form of titanium dioxide — hydrated or surface-coated for improved dispersibility and UV coverage. Used in advanced sunscreens and primers.",
     "benefits_zh": "二氧化钛的替代形式——水合或表面涂层，提高分散性和紫外线防护。用于先进防晒和粉底液。",
     "concerns_en": "Same safety profile as standard titanium dioxide. Coating may include silica or alumina.",
@@ -1592,8 +2397,17 @@ var COSME_INGREDIENTS = [
     "allergen": false,
     "supplier": "Kronos / Huntsman / BASF",
     "supplier_info": "Specialized grades of CI 77891 with hydration or inert surface coatings.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "M" },
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "M"
+    },
     "photo": "",
     "color_swatch": "#f5f5f5",
     "added": "2026-05-23",
@@ -1606,7 +2420,12 @@ var COSME_INGREDIENTS = [
     "name_zh": "蜂蜡",
     "common_name_en": "Beeswax",
     "common_name_zh": "蜂蜡",
-    "function": ["Emollient", "Occlusive", "Thickener", "Film-former"],
+    "function": [
+      "Emollient",
+      "Occlusive",
+      "Thickener",
+      "Film-former"
+    ],
     "benefits_en": "Natural wax produced by honeybees. Provides emollient and occlusive properties. Excellent for lip balms, creams, and solid products. Creates protective barrier on skin.",
     "benefits_zh": "蜜蜂产生的天然蜡。提供润肤和封闭特性。非常适合唇膏、面霜和固体产品。在皮肤上形成保护屏障。",
     "concerns_en": "Generally very safe. Allergen potential for bee-sensitive individuals. May clog pores in concentrated formulations.",
@@ -1616,9 +2435,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 2,
     "allergen": true,
     "supplier": "Multiple / Beekeepers",
-    "supplier_info": "White, off-white, or yellow depending on source. Food-grade available.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "supplier_info": "White, off-white, or yellow depending on source. Food-grade available. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f5e6d3",
     "added": "2026-05-21",
@@ -1631,7 +2459,12 @@ var COSME_INGREDIENTS = [
     "name_zh": "小烛树蜡",
     "common_name_en": "Candelilla Wax",
     "common_name_zh": "小烛树蜡",
-    "function": ["Emollient", "Occlusive", "Thickener", "Film-former"],
+    "function": [
+      "Emollient",
+      "Occlusive",
+      "Thickener",
+      "Film-former"
+    ],
     "benefits_en": "Plant-derived wax from Candelilla shrub. Similar properties to beeswax but vegan. Provides texture and shine. Used in lipsticks, balms, and creams.",
     "benefits_zh": "从小烛树灌木提取的植物蜡。类似蜂蜡的特性但为素食。提供质地和光泽。用于唇膏、唇膏和面霜。",
     "concerns_en": "Very safe. No known allergens. Vegan alternative to beeswax.",
@@ -1641,9 +2474,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 1,
     "allergen": false,
     "supplier": "Multiple / Plant extractors",
-    "supplier_info": "Pale yellow to off-white. Extracted from Euphorbia cerifera.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "supplier_info": "Pale yellow to off-white. Extracted from Euphorbia cerifera. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#f9f5e8",
     "added": "2026-05-21",
@@ -1656,7 +2498,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "天然植物色粉",
     "common_name_en": "Natural Plant Colorant",
     "common_name_zh": "天然植物色粉",
-    "function": ["Colorant", "Pigment"],
+    "function": [
+      "Colorant",
+      "Pigment"
+    ],
     "benefits_en": "Plant-derived colorants used in DIY cosmetics and natural makeup. Available in multiple colors including light brown, magenta, blue, yellow, red, white, and others. Provides natural pigmentation without synthetic dyes.",
     "benefits_zh": "植物来源的着色剂，用于DIY化妆品和天然彩妆。提供多种颜色，包括浅咖啡、玫红、蓝色、黄色、大红、白色等。提供天然着色而不使用合成染料。",
     "concerns_en": "Color intensity and stability vary by plant source and processing. Not all plant colorants have been cosmetically validated for all applications. Recommend patch test before use.",
@@ -1666,9 +2511,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "DIY suppliers / Plant extractors",
-    "supplier_info": "Available in multiple shades. INCI composition varies by supplier and plant source — not standardized.",
-    "approval": { "EU": "not-listed", "USA": "not-listed", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "S", "Lip": "M", "Nail": "S" },
+    "supplier_info": "Available in multiple shades. INCI composition varies by supplier and plant source — not standardized. — I have it",
+    "approval": {
+      "EU": "not-listed",
+      "USA": "not-listed",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "S",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#8b6f47",
     "added": "2026-05-21",
@@ -1681,7 +2535,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "高岭土",
     "common_name_en": "Kaolin (China Clay)",
     "common_name_zh": "高岭土（瓷土）",
-    "function": ["Absorbent", "Opacifying Agent"],
+    "function": [
+      "Absorbent",
+      "Opacifying Agent"
+    ],
     "benefits_en": "Natural clay mineral. Absorbs excess oil and moisture. Commonly used in face masks, powders, and cleansers. Gentle and suitable for all skin types.",
     "benefits_zh": "天然粘土矿物。吸收多余油脂和水分。常用于面膜、粉末和洁面产品。温和，适合所有肤质。",
     "concerns_en": "Very safe. Can be drying if overused. May irritate sensitive skin in high concentrations.",
@@ -1691,9 +2548,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Multiple / Mining companies",
-    "supplier_info": "Ultra-fine powder. Available in white and colored grades.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "NR", "Lip": "NR", "Nail": "NR" },
+    "supplier_info": "Ultra-fine powder. Available in white and colored grades. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "NR",
+      "Lip": "NR",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f5f2ed",
     "added": "2026-05-21",
@@ -1706,7 +2572,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "乳木果油",
     "common_name_en": "Shea Butter",
     "common_name_zh": "乳木果油",
-    "function": ["Emollient", "Occlusive"],
+    "function": [
+      "Emollient",
+      "Occlusive"
+    ],
     "benefits_en": "Rich plant-based butter from shea nut. Deeply moisturizing and nourishing. Contains natural fatty acids and vitamins. Excellent for dry skin, creams, balms, and body care.",
     "benefits_zh": "来自乳木果坚果的丰富植物油脂。深层保湿和滋养。含有天然脂肪酸和维生素。非常适合干性皮肤、面霜、唇膏和身体护理。",
     "concerns_en": "Comedogenic rating 1-2. Can be occlusive in high concentrations. May cause breakouts for acne-prone skin.",
@@ -1716,9 +2585,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 1,
     "allergen": false,
     "supplier": "Multiple / African suppliers",
-    "supplier_info": "Creamy texture, typically beige to light yellow. Refined and unrefined grades available.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "S" },
+    "supplier_info": "Creamy texture, typically beige to light yellow. Refined and unrefined grades available. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#e8dcc8",
     "added": "2026-05-21",
@@ -1731,7 +2609,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "硬脂酸镁",
     "common_name_en": "Magnesium Stearate",
     "common_name_zh": "硬脂酸镁",
-    "function": ["Thickener", "Anti-caking Agent", "Lubricant"],
+    "function": [
+      "Thickener",
+      "Anti-caking Agent",
+      "Lubricant"
+    ],
     "benefits_en": "Fine powder lubricant. Prevents clumping and improves flow of powders. Used in loose powders, pressed powders, and powder formulations.",
     "benefits_zh": "细粉润滑剂。防止粉末结团并改善流动性。用于散粉、压粉和粉末配方。",
     "concerns_en": "Generally safe. May cause skin irritation in sensitive individuals if used in high concentrations.",
@@ -1741,9 +2623,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Multiple / Chemical suppliers",
-    "supplier_info": "White fine powder. Food-grade and cosmetic-grade available.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "NR", "Nail": "M" },
+    "supplier_info": "White fine powder. Food-grade and cosmetic-grade available. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "NR",
+      "Nail": "M"
+    },
     "photo": "",
     "color_swatch": "#ffffff",
     "added": "2026-05-21",
@@ -1756,7 +2647,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "玉米变性淀粉",
     "common_name_en": "Modified Corn Starch / Acetylated Starch",
     "common_name_zh": "玉米变性淀粉/乙酰化淀粉",
-    "function": ["Absorbent", "Thickener", "Opacifying Agent"],
+    "function": [
+      "Absorbent",
+      "Thickener",
+      "Opacifying Agent"
+    ],
     "benefits_en": "Modified starch for improved texture and oil absorption. Used in powders and dry formulations. Food-grade and cosmetic-grade available.",
     "benefits_zh": "改性淀粉，用于改善质地和吸油。用于粉末和干性配方。提供食品级和化妆品级。",
     "concerns_en": "Very safe. Food-grade quality. May absorb moisture from environment.",
@@ -1766,9 +2661,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Multiple / Starch suppliers",
-    "supplier_info": "Fine powder. Acetylated diphosphate starch commonly used.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "NR", "Lip": "NR", "Nail": "NR" },
+    "supplier_info": "Fine powder. Acetylated diphosphate starch commonly used. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "NR",
+      "Lip": "NR",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#ffffff",
     "added": "2026-05-21",
@@ -1781,7 +2685,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "乳化蜡",
     "common_name_en": "Emulsifying Wax NF",
     "common_name_zh": "乳化蜡",
-    "function": ["Emulsifier", "Thickener"],
+    "function": [
+      "Emulsifier",
+      "Thickener"
+    ],
     "benefits_en": "Self-emulsifying wax blend. Creates stable oil-in-water emulsions without additional emulsifiers. Used in creams, lotions, and cosmetic formulations.",
     "benefits_zh": "自乳化蜡混合物。创建稳定的油包水乳液，无需额外乳化剂。用于面霜、乳液和化妆品配方。",
     "concerns_en": "Generally safe. Some sensitivities to polysorbate in rare cases.",
@@ -1791,9 +2698,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 1,
     "allergen": false,
     "supplier": "Multiple / Cosmetic suppliers",
-    "supplier_info": "Blend of Cetearyl Alcohol and Polysorbate 80. Cream-colored solid.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "S", "Lip": "S", "Nail": "NR" },
+    "supplier_info": "Blend of Cetearyl Alcohol and Polysorbate 80. Cream-colored solid. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "S",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#e8dcc8",
     "added": "2026-05-21",
@@ -1806,7 +2722,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "白池花籽油",
     "common_name_en": "Babassu Oil",
     "common_name_zh": "白池花籽油",
-    "function": ["Emollient", "Occlusive"],
+    "function": [
+      "Emollient",
+      "Occlusive"
+    ],
     "benefits_en": "Plant-based oil from babassu palm fruit. Similar to coconut oil but lighter. Moisturizing without heavy occlusion. Good for massage and body care.",
     "benefits_zh": "源自白池棕榈果的植物油。类似椰子油但更轻。保湿而不会过度封闭。非常适合按摩和身体护理。",
     "concerns_en": "Relatively safe. May clog pores in concentrated formulations for facial use.",
@@ -1816,9 +2735,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 1,
     "allergen": false,
     "supplier": "Multiple / Brazilian suppliers",
-    "supplier_info": "Light yellow to clear oil. Cold-pressed or refined grades available.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "M", "Nail": "NR" },
+    "supplier_info": "Light yellow to clear oil. Cold-pressed or refined grades available. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "M",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#fef5e7",
     "added": "2026-05-21",
@@ -1831,7 +2759,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "阿甘油",
     "common_name_en": "Argan Oil",
     "common_name_zh": "阿甘油",
-    "function": ["Emollient", "Antioxidant"],
+    "function": [
+      "Emollient",
+      "Antioxidant"
+    ],
     "benefits_en": "Premium plant oil from argan tree kernels. Rich in antioxidants, vitamin E, and fatty acids. Lightweight and absorbs easily. Excellent for face, hair, and body.",
     "benefits_zh": "来自坚果树仁的优质植物油。富含抗氧化物、维生素E和脂肪酸。质地轻盈，易吸收。非常适合面部、头发和身体。",
     "concerns_en": "Rare allergies. Generally very safe. Premium pricing.",
@@ -1841,9 +2772,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Multiple / Moroccan suppliers",
-    "supplier_info": "Golden to amber oil. Cold-pressed. Pure and authentic argan oil.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "S" },
+    "supplier_info": "Golden to amber oil. Cold-pressed. Pure and authentic argan oil. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#d4a574",
     "added": "2026-05-21",
@@ -1856,7 +2796,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "蓖麻油",
     "common_name_en": "Castor Oil",
     "common_name_zh": "蓖麻油",
-    "function": ["Emollient", "Humectant"],
+    "function": [
+      "Emollient",
+      "Humectant"
+    ],
     "benefits_en": "Plant oil from castor beans. Rich in ricinoleic acid and fatty acids. Excellent for hair care, scalp health, and body massage. Promotes hair growth and strength.",
     "benefits_zh": "源自蓖麻豆的植物油。富含蓖麻酸和脂肪酸。非常适合头发护理、头皮健康和身体按摩。促进头发生长和强韧。",
     "concerns_en": "Some skin sensitivity possible. Not recommended for acne-prone facial skin. Can be occlusive.",
@@ -1866,9 +2809,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 1,
     "allergen": false,
     "supplier": "Multiple / India / Brazil",
-    "supplier_info": "Clear to pale yellow oil. Cold-pressed, refined, or hexane-extracted grades.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "M", "Nail": "NR" },
+    "supplier_info": "Clear to pale yellow oil. Cold-pressed, refined, or hexane-extracted grades. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "M",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f4d16b",
     "added": "2026-05-21",
@@ -1881,7 +2833,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "雪松精油",
     "common_name_en": "Cedarwood Essential Oil",
     "common_name_zh": "雪松精油",
-    "function": ["Fragrance", "Antioxidant", "Soothing"],
+    "function": [
+      "Fragrance",
+      "Antioxidant",
+      "Soothing"
+    ],
     "benefits_en": "Essential oil from cedar wood. Woodsy, grounding aroma. Used in aromatherapy, fragrances, and skincare. May support skin health and mood.",
     "benefits_zh": "源自雪松木的精油。木质、接地气的香气。用于香薰、香氛和护肤。可能支持皮肤健康和情绪。",
     "concerns_en": "Skin-safe in diluted formulations. May cause photosensitivity if applied topically in sun exposure.",
@@ -1891,9 +2847,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Multiple / Essential oil suppliers",
-    "supplier_info": "Yellow to brown liquid oil. Steam-distilled from cedarwood chips.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "NR", "Nail": "NR" },
+    "supplier_info": "Yellow to brown liquid oil. Steam-distilled from cedarwood chips. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "NR",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#8b7355",
     "added": "2026-05-21",
@@ -1906,7 +2871,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "甜橙精油",
     "common_name_en": "Sweet Orange Essential Oil",
     "common_name_zh": "甜橙精油",
-    "function": ["Fragrance", "Antioxidant"],
+    "function": [
+      "Fragrance",
+      "Antioxidant"
+    ],
     "benefits_en": "Essential oil from sweet orange peel. Bright, citrus aroma. Used in aromatherapy and skincare. May uplift mood and support skin clarity.",
     "benefits_zh": "源自甜橙皮的精油。明亮的柑橘香气。用于香薰和护肤。可能提升情绪并支持肌肤清爽。",
     "concerns_en": "May cause photosensitivity if applied before sun exposure. Dilute well before topical use.",
@@ -1916,9 +2884,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Multiple / Citrus suppliers",
-    "supplier_info": "Orange liquid. Cold-pressed from sweet orange peel.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "NR", "Nail": "NR" },
+    "supplier_info": "Orange liquid. Cold-pressed from sweet orange peel. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "NR",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#ff9500",
     "added": "2026-05-21",
@@ -1931,7 +2908,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "薰衣草精油",
     "common_name_en": "Lavender Essential Oil",
     "common_name_zh": "薰衣草精油",
-    "function": ["Fragrance", "Soothing", "Antioxidant"],
+    "function": [
+      "Fragrance",
+      "Soothing",
+      "Antioxidant"
+    ],
     "benefits_en": "Essential oil from lavender flowers. Calming, floral aroma. One of the most versatile and skin-friendly essential oils. Used in skincare, aromatherapy, and relaxation.",
     "benefits_zh": "源自薰衣草花的精油。镇静、花香气息。最多功能和皮肤友好的精油之一。用于护肤、香薰和放松。",
     "concerns_en": "Very safe and well-tolerated. One of the few essential oils safe for direct skin application at low concentrations.",
@@ -1941,9 +2922,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Multiple / Lavender growers",
-    "supplier_info": "Pale yellow to amber liquid. Steam-distilled from lavender flowers.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "NR", "Lip": "S", "Nail": "NR" },
+    "supplier_info": "Pale yellow to amber liquid. Steam-distilled from lavender flowers. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "NR",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#c8b6db",
     "added": "2026-05-21",
@@ -1956,7 +2946,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "乳香精油",
     "common_name_en": "Frankincense Essential Oil",
     "common_name_zh": "乳香精油",
-    "function": ["Fragrance", "Anti-aging", "Soothing"],
+    "function": [
+      "Fragrance",
+      "Anti-aging",
+      "Soothing"
+    ],
     "benefits_en": "Essential oil from frankincense resin. Warm, spicy, woodsy aroma. Prized for skin rejuvenation and anti-aging properties. Used in premium skincare formulations.",
     "benefits_zh": "源自乳香树脂的精油。温暖、辛辣、木质香气。因肌肤活化和抗衰老特性而受重视。用于高端护肤配方。",
     "concerns_en": "Very safe and skin-friendly. Can be applied topically at appropriate dilutions.",
@@ -1966,9 +2960,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Multiple / Middle East suppliers",
-    "supplier_info": "Clear to pale yellow liquid. Steam-distilled from frankincense resin.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "NR", "Lip": "S", "Nail": "NR" },
+    "supplier_info": "Clear to pale yellow liquid. Steam-distilled from frankincense resin. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "NR",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f9d16b",
     "added": "2026-05-21",
@@ -1981,7 +2984,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "玫瑰果油",
     "common_name_en": "Rosehip Oil",
     "common_name_zh": "玫瑰果油",
-    "function": ["Emollient", "Antioxidant", "Anti-aging"],
+    "function": [
+      "Emollient",
+      "Antioxidant",
+      "Anti-aging"
+    ],
     "benefits_en": "Premium plant oil from rosehip seeds. Rich in vitamins A, C, and fatty acids. Excellent for sensitive and aging skin. Promotes skin healing and regeneration.",
     "benefits_zh": "源自玫瑰果种子的优质植物油。富含维生素A、C和脂肪酸。非常适合敏感和衰老肌肤。促进肌肤愈合和再生。",
     "concerns_en": "Very safe. Can cause mild staining due to rich orange-red color. May cause photosensitivity if applied before sun exposure.",
@@ -1991,9 +2998,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 1,
     "allergen": false,
     "supplier": "Multiple / European suppliers",
-    "supplier_info": "Orange-red to deep red liquid. Cold-pressed.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "M", "Nail": "S" },
+    "supplier_info": "Orange-red to deep red liquid. Cold-pressed. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "M",
+      "Nail": "S"
+    },
     "photo": "",
     "color_swatch": "#cc5500",
     "added": "2026-05-21",
@@ -2006,7 +3022,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "天竺葵精油",
     "common_name_en": "Geranium Essential Oil",
     "common_name_zh": "天竺葵精油",
-    "function": ["Fragrance", "Soothing", "Balancing"],
+    "function": [
+      "Fragrance",
+      "Soothing",
+      "Balancing"
+    ],
     "benefits_en": "Essential oil from geranium flower. Floral, slightly spicy aroma. Balancing for skin. Used in aromatherapy and skincare for its calming properties.",
     "benefits_zh": "源自天竺葵花的精油。花香、微微辛辣的香气。对肌肤平衡有益。用于香薰和护肤以其镇静特性。",
     "concerns_en": "Safe and well-tolerated. May cause photosensitivity in some individuals.",
@@ -2016,9 +3036,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Multiple / Essential oil suppliers",
-    "supplier_info": "Green to pale yellow liquid. Steam-distilled from geranium leaves and flowers.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "NR", "Lip": "S", "Nail": "NR" },
+    "supplier_info": "Green to pale yellow liquid. Steam-distilled from geranium leaves and flowers. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "NR",
+      "Lip": "S",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#7fb069",
     "added": "2026-05-21",
@@ -2031,7 +3060,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "没药精油",
     "common_name_en": "Myrrh Essential Oil",
     "common_name_zh": "没药精油",
-    "function": ["Fragrance", "Soothing", "Antioxidant"],
+    "function": [
+      "Fragrance",
+      "Soothing",
+      "Antioxidant"
+    ],
     "benefits_en": "Essential oil from myrrh resin. Warm, earthy aroma. Used in aromatherapy and skincare. May support emotional balance and skin healing.",
     "benefits_zh": "源自没药树脂的精油。温暖、泥土香气。用于香薰和护肤。可能支持情绪平衡和肌肤愈合。",
     "concerns_en": "Safe in diluted formulations. May cause photosensitivity.",
@@ -2041,9 +3074,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Multiple / Middle East suppliers",
-    "supplier_info": "Amber to reddish-brown liquid. Steam-distilled from myrrh resin.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "NR", "Nail": "NR" },
+    "supplier_info": "Amber to reddish-brown liquid. Steam-distilled from myrrh resin. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "NR",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#8b6f47",
     "added": "2026-05-21",
@@ -2056,7 +3098,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "香茅精油",
     "common_name_en": "Lemongrass Essential Oil",
     "common_name_zh": "香茅精油",
-    "function": ["Fragrance", "Uplifting"],
+    "function": [
+      "Fragrance",
+      "Uplifting"
+    ],
     "benefits_en": "Essential oil from lemongrass. Fresh, citrusy, herbaceous aroma. Used in aromatherapy and fragrances. Energizing and uplifting.",
     "benefits_zh": "源自香茅的精油。新鲜、柑橘、草本香气。用于香薰和香氛。充满活力和提振精神。",
     "concerns_en": "Can cause skin irritation if not diluted. Strong potential for photosensitivity.",
@@ -2066,9 +3111,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Multiple / Asian suppliers",
-    "supplier_info": "Yellow to amber liquid. Steam-distilled from lemongrass leaves.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "NR", "Eye": "NR", "Lip": "NR", "Nail": "NR" },
+    "supplier_info": "Yellow to amber liquid. Steam-distilled from lemongrass leaves. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "NR",
+      "Eye": "NR",
+      "Lip": "NR",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#e6c200",
     "added": "2026-05-21",
@@ -2081,7 +3135,11 @@ var COSME_INGREDIENTS = [
     "name_zh": "茶树精油",
     "common_name_en": "Tea Tree Essential Oil",
     "common_name_zh": "茶树精油",
-    "function": ["Fragrance", "Antioxidant", "Skin-conditioning"],
+    "function": [
+      "Fragrance",
+      "Antioxidant",
+      "Skin-conditioning"
+    ],
     "benefits_en": "Essential oil from tea tree leaves. Antimicrobial and antifungal properties. Used for problem skin and aromatherapy. Must be diluted before topical use.",
     "benefits_zh": "源自茶树叶的精油。具有抗菌和抗真菌特性。用于问题肌肤和香薰。用于皮肤涂抹前必须稀释。",
     "concerns_en": "Must be diluted — toxic if ingested or applied undiluted. Can cause skin irritation. Avoid contact with eyes.",
@@ -2091,9 +3149,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Multiple / Australian suppliers",
-    "supplier_info": "Clear to pale yellow liquid. Steam-distilled from tea tree leaves.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "X", "Lip": "NR", "Nail": "NR" },
+    "supplier_info": "Clear to pale yellow liquid. Steam-distilled from tea tree leaves. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "X",
+      "Lip": "NR",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f5e6d3",
     "added": "2026-05-21",
@@ -2106,7 +3173,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "小花茉莉蜡",
     "common_name_en": "Jasmine Floral Wax",
     "common_name_zh": "小花茉莉蜡",
-    "function": ["Fragrance", "Emollient"],
+    "function": [
+      "Fragrance",
+      "Emollient"
+    ],
     "benefits_en": "Plant-derived wax or extract from jasmine flowers. Floral fragrance with skincare benefits. Used in DIY lip balms, creams, and fragrances.",
     "benefits_zh": "源自茉莉花的植物蜡或提取物。花香香气和护肤益处。用于DIY唇膏、面霜和香氛。",
     "concerns_en": "Generally safe. May cause sensitivity in fragrance-sensitive individuals.",
@@ -2116,9 +3186,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "DIY suppliers / Floral extractors",
-    "supplier_info": "Cream to golden color. Plant-derived wax blend.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "M", "Nail": "NR" },
+    "supplier_info": "Cream to golden color. Plant-derived wax blend. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "M",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#f4d16b",
     "added": "2026-05-21",
@@ -2131,7 +3210,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "栀子花蜡",
     "common_name_en": "Gardenia Floral Wax",
     "common_name_zh": "栀子花蜡",
-    "function": ["Fragrance", "Emollient"],
+    "function": [
+      "Fragrance",
+      "Emollient"
+    ],
     "benefits_en": "Plant-derived wax or extract from gardenia flowers. Delicate, floral fragrance. Used in DIY lip balms and fragrances.",
     "benefits_zh": "源自栀子花的植物蜡或提取物。精致、花香香气。用于DIY唇膏和香氛。",
     "concerns_en": "Generally safe. May cause sensitivity in fragrance-sensitive individuals.",
@@ -2141,9 +3223,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "DIY suppliers / Floral extractors",
-    "supplier_info": "Cream to pale yellow color. Plant-derived wax blend.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "M", "Nail": "NR" },
+    "supplier_info": "Cream to pale yellow color. Plant-derived wax blend. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "M",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#fef5e7",
     "added": "2026-05-21",
@@ -2156,7 +3247,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "橙花花蜡",
     "common_name_en": "Orange Blossom Floral Wax",
     "common_name_zh": "橙花花蜡",
-    "function": ["Fragrance", "Emollient"],
+    "function": [
+      "Fragrance",
+      "Emollient"
+    ],
     "benefits_en": "Plant-derived wax or extract from orange blossoms. Delicate, fruity floral fragrance. Used in DIY lip balms and fragrances.",
     "benefits_zh": "源自橙花的植物蜡或提取物。精致、果香花香香气。用于DIY唇膏和香氛。",
     "concerns_en": "Generally safe. May cause photosensitivity if applied before sun exposure.",
@@ -2166,9 +3260,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "DIY suppliers / Floral extractors",
-    "supplier_info": "Cream to pale yellow color. Plant-derived wax blend.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "M", "Nail": "NR" },
+    "supplier_info": "Cream to pale yellow color. Plant-derived wax blend. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "M",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#ffd700",
     "added": "2026-05-21",
@@ -2181,7 +3284,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "玫瑰花蜡",
     "common_name_en": "Rose Floral Wax",
     "common_name_zh": "玫瑰花蜡",
-    "function": ["Fragrance", "Emollient"],
+    "function": [
+      "Fragrance",
+      "Emollient"
+    ],
     "benefits_en": "Plant-derived wax or extract from rose petals. Classic floral fragrance with skincare benefits. Used in DIY lip balms, creams, and fragrances. Premium ingredient.",
     "benefits_zh": "源自玫瑰花瓣的植物蜡或提取物。经典花香香气和护肤益处。用于DIY唇膏、面霜和香氛。高端原料。",
     "concerns_en": "Generally safe. Premium pricing.",
@@ -2191,9 +3297,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "DIY suppliers / Rose extractors",
-    "supplier_info": "Pink to rose-colored wax. Plant-derived wax blend.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "S", "Eye": "NR", "Lip": "M", "Nail": "NR" },
+    "supplier_info": "Pink to rose-colored wax. Plant-derived wax blend. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "S",
+      "Eye": "NR",
+      "Lip": "M",
+      "Nail": "NR"
+    },
     "photo": "",
     "color_swatch": "#ff69b4",
     "added": "2026-05-21",
@@ -2206,7 +3321,10 @@ var COSME_INGREDIENTS = [
     "name_zh": "蓝1号(食用蓝)",
     "common_name_en": "Brilliant Blue FCF / FD&C Blue No. 1",
     "common_name_zh": "蓝1号/食用蓝/柏林蓝",
-    "function": ["Colorant", "Pigment"],
+    "function": [
+      "Colorant",
+      "Pigment"
+    ],
     "benefits_en": "Bright, vibrant blue synthetic dye. Provides deep blue color for cosmetics. FDA-approved colorant. Widely used in makeup, nail polish, and color cosmetics. Water-soluble.",
     "benefits_zh": "明亮、鲜艳的蓝色合成染料。为化妆品提供深蓝色。美国FDA批准的着色剂。广泛用于彩妆、指甲油和彩妆。水溶性。",
     "concerns_en": "FDA-approved for cosmetics and food use in regulated markets. Some individuals may have sensitivities. Approved for external use only. Not permitted in lip products in some regions.",
@@ -2216,9 +3334,18 @@ var COSME_INGREDIENTS = [
     "comedogenic_rating": 0,
     "allergen": false,
     "supplier": "Kremer Pigmente (K301901)",
-    "supplier_info": "Kremer product code K301901. Brilliant Blue FCF / CI 42090. Synthetic organic dye. Purchased from Kremer.",
-    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
-    "usage_area": { "Face": "M", "Eye": "M", "Lip": "S", "Nail": "M" },
+    "supplier_info": "Kremer product code K301901. Brilliant Blue FCF / CI 42090. Synthetic organic dye. Purchased from Kremer. — I have it",
+    "approval": {
+      "EU": "approved",
+      "USA": "approved",
+      "China": "approved"
+    },
+    "usage_area": {
+      "Face": "M",
+      "Eye": "M",
+      "Lip": "S",
+      "Nail": "M"
+    },
     "photo": "",
     "color_swatch": "#0066ff",
     "added": "2026-05-21",
