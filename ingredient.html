@@ -63,7 +63,6 @@ function renderIngredient() {
     });
   });
 
-  // Visual: photo > swatch > placeholder
   var visualHtml;
   if (ing.photo) {
     visualHtml = '<img src="' + escHtml(ing.photo) + '" alt="' + escHtml(ing.inci_name_en) + '">';
@@ -99,6 +98,14 @@ function renderIngredient() {
 
   var funcTags = (ing.function || []).map(function(f) { return '<span class="tag tag-accent">' + escHtml(f) + '</span>'; }).join('');
 
+  // Stock / wishlist badges
+  var haveBadge = '';
+  if (ing.i_have) {
+    haveBadge = '<span class="tag tag-used">&#10003; Have it' + (ing.purchased_date ? ' &middot; ' + escHtml(ing.purchased_date) : '') + '</span> ';
+  } else if (ing.wishlist) {
+    haveBadge = '<span class="tag tag-wishlist">&#9825; Wishlist</span> ';
+  }
+
   var productsHtml = containingProducts.length
     ? containingProducts.map(function(p) {
         return '<div class="mini-card" onclick="location.href=\'product.html?id=' + escHtml(p.id) + '\'">' +
@@ -124,7 +131,7 @@ function renderIngredient() {
             '<div>' +
               '<div class="detail-name">' + escHtml(ing.inci_name_en) + '</div>' +
               (ing.name_zh ? '<div class="detail-name-zh">' + escHtml(ing.name_zh) + '</div>' : '') +
-              '<div class="tags" style="margin-top:10px;">' + funcTags + '</div>' +
+              '<div class="tags" style="margin-top:10px;">' + funcTags + haveBadge + '</div>' +
             '</div>' +
             '<button class="edit-toggle-btn" onclick="enterEditMode()">Edit</button>' +
           '</div>' +
@@ -137,6 +144,7 @@ function renderIngredient() {
             (ing.allergen != null ? '<tr><td>Allergen</td><td>' + (ing.allergen ? '<span class="tag tag-warn">Yes</span>' : '<span class="tag tag-ok">No</span>') + '</td></tr>' : '') +
             (ing.supplier ? '<tr><td>Supplier</td><td>' + escHtml(ing.supplier) + '</td></tr>' : '') +
             (ing.supplier_info ? '<tr><td>Supplier info</td><td style="color:var(--text2);">' + escHtml(ing.supplier_info) + '</td></tr>' : '') +
+            (ing.i_have ? '<tr><td>In my stock</td><td><span class="tag tag-used" style="font-size:11px;">&#10003; Yes' + (ing.purchased_date ? ' &middot; bought ' + escHtml(ing.purchased_date) : '') + '</span></td></tr>' : '') +
             (ing.my_notes ? '<tr><td>My notes</td><td style="color:var(--text2);">' + escHtml(ing.my_notes) + '</td></tr>' : '') +
             '<tr><td>Updated</td><td>' + escHtml(ing.updated || ing.added || '') + '</td></tr>' +
           '</table>' +
@@ -184,6 +192,20 @@ function enterEditMode() {
     '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:18px;">Editing</div>' +
 
     '<div class="edit-field">' +
+      '<div class="edit-field-label">In my stock?</div>' +
+      '<div class="entry-type-row" id="have-btn-row">' +
+        '<button type="button" class="entry-type-btn' + (!ing.i_have && !ing.wishlist ? ' active' : '') + '" onclick="setHaveState(this,\'none\')">— None</button>' +
+        '<button type="button" class="entry-type-btn' + (ing.i_have ? ' active' : '') + '" onclick="setHaveState(this,\'have\')">&#10003; I have it</button>' +
+        '<button type="button" class="entry-type-btn' + (ing.wishlist ? ' active' : '') + '" onclick="setHaveState(this,\'wish\')">&#9825; Wishlist</button>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="edit-field" id="date-field" style="' + (ing.i_have ? '' : 'display:none') + '">' +
+      '<div class="edit-field-label">Purchase date</div>' +
+      '<input type="date" id="edit-purchased-date" class="ingest-input" value="' + escHtml(ing.purchased_date || '') + '" style="max-width:180px;">' +
+    '</div>' +
+
+    '<div class="edit-field">' +
       '<div class="edit-field-label">Photo</div>' +
       '<div id="photo-preview" style="margin-bottom:8px;">' +
         (ing.photo ? '<img src="' + escHtml(ing.photo) + '" style="width:72px;height:72px;object-fit:cover;border-radius:8px;">' : '') +
@@ -224,6 +246,14 @@ function enterEditMode() {
     '</div>';
 }
 
+function setHaveState(btn, state) {
+  document.querySelectorAll('#have-btn-row .entry-type-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  btn.dataset.haveState = state;
+  var dateField = document.getElementById('date-field');
+  if (dateField) dateField.style.display = state === 'have' ? '' : 'none';
+}
+
 function updateSwatchPreview(val) {
   var live = document.getElementById('swatch-live');
   if (live && /^#[0-9a-fA-F]{3,6}$/.test(val)) live.style.background = val;
@@ -245,8 +275,19 @@ function handlePhotoUpload(input) {
 }
 
 function saveEdit() {
+  // Determine have/wish state
+  var activeHaveBtn = document.querySelector('#have-btn-row .entry-type-btn.active');
+  var haveState = activeHaveBtn ? (activeHaveBtn.dataset.haveState || activeHaveBtn.textContent.trim()) : 'none';
+  var i_have = haveState === 'have';
+  var wishlist = haveState === 'wish';
+  var purchasedDateEl = document.getElementById('edit-purchased-date');
+  var purchased_date = (i_have && purchasedDateEl) ? purchasedDateEl.value : '';
+
   var hexInput = document.getElementById('edit-swatch-hex').value.trim();
   var edits = {
+    i_have: i_have,
+    wishlist: wishlist,
+    purchased_date: purchased_date,
     my_notes: document.getElementById('edit-notes').value.trim(),
     supplier: document.getElementById('edit-supplier').value.trim(),
     supplier_info: document.getElementById('edit-supplier-info').value.trim(),

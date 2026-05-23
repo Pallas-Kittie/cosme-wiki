@@ -38,6 +38,14 @@
       <div class="filter-label">Function</div>
       <select class="filter-select" id="f-func" onchange="applyFilters()"><option value="">All functions</option></select>
     </div>
+    <div class="filter-group" id="f-status-wrap">
+      <div class="filter-label">Status</div>
+      <select class="filter-select" id="f-status" onchange="applyFilters()">
+        <option value="">All</option>
+        <option value="used">Used</option>
+        <option value="wishlist">Wishlist</option>
+      </select>
+    </div>
     <div class="filter-group" id="f-safety-wrap" style="display:none">
       <div class="filter-label">Safety</div>
       <select class="filter-select" id="f-safety" onchange="applyFilters()">
@@ -45,6 +53,14 @@
         <option value="concern">Has concerns</option>
         <option value="allergen">Allergen</option>
         <option value="prohibited">Prohibited somewhere</option>
+      </select>
+    </div>
+    <div class="filter-group" id="f-have-wrap" style="display:none">
+      <div class="filter-label">My stock</div>
+      <select class="filter-select" id="f-have" onchange="applyFilters()">
+        <option value="">All</option>
+        <option value="have">I have it</option>
+        <option value="wishlist">Wishlist</option>
       </select>
     </div>
     <div class="filter-group" id="f-crossref-wrap">
@@ -241,9 +257,11 @@ function switchTab(tab, el) {
   document.getElementById('f-type-wrap').style.display = isProd ? '' : 'none';
   document.getElementById('f-concern-wrap').style.display = isProd ? '' : 'none';
   document.getElementById('f-brand-wrap').style.display = isProd ? '' : 'none';
+  document.getElementById('f-status-wrap').style.display = isProd ? '' : 'none';
   document.getElementById('f-crossref-wrap').style.display = isProd ? '' : 'none';
   document.getElementById('f-func-wrap').style.display = isProd ? 'none' : '';
   document.getElementById('f-safety-wrap').style.display = isProd ? 'none' : '';
+  document.getElementById('f-have-wrap').style.display = isProd ? 'none' : '';
   document.getElementById('btn-add-product').style.display = isProd ? '' : 'none';
   document.getElementById('f-search').placeholder = isProd ? 'Name, brand, ingredient...' : 'Name, function, Chinese name...';
   applyFilters();
@@ -255,11 +273,13 @@ function applyFilters() {
     var typeVal = document.getElementById('f-type').value;
     var concernVal = document.getElementById('f-concern').value;
     var brandVal = document.getElementById('f-brand').value;
+    var statusVal = document.getElementById('f-status').value;
     var crossVal = document.getElementById('f-crossref').value;
     var filtered = products.filter(function(p) {
       if (typeVal && p.type !== typeVal) return false;
       if (brandVal && p.brand !== brandVal) return false;
       if (concernVal && !(p.concern_tags || []).includes(concernVal)) return false;
+      if (statusVal && p.status !== statusVal) return false;
       if (crossVal) {
         var ing = ingredients.find(function(i) { return i.id === crossVal; });
         if (!ing) return false;
@@ -276,10 +296,13 @@ function applyFilters() {
   } else {
     var funcVal = document.getElementById('f-func').value;
     var safetyVal = document.getElementById('f-safety').value;
+    var haveVal = document.getElementById('f-have').value;
     var filtered = ingredients.filter(function(ing) {
       if (funcVal && !(ing.function || []).includes(funcVal)) return false;
       if (safetyVal === 'concern' && !ing.concerns_en) return false;
       if (safetyVal === 'allergen' && !ing.allergen) return false;
+      if (haveVal === 'have' && !ing.i_have) return false;
+      if (haveVal === 'wishlist' && !ing.wishlist) return false;
       if (safetyVal === 'prohibited') {
         var ap = ing.approval || {};
         if (ap.EU !== 'prohibited' && ap.USA !== 'prohibited' && ap.China !== 'prohibited') return false;
@@ -305,12 +328,14 @@ function renderProductCards(list) {
     var tags = (p.concern_tags || []).slice(0, 3).map(function(t) { return '<span class="tag">' + escHtml(t) + '</span>'; }).join('');
     var stars = p.my_rating ? '<span class="tag tag-accent">' + '&#9733;'.repeat(p.my_rating) + '</span>' : '';
     var homemadeBadge = p.is_homemade ? '<span class="tag tag-ok" style="font-size:10px;">Homemade</span>' : '';
+    var statusBadge = p.status === 'used' ? '<span class="tag tag-used" style="font-size:10px;">&#10003; Used</span>'
+                    : p.status === 'wishlist' ? '<span class="tag tag-wishlist" style="font-size:10px;">&#9825; Wishlist</span>' : '';
     return '<div class="card" onclick="location.href=\'product.html?id=' + escHtml(p.id) + '\'">' +
       imgHtml +
       '<div class="card-body">' +
         '<div class="card-name">' + escHtml(p.name) + '</div>' +
         (p.name_zh ? '<div class="card-name-zh">' + escHtml(p.name_zh) + '</div>' : '') +
-        '<div class="tags">' + tags + stars + homemadeBadge + '</div>' +
+        '<div class="tags">' + tags + stars + homemadeBadge + statusBadge + '</div>' +
         '<div class="card-brand">' + escHtml(p.brand || '') + ' &middot; ' + escHtml(p.type || '') + '</div>' +
       '</div>' +
     '</div>';
@@ -331,23 +356,24 @@ function renderIngredientCards(list) {
     var apBadge = Object.keys(ap).length
       ? '<span class="tag ' + (anyProhibited ? 'tag-bad' : anyRestricted ? 'tag-warn' : 'tag-ok') + '">' + (anyProhibited ? 'Prohibited' : anyRestricted ? 'Restricted' : 'Approved') + '</span>'
       : '';
+    var haveBadge = ing.i_have ? '<span class="tag tag-used" style="font-size:10px;">&#10003; Have</span>'
+                  : ing.wishlist ? '<span class="tag tag-wishlist" style="font-size:10px;">&#9825; Wish</span>' : '';
     return '<div class="card" onclick="location.href=\'ingredient.html?id=' + escHtml(ing.id) + '\'">' +
       swatchHtml +
       '<div class="card-body">' +
         '<div class="card-name">' + escHtml(ing.inci_name_en) + '</div>' +
         (ing.name_zh ? '<div class="card-name-zh">' + escHtml(ing.name_zh) + (ing.common_name_en ? ' &middot; ' + escHtml(ing.common_name_en) : '') + '</div>' : '') +
-        '<div class="tags">' + funcs + apBadge + '</div>' +
+        '<div class="tags">' + funcs + apBadge + haveBadge + '</div>' +
       '</div>' +
     '</div>';
   }).join('');
 }
 
 function resetFilters() {
-  ['f-search','f-type','f-concern','f-brand','f-crossref','f-func'].forEach(function(id) {
+  ['f-search','f-type','f-concern','f-brand','f-status','f-crossref','f-func','f-safety','f-have'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.value = '';
   });
-  document.getElementById('f-safety').value = '';
   applyFilters();
 }
 

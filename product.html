@@ -25,6 +25,40 @@ var allIngredients = [];
 var editRating = 0;
 var editBuyLinks = [];
 var editPhotoDataUrl = '';
+var _editStatus = '';
+
+// ── INGREDIENT CATEGORY HELPERS ────────────────────────────────────────────
+
+var CAT_ORDER = ['active','botanical','antioxidant','humectant','emollient','emulsifier','thickener','preservation','base'];
+var CAT_LABELS = {
+  active:       'Actives · 活性成分',
+  botanical:    'Botanicals · 植物提取物',
+  antioxidant:  'Antioxidants · 抗氧化',
+  humectant:    'Humectants · 保湿剂',
+  emollient:    'Emollients · 柔润剂',
+  emulsifier:   'Emulsifiers · 乳化剂',
+  thickener:    'Thickeners · 增稠稳定',
+  preservation: 'Preservation · 防腐体系',
+  base:         'Base & Other · 基础/其他'
+};
+
+function getIngCategory(inci, matchedIng) {
+  if (inci.toLowerCase() === 'aqua') return 'base';
+  if (!matchedIng) return 'base';
+  var fn = matchedIng.function || [];
+  var has = function(f) { return fn.indexOf(f) >= 0; };
+  if (has('Active') || has('Depigmenting') || has('Anti-aging') || has('Cell-communicating') || has('Repair') || has('Muscle Relaxant')) return 'active';
+  if (inci.toLowerCase().indexOf('extract') >= 0) return 'botanical';
+  if (has('Antioxidant') || has('Anti-glycation')) return 'antioxidant';
+  if (has('Emulsifier') || has('Surfactant')) return 'emulsifier';
+  if (has('Thickener') || has('Stabilizer')) return 'thickener';
+  if (has('Preservative') || has('Preservative Booster') || has('Antimicrobial') || has('Chelating Agent')) return 'preservation';
+  if (has('Humectant') || has('Osmoprotectant')) return 'humectant';
+  if (has('Emollient') || has('Occlusive')) return 'emollient';
+  return 'base';
+}
+
+// ── DATA ───────────────────────────────────────────────────────────────────
 
 function loadMergedProducts() {
   var base = typeof COSME_PRODUCTS !== 'undefined' ? COSME_PRODUCTS : [];
@@ -34,6 +68,15 @@ function loadMergedProducts() {
     var edit = null;
     try { edit = JSON.parse(localStorage.getItem('cosme-edits-product-' + p.id)); } catch(e){}
     return edit ? Object.assign({}, p, edit) : p;
+  });
+}
+
+function loadMergedIngredients() {
+  var base = typeof COSME_INGREDIENTS !== 'undefined' ? COSME_INGREDIENTS : [];
+  return base.map(function(i) {
+    var edit = null;
+    try { edit = JSON.parse(localStorage.getItem('cosme-edits-ingredient-' + i.id)); } catch(e){}
+    return edit ? Object.assign({}, i, edit) : i;
   });
 }
 
@@ -48,15 +91,6 @@ window.addEventListener('DOMContentLoaded', function() {
   document.title = currentProduct.name + ' — Cosme Wiki';
   renderProduct();
 });
-
-function loadMergedIngredients() {
-  var base = typeof COSME_INGREDIENTS !== 'undefined' ? COSME_INGREDIENTS : [];
-  return base.map(function(i) {
-    var edit = null;
-    try { edit = JSON.parse(localStorage.getItem('cosme-edits-ingredient-' + i.id)); } catch(e){}
-    return edit ? Object.assign({}, i, edit) : i;
-  });
-}
 
 // ── VIEW MODE ──────────────────────────────────────────────────────────────
 
@@ -85,25 +119,42 @@ function renderProduct() {
   var tags = (p.concern_tags || []).map(function(t) { return '<span class="tag">' + escHtml(t) + '</span>'; }).join('');
   var skinTags = (p.skin_type || []).map(function(t) { return '<span class="tag tag-accent">' + escHtml(t) + '</span>'; }).join('');
 
-  // Ingredient list with EN + ZH + pct
+  var statusBadge = '';
+  if (p.status === 'used') statusBadge = '<span class="tag tag-used">&#10003; Used</span>';
+  else if (p.status === 'wishlist') statusBadge = '<span class="tag tag-wishlist">&#9825; Wishlist</span>';
+
+  // Ingredient list grouped by category
   var pctMap = p.ingredients_pct || {};
-  var ingListHtml = (p.ingredients_inci || []).map(function(inci, idx) {
+  var incis = p.ingredients_inci || [];
+
+  var groups = {};
+  CAT_ORDER.forEach(function(c) { groups[c] = []; });
+
+  incis.forEach(function(inci, idx) {
     var matched = allIngredients.find(function(i) { return i.inci_name_en.toLowerCase() === inci.toLowerCase(); });
+    var cat = getIngCategory(inci, matched);
     var nameLink = matched
       ? '<a href="ingredient.html?id=' + escHtml(matched.id) + '">' + escHtml(inci) + '</a>'
       : '<span class="ing-unlinked">' + escHtml(inci) + '</span>';
-    var zhSpan = matched && matched.name_zh
-      ? '<span class="ing-zh">' + escHtml(matched.name_zh) + '</span>'
-      : '';
-    var pctSpan = pctMap[inci]
-      ? '<span class="ing-pct">' + escHtml(pctMap[inci]) + '</span>'
-      : '';
-    return '<div class="ingredient-item">' +
-      '<span class="ingredient-idx">' + (idx + 1) + '</span>' +
-      '<span class="ing-name-block">' + nameLink + zhSpan + '</span>' +
-      pctSpan +
-    '</div>';
-  }).join('');
+    var zhSpan = matched && matched.name_zh ? '<span class="ing-zh">' + escHtml(matched.name_zh) + '</span>' : '';
+    var pctSpan = pctMap[inci] ? '<span class="ing-pct">' + escHtml(pctMap[inci]) + '</span>' : '';
+    groups[cat].push(
+      '<div class="ingredient-item">' +
+        '<span class="ingredient-idx">' + (idx + 1) + '</span>' +
+        '<span class="ing-name-block">' + nameLink + zhSpan + '</span>' +
+        pctSpan +
+      '</div>'
+    );
+  });
+
+  var ingListHtml = '';
+  var firstGroup = true;
+  CAT_ORDER.forEach(function(cat) {
+    if (!groups[cat].length) return;
+    ingListHtml += '<div class="ing-group-header' + (firstGroup ? ' ing-group-first' : '') + '">' + escHtml(CAT_LABELS[cat]) + '</div>';
+    ingListHtml += groups[cat].join('');
+    firstGroup = false;
+  });
 
   var sameBrand = allProducts.filter(function(op) { return op.brand === p.brand && op.id !== p.id; });
   var sameBrandHtml = sameBrand.length
@@ -131,7 +182,7 @@ function renderProduct() {
             '</div>' +
             '<button class="edit-toggle-btn" onclick="enterEditMode()">Edit</button>' +
           '</div>' +
-          '<div class="tags" style="margin:12px 0 4px;">' + tags + skinTags + '</div>' +
+          '<div class="tags" style="margin:12px 0 4px;">' + tags + skinTags + statusBadge + '</div>' +
           '<table class="kv-table">' +
             '<tr><td>Type</td><td>' + escHtml(p.type || '—') + (p.type_zh ? ' / ' + escHtml(p.type_zh) : '') + '</td></tr>' +
             (p.price ? '<tr><td>Price</td><td>' + escHtml(p.price) + '</td></tr>' : '') +
@@ -143,8 +194,8 @@ function renderProduct() {
         '</div>' +
 
         '<div class="detail-section">' +
-          '<div class="detail-section-title">Ingredients (' + (p.ingredients_inci || []).length + ')</div>' +
-          '<div style="font-size:11px;color:var(--muted);margin-bottom:10px;">Highest concentration first &middot; Linked names have a full profile &middot; ZH name shown where known</div>' +
+          '<div class="detail-section-title">Ingredients (' + incis.length + ')</div>' +
+          '<div style="font-size:11px;color:var(--muted);margin-bottom:10px;">Grouped by function &middot; Number = position in formula (highest concentration first)</div>' +
           '<div class="ingredient-list">' + ingListHtml + '</div>' +
         '</div>' +
 
@@ -164,18 +215,29 @@ function enterEditMode() {
   editRating = p.my_rating || 0;
   editBuyLinks = JSON.parse(JSON.stringify(p.buy_links && p.buy_links.length ? p.buy_links : [{ store: '', url: '' }]));
   editPhotoDataUrl = '';
+  _editStatus = p.status || '';
 
   document.getElementById('section-main').innerHTML = buildEditForm(p);
   renderBuyLinksEditor();
 }
 
 function buildEditForm(p) {
+  var sv = p.status || '';
   var starsHtml = [1,2,3,4,5].map(function(n) {
     return '<span class="star-btn" data-val="' + n + '" onclick="setRating(' + n + ')">' +
       (n <= editRating ? '&#9733;' : '&#9734;') + '</span>';
   }).join('');
 
   return '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:18px;">Editing</div>' +
+
+    '<div class="edit-field">' +
+      '<div class="edit-field-label">Status</div>' +
+      '<div class="entry-type-row" id="status-btn-row">' +
+        '<button type="button" class="entry-type-btn' + (sv==='' ? ' active' : '') + '" data-status="" onclick="setProductStatus(this, \'\')">— None</button>' +
+        '<button type="button" class="entry-type-btn' + (sv==='used' ? ' active' : '') + '" data-status="used" onclick="setProductStatus(this, \'used\')">&#10003; Used</button>' +
+        '<button type="button" class="entry-type-btn' + (sv==='wishlist' ? ' active' : '') + '" data-status="wishlist" onclick="setProductStatus(this, \'wishlist\')">&#9825; Wishlist</button>' +
+      '</div>' +
+    '</div>' +
 
     '<div class="edit-field">' +
       '<div class="edit-field-label">Photo</div>' +
@@ -212,6 +274,13 @@ function buildEditForm(p) {
     '</div>';
 }
 
+function setProductStatus(btn, val) {
+  _editStatus = val;
+  document.querySelectorAll('#status-btn-row .entry-type-btn').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.status === val);
+  });
+}
+
 function handlePhotoUpload(input) {
   if (!input.files || !input.files[0]) return;
   var reader = new FileReader();
@@ -221,7 +290,6 @@ function handlePhotoUpload(input) {
     if (preview) {
       preview.innerHTML = '<img src="' + editPhotoDataUrl + '" style="width:72px;height:72px;object-fit:cover;border-radius:8px;">';
     }
-    // Also update the left-column photo immediately
     var detailPhoto = document.querySelector('.detail-photo');
     if (detailPhoto) detailPhoto.innerHTML = '<img src="' + editPhotoDataUrl + '" alt="preview">';
   };
@@ -266,6 +334,7 @@ function saveEdit() {
     my_notes: document.getElementById('edit-notes').value.trim(),
     buy_links: editBuyLinks.filter(function(b) { return b.store.trim(); }),
     price: document.getElementById('edit-price').value.trim(),
+    status: _editStatus,
     updated: new Date().toISOString().split('T')[0]
   };
   if (editPhotoDataUrl) edits.photo = editPhotoDataUrl;
