@@ -87,6 +87,13 @@ After updating ingredients.json, check if any existing products in products.json
 
 ---
 
+## Dual data files — IMPORTANT
+Each database exists as both `.json` (source of truth) and `.js` (for file:// browser access).
+- `data/products.json` and `data/products.js` must always match
+- `data/ingredients.json` and `data/ingredients.js` must always match
+- The `.js` file wraps the array: `var COSME_PRODUCTS = [...];` or `var COSME_INGREDIENTS = [...];`
+- Always update BOTH files when adding or editing entries.
+
 ## Deduplication rules
 1. Before adding any entry, search `data/products.json` and `data/ingredients.json` for an existing entry with the same `id` or matching name.
 2. If found: **update** the existing entry with any new information. Do not create a duplicate.

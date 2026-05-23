@@ -65,34 +65,19 @@
 
 </div>
 
+<script src="data/products.js"></script>
+<script src="data/ingredients.js"></script>
 <script src="assets/nav.js"></script>
 <script>
-var products = [];
-var ingredients = [];
+var products = typeof COSME_PRODUCTS !== 'undefined' ? COSME_PRODUCTS : [];
+var ingredients = typeof COSME_INGREDIENTS !== 'undefined' ? COSME_INGREDIENTS : [];
 var currentTab = 'products';
-
-function getRoot() {
-  return '';
-}
 
 window.addEventListener('DOMContentLoaded', function() {
   renderNav('index');
-  loadData();
+  populateFilters();
+  applyFilters();
 });
-
-function loadData() {
-  Promise.all([
-    fetch('data/products.json').then(function(r) { return r.json(); }),
-    fetch('data/ingredients.json').then(function(r) { return r.json(); })
-  ]).then(function(results) {
-    products = results[0];
-    ingredients = results[1];
-    populateFilters();
-    applyFilters();
-  }).catch(function() {
-    document.getElementById('card-grid').innerHTML = '<div class="empty-state">Could not load data. Open this page via a local server or from the E:\\cosme-wiki\\ folder.</div>';
-  });
-}
 
 function populateFilters() {
   // Product types

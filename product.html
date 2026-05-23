@@ -15,6 +15,8 @@
   <div id="product-root"></div>
 </div>
 
+<script src="data/products.js"></script>
+<script src="data/ingredients.js"></script>
 <script src="assets/nav.js"></script>
 <script>
 var product = null;
@@ -25,19 +27,12 @@ window.addEventListener('DOMContentLoaded', function() {
   var id = new URLSearchParams(window.location.search).get('id');
   if (!id) { showError('No product ID specified.'); return; }
 
-  Promise.all([
-    fetch('data/products.json').then(function(r) { return r.json(); }),
-    fetch('data/ingredients.json').then(function(r) { return r.json(); })
-  ]).then(function(results) {
-    var products = results[0];
-    allIngredients = results[1];
-    product = products.find(function(p) { return p.id === id; });
-    if (!product) { showError('Product not found: ' + id); return; }
-    document.title = product.name + ' — Cosme Wiki';
-    renderProduct(product, products);
-  }).catch(function(e) {
-    showError('Could not load data: ' + e.message);
-  });
+  var products = typeof COSME_PRODUCTS !== 'undefined' ? COSME_PRODUCTS : [];
+  allIngredients = typeof COSME_INGREDIENTS !== 'undefined' ? COSME_INGREDIENTS : [];
+  product = products.find(function(p) { return p.id === id; });
+  if (!product) { showError('Product not found: ' + id); return; }
+  document.title = product.name + ' — Cosme Wiki';
+  renderProduct(product, products);
 });
 
 function renderProduct(p, allProducts) {
