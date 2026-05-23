@@ -193,6 +193,38 @@
 <script>
 var currentTab = 'products';
 var npRating = 0;
+
+var FUNC_ZH = {
+  'Active': '活性成分',
+  'Brightening': '美白提亮',
+  'Depigmenting': '祛色素',
+  'Anti-aging': '抗衰老',
+  'Cell-communicating': '细胞信号',
+  'Repair': '修护',
+  'Muscle Relaxant': '舒缓肌肉',
+  'Antioxidant': '抗氧化',
+  'Anti-glycation': '抗糖化',
+  'Anti-inflammatory': '抗炎',
+  'Antibacterial': '抗菌',
+  'Soothing': '舒缓',
+  'Humectant': '保湿剂',
+  'Osmoprotectant': '渗透保护',
+  'Emollient': '柔润剂',
+  'Occlusive': '封闭剂',
+  'Emulsifier': '乳化剂',
+  'Surfactant': '表面活性剂',
+  'Thickener': '增稠剂',
+  'Stabilizer': '稳定剂',
+  'Preservative': '防腐剂',
+  'Preservative Booster': '防腐增效',
+  'Antimicrobial': '抗微生物',
+  'Chelating Agent': '螯合剂',
+  'Solvent': '溶剂',
+  'Penetration Enhancer': '渗透促进',
+  'Texture Agent': '质地调节',
+  'Solubilizer': '增溶剂',
+  'Skin Conditioning': '皮肤调理'
+};
 var npPhotoDataUrl = '';
 var npIngRows = [{ inci: '', pct: '' }];
 var npBuyRows = [{ store: '', url: '' }];
@@ -349,7 +381,10 @@ function renderIngredientCards(list) {
     var swatchHtml = ing.color_swatch
       ? '<div class="card-swatch" style="background:' + escHtml(ing.color_swatch) + '"></div>'
       : '<div class="card-img" style="font-size:40px;color:var(--muted)">&#9711;</div>';
-    var funcs = (ing.function || []).slice(0, 3).map(function(f) { return '<span class="tag">' + escHtml(f) + '</span>'; }).join('');
+    var funcs = (ing.function || []).slice(0, 3).map(function(f) {
+      var zh = FUNC_ZH[f] ? ' <span style="opacity:0.7;font-size:10px;">' + escHtml(FUNC_ZH[f]) + '</span>' : '';
+      return '<span class="tag">' + escHtml(f) + zh + '</span>';
+    }).join('');
     var ap = ing.approval || {};
     var anyProhibited = ap.EU === 'prohibited' || ap.USA === 'prohibited' || ap.China === 'prohibited';
     var anyRestricted = ap.EU === 'restricted' || ap.USA === 'restricted' || ap.China === 'restricted';
