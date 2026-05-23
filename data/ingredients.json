@@ -2198,5 +2198,30 @@
     "color_swatch": "#ff69b4",
     "added": "2026-05-21",
     "updated": "2026-05-21"
+  },
+  {
+    "id": "brilliant-blue-fcf",
+    "inci_name_en": "CI 42090",
+    "inci_name_eu": "CI 42090 / Brilliant Blue FCF",
+    "name_zh": "蓝1号(食用蓝)",
+    "common_name_en": "Brilliant Blue FCF / FD&C Blue No. 1",
+    "common_name_zh": "蓝1号/食用蓝/柏林蓝",
+    "function": ["Colorant", "Pigment"],
+    "benefits_en": "Bright, vibrant blue synthetic dye. Provides deep blue color for cosmetics. FDA-approved colorant. Widely used in makeup, nail polish, and color cosmetics. Water-soluble.",
+    "benefits_zh": "明亮、鲜艳的蓝色合成染料。为化妆品提供深蓝色。美国FDA批准的着色剂。广泛用于彩妆、指甲油和彩妆。水溶性。",
+    "concerns_en": "FDA-approved for cosmetics and food use in regulated markets. Some individuals may have sensitivities. Approved for external use only. Not permitted in lip products in some regions.",
+    "concerns_zh": "美国FDA批准用于化妆品和食品。某些个体可能敏感。仅批准外用。某些地区禁止用于唇部产品。",
+    "typical_pct_min": 0.1,
+    "typical_pct_max": 5,
+    "comedogenic_rating": 0,
+    "allergen": false,
+    "supplier": "Kremer Pigmente (K301901)",
+    "supplier_info": "Kremer product code K301901. Brilliant Blue FCF / CI 42090. Synthetic organic dye. Purchased from Kremer.",
+    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
+    "usage_area": { "Face": "M", "Eye": "M", "Lip": "S", "Nail": "M" },
+    "photo": "",
+    "color_swatch": "#0066ff",
+    "added": "2026-05-21",
+    "updated": "2026-05-21"
   }
 ]
