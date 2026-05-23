@@ -73,5 +73,30 @@
     "color_swatch": "#f5d16b",
     "added": "2026-05-23",
     "updated": "2026-05-23"
+  },
+  {
+    "id": "alpha-arbutin",
+    "inci_name_en": "Alpha-Arbutin",
+    "inci_name_eu": "Alpha-Arbutin",
+    "name_zh": "α-熊果苷",
+    "common_name_en": "Alpha-Arbutin",
+    "common_name_zh": "α-熊果苷",
+    "function": ["Active", "Brightening", "Depigmenting"],
+    "benefits_en": "Inhibits tyrosinase, the enzyme responsible for melanin production. Fades dark spots, hyperpigmentation, and uneven skin tone including intimate area darkening. Stable, gentle alternative to hydroquinone. More effective than beta-arbutin.",
+    "benefits_zh": "抑制酪氨酸酶（黑色素合成关键酶），淡化色斑、色素沉着和肤色不均，包括私密部位暗沉。是比氢醌更温和稳定的美白成分，效果优于β-熊果苷。",
+    "concerns_en": "Very well tolerated. Avoid high concentrations (>2%) during pregnancy. Can degrade to hydroquinone under acidic conditions — keep formulation pH 4–7.",
+    "concerns_zh": "耐受性很好。孕期避免使用高浓度（>2%）。在酸性条件下可能降解为氢醌，配方pH应保持在4–7之间。",
+    "typical_pct_min": 0.5,
+    "typical_pct_max": 2,
+    "comedogenic_rating": 0,
+    "allergen": false,
+    "supplier": "Pentapharm (DSM) / Symrise / multiple",
+    "supplier_info": "Enzymatically synthesized from glucose and hydroquinone. CAS 84380-01-8.",
+    "approval": { "EU": "approved", "USA": "approved", "China": "approved" },
+    "usage_area": { "Face": "M", "Eye": "NR", "Lip": "S", "Nail": "NR" },
+    "photo": "",
+    "color_swatch": "#f0ece4",
+    "added": "2026-05-23",
+    "updated": "2026-05-23"
   }
 ]
