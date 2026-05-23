@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — Cosme Wiki</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<div class="page">
+  <a href="index.html" class="back-link">&#8592; Back to Browse</a>
+  <div id="product-root"></div>
+</div>
+
+<script src="assets/nav.js"></script>
+<script>
+var product = null;
+var allIngredients = [];
+
+window.addEventListener('DOMContentLoaded', function() {
+  renderNav('index');
+  var id = new URLSearchParams(window.location.search).get('id');
+  if (!id) { showError('No product ID specified.'); return; }
+
+  Promise.all([
+    fetch('data/products.json').then(function(r) { return r.json(); }),
+    fetch('data/ingredients.json').then(function(r) { return r.json(); })
+  ]).then(function(results) {
+    var products = results[0];
+    allIngredients = results[1];
+    product = products.find(function(p) { return p.id === id; });
+    if (!product) { showError('Product not found: ' + id); return; }
+    document.title = product.name + ' — Cosme Wiki';
+    renderProduct(product, products);
+  }).catch(function(e) {
+    showError('Could not load data: ' + e.message);
+  });
+});
+
+function renderProduct(p, allProducts) {
+  var root = document.getElementById('product-root');
+
+  // Photo
+  var photoHtml = p.photo
+    ? '<img src="' + escHtml(p.photo) + '" alt="' + escHtml(p.name) + '">'
+    : '<span style="font-size:80px">&#128250;</span>';
+
+  // Concern tags
+  var tags = (p.concern_tags || []).map(function(t) { return '<span class="tag">' + escHtml(t) + '</span>'; }).join('');
+  var skinTags = (p.skin_type || []).map(function(t) { return '<span class="tag tag-accent">' + escHtml(t) + ' skin</span>'; }).join('');
+
+  // Stars
+  var stars = p.my_rating ? '<span class="rating">' + '★'.repeat(p.my_rating) + '☆'.repeat(5 - p.my_rating) + '</span>' : '';
+
+  // Buy links
+  var buyHtml = '';
+  if (p.buy_links && p.buy_links.length) {
+    buyHtml = p.buy_links.map(function(b) {
+      return b.url ? '<a href="' + escHtml(b.url) + '" target="_blank" class="tag tag-accent" style="cursor:pointer">' + escHtml(b.store) + '</a>' : '<span class="tag">' + escHtml(b.store) + '</span>';
+    }).join(' ');
+  }
+
+  // Ingredient list — each item linked if ingredient exists in DB
+  var ingListHtml = (p.ingredients_inci || []).map(function(inci, idx) {
+    var matched = allIngredients.find(function(i) { return i.inci_name_en.toLowerCase() === inci.toLowerCase(); });
+    var inner = matched
+      ? '<a href="ingredient.html?id=' + escHtml(matched.id) + '">' + escHtml(inci) + '</a>'
+      : '<span>' + escHtml(inci) + '</span>';
+    return '<div class="ingredient-item' + (matched ? '' : ' no-link') + '">' +
+      '<span class="ingredient-idx">' + (idx + 1) + '</span>' + inner +
+    '</div>';
+  }).join('');
+
+  // Same brand products
+  var sameBrand = allProducts.filter(function(op) { return op.brand === p.brand && op.id !== p.id; });
+  var sameBrandHtml = sameBrand.length
+    ? sameBrand.map(function(op) {
+        return '<div class="mini-card" onclick="window.location.href=\'product.html?id=' + escHtml(op.id) + '\'">' +
+          '<div class="mini-card-name">' + escHtml(op.name) + '</div>' +
+          '<div class="mini-card-sub">' + escHtml(op.type || '') + '</div>' +
+        '</div>';
+      }).join('')
+    : '<div style="font-size:13px; color:var(--muted);">No other products from this brand yet.</div>';
+
+  root.innerHTML =
+    '<div class="detail-grid">' +
+      '<div class="detail-photo">' + photoHtml + '</div>' +
+
+      '<div class="detail-panel">' +
+
+        '<div class="detail-section">' +
+          '<div class="detail-name">' + escHtml(p.name) + '</div>' +
+          (p.name_zh ? '<div class="detail-name-zh">' + escHtml(p.name_zh) + '</div>' : '') +
+          '<div class="detail-brand">' + escHtml(p.brand || '') + '</div>' +
+          '<div class="tags">' + tags + skinTags + '</div>' +
+          '<table class="kv-table" style="margin-top:14px;">' +
+            '<tr><td>Type</td><td>' + escHtml(p.type || '—') + (p.type_zh ? ' / ' + escHtml(p.type_zh) : '') + '</td></tr>' +
+            (p.price ? '<tr><td>Price</td><td>' + escHtml(p.price) + '</td></tr>' : '') +
+            (buyHtml ? '<tr><td>Buy</td><td>' + buyHtml + '</td></tr>' : '') +
+            (stars ? '<tr><td>My rating</td><td>' + stars + '</td></tr>' : '') +
+            (p.my_notes ? '<tr><td>My notes</td><td style="color:var(--text2);font-style:italic;">' + escHtml(p.my_notes) + '</td></tr>' : '') +
+            '<tr><td>Updated</td><td>' + escHtml(p.updated || p.added || '') + '</td></tr>' +
+          '</table>' +
+        '</div>' +
+
+        '<div class="detail-section">' +
+          '<div class="detail-section-title">Ingredients (' + (p.ingredients_inci || []).length + ')</div>' +
+          '<div style="font-size:11px; color:var(--muted); margin-bottom:10px;">Listed in order of concentration (highest first). Linked names have a full profile.</div>' +
+          '<div class="ingredient-list">' + ingListHtml + '</div>' +
+        '</div>' +
+
+        '<div class="detail-section">' +
+          '<div class="detail-section-title">More from ' + escHtml(p.brand || 'this brand') + '</div>' +
+          '<div class="products-grid">' + sameBrandHtml + '</div>' +
+        '</div>' +
+
+      '</div>' +
+    '</div>';
+}
+
+function showError(msg) {
+  document.getElementById('product-root').innerHTML = '<div class="empty-state">' + escHtml(msg) + '</div>';
+}
+
+function escHtml(s) { return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+</script>
+</body>
+</html>

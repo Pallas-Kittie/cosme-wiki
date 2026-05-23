@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cosme Wiki — Browse</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<div class="page">
+
+  <!-- Tabs -->
+  <div class="tabs" id="tabs">
+    <button class="tab active" onclick="switchTab('products', this)">Products</button>
+    <button class="tab" onclick="switchTab('ingredients', this)">Ingredients</button>
+  </div>
+
+  <!-- Filter bar -->
+  <div class="filter-bar" id="filter-bar">
+    <!-- Products filters -->
+    <div class="filter-group filter-search" id="f-search-wrap">
+      <div class="filter-label">Search</div>
+      <input class="filter-input" id="f-search" type="text" placeholder="Name, brand, ingredient..." oninput="applyFilters()" />
+    </div>
+    <div class="filter-group" id="f-type-wrap">
+      <div class="filter-label">Product type</div>
+      <select class="filter-select" id="f-type" onchange="applyFilters()"><option value="">All types</option></select>
+    </div>
+    <div class="filter-group" id="f-concern-wrap">
+      <div class="filter-label">Skin concern</div>
+      <select class="filter-select" id="f-concern" onchange="applyFilters()"><option value="">All concerns</option></select>
+    </div>
+    <div class="filter-group" id="f-brand-wrap">
+      <div class="filter-label">Brand</div>
+      <select class="filter-select" id="f-brand" onchange="applyFilters()"><option value="">All brands</option></select>
+    </div>
+    <!-- Ingredients filters -->
+    <div class="filter-group" id="f-func-wrap" style="display:none">
+      <div class="filter-label">Function</div>
+      <select class="filter-select" id="f-func" onchange="applyFilters()"><option value="">All functions</option></select>
+    </div>
+    <div class="filter-group" id="f-safety-wrap" style="display:none">
+      <div class="filter-label">Safety</div>
+      <select class="filter-select" id="f-safety" onchange="applyFilters()">
+        <option value="">All</option>
+        <option value="concern">Has concerns</option>
+        <option value="allergen">Allergen</option>
+        <option value="prohibited">Prohibited somewhere</option>
+      </select>
+    </div>
+    <!-- Cross-ref: find products with ingredient -->
+    <div class="filter-group" id="f-crossref-wrap">
+      <div class="filter-label">Contains ingredient</div>
+      <select class="filter-select" id="f-crossref" onchange="applyFilters()"><option value="">Any ingredient</option></select>
+    </div>
+    <button class="btn-reset" onclick="resetFilters()">Reset</button>
+  </div>
+
+  <div class="result-count" id="result-count"></div>
+
+  <div class="card-grid" id="card-grid"></div>
+
+</div>
+
+<script src="assets/nav.js"></script>
+<script>
+var products = [];
+var ingredients = [];
+var currentTab = 'products';
+
+function getRoot() {
+  return '';
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  renderNav('index');
+  loadData();
+});
+
+function loadData() {
+  Promise.all([
+    fetch('data/products.json').then(function(r) { return r.json(); }),
+    fetch('data/ingredients.json').then(function(r) { return r.json(); })
+  ]).then(function(results) {
+    products = results[0];
+    ingredients = results[1];
+    populateFilters();
+    applyFilters();
+  }).catch(function() {
+    document.getElementById('card-grid').innerHTML = '<div class="empty-state">Could not load data. Open this page via a local server or from the E:\\cosme-wiki\\ folder.</div>';
+  });
+}
+
+function populateFilters() {
+  // Product types
+  var types = [...new Set(products.map(function(p) { return p.type; }).filter(Boolean))].sort();
+  var typeEl = document.getElementById('f-type');
+  types.forEach(function(t) { typeEl.innerHTML += '<option value="' + escHtml(t) + '">' + escHtml(t) + '</option>'; });
+
+  // Concerns
+  var concerns = [...new Set(products.flatMap(function(p) { return p.concern_tags || []; }))].sort();
+  var concernEl = document.getElementById('f-concern');
+  concerns.forEach(function(c) { concernEl.innerHTML += '<option value="' + escHtml(c) + '">' + escHtml(c) + '</option>'; });
+
+  // Brands
+  var brands = [...new Set(products.map(function(p) { return p.brand; }).filter(Boolean))].sort();
+  var brandEl = document.getElementById('f-brand');
+  brands.forEach(function(b) { brandEl.innerHTML += '<option value="' + escHtml(b) + '">' + escHtml(b) + '</option>'; });
+
+  // Ingredient functions
+  var funcs = [...new Set(ingredients.flatMap(function(i) { return i.function || []; }))].sort();
+  var funcEl = document.getElementById('f-func');
+  funcs.forEach(function(f) { funcEl.innerHTML += '<option value="' + escHtml(f) + '">' + escHtml(f) + '</option>'; });
+
+  // Cross-ref dropdown
+  var crossEl = document.getElementById('f-crossref');
+  ingredients.sort(function(a,b) { return (a.inci_name_en||'').localeCompare(b.inci_name_en||''); }).forEach(function(ing) {
+    crossEl.innerHTML += '<option value="' + escHtml(ing.id) + '">' + escHtml(ing.inci_name_en) + (ing.name_zh ? ' / ' + escHtml(ing.name_zh) : '') + '</option>';
+  });
+}
+
+function switchTab(tab, el) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  el.classList.add('active');
+
+  var isProd = tab === 'products';
+  document.getElementById('f-type-wrap').style.display = isProd ? '' : 'none';
+  document.getElementById('f-concern-wrap').style.display = isProd ? '' : 'none';
+  document.getElementById('f-brand-wrap').style.display = isProd ? '' : 'none';
+  document.getElementById('f-crossref-wrap').style.display = isProd ? '' : 'none';
+  document.getElementById('f-func-wrap').style.display = isProd ? 'none' : '';
+  document.getElementById('f-safety-wrap').style.display = isProd ? 'none' : '';
+  document.getElementById('f-search').placeholder = isProd ? 'Name, brand, ingredient...' : 'Name, function, Chinese name...';
+
+  applyFilters();
+}
+
+function applyFilters() {
+  var q = document.getElementById('f-search').value.trim().toLowerCase();
+
+  if (currentTab === 'products') {
+    var typeVal = document.getElementById('f-type').value;
+    var concernVal = document.getElementById('f-concern').value;
+    var brandVal = document.getElementById('f-brand').value;
+    var crossVal = document.getElementById('f-crossref').value;
+
+    var filtered = products.filter(function(p) {
+      if (typeVal && p.type !== typeVal) return false;
+      if (brandVal && p.brand !== brandVal) return false;
+      if (concernVal && !(p.concern_tags || []).includes(concernVal)) return false;
+      if (crossVal) {
+        // Find ingredient INCI name
+        var ing = ingredients.find(function(i) { return i.id === crossVal; });
+        if (!ing) return false;
+        var hasIt = (p.ingredients_inci || []).some(function(name) {
+          return name.toLowerCase() === ing.inci_name_en.toLowerCase();
+        });
+        if (!hasIt) return false;
+      }
+      if (q) {
+        var searchable = ((p.name || '') + ' ' + (p.name_zh || '') + ' ' + (p.brand || '') + ' ' + (p.ingredients_inci || []).join(' ')).toLowerCase();
+        if (!searchable.includes(q)) return false;
+      }
+      return true;
+    });
+
+    renderProductCards(filtered);
+    document.getElementById('result-count').textContent = filtered.length + ' product' + (filtered.length !== 1 ? 's' : '');
+
+  } else {
+    var funcVal = document.getElementById('f-func').value;
+    var safetyVal = document.getElementById('f-safety').value;
+
+    var filtered = ingredients.filter(function(ing) {
+      if (funcVal && !(ing.function || []).includes(funcVal)) return false;
+      if (safetyVal === 'concern' && !ing.concerns_en) return false;
+      if (safetyVal === 'allergen' && !ing.allergen) return false;
+      if (safetyVal === 'prohibited') {
+        var ap = ing.approval || {};
+        if (ap.EU !== 'prohibited' && ap.USA !== 'prohibited' && ap.China !== 'prohibited') return false;
+      }
+      if (q) {
+        var searchable = ((ing.inci_name_en || '') + ' ' + (ing.name_zh || '') + ' ' + (ing.common_name_en || '') + ' ' + (ing.common_name_zh || '') + ' ' + (ing.function || []).join(' ')).toLowerCase();
+        if (!searchable.includes(q)) return false;
+      }
+      return true;
+    });
+
+    renderIngredientCards(filtered);
+    document.getElementById('result-count').textContent = filtered.length + ' ingredient' + (filtered.length !== 1 ? 's' : '');
+  }
+}
+
+function renderProductCards(list) {
+  var grid = document.getElementById('card-grid');
+  if (!list.length) {
+    grid.innerHTML = '<div class="empty-state">No products match your filters.</div>';
+    return;
+  }
+  grid.innerHTML = list.map(function(p) {
+    var imgHtml = p.photo
+      ? '<div class="card-img"><img src="' + escHtml(p.photo) + '" alt="' + escHtml(p.name) + '" loading="lazy"></div>'
+      : '<div class="card-img" style="font-size:40px;color:var(--muted)">&#128250;</div>';
+    var tags = (p.concern_tags || []).slice(0, 3).map(function(t) { return '<span class="tag">' + escHtml(t) + '</span>'; }).join('');
+    var stars = p.my_rating ? '<span class="tag tag-accent">' + '★'.repeat(p.my_rating) + '</span>' : '';
+    return '<div class="card" onclick="window.location.href=\'product.html?id=' + escHtml(p.id) + '\'">' +
+      imgHtml +
+      '<div class="card-body">' +
+        '<div class="card-name">' + escHtml(p.name) + '</div>' +
+        (p.name_zh ? '<div class="card-name-zh">' + escHtml(p.name_zh) + '</div>' : '') +
+        '<div class="tags">' + tags + stars + '</div>' +
+        '<div class="card-brand">' + escHtml(p.brand || '') + ' &middot; ' + escHtml(p.type || '') + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderIngredientCards(list) {
+  var grid = document.getElementById('card-grid');
+  if (!list.length) {
+    grid.innerHTML = '<div class="empty-state">No ingredients match your filters.</div>';
+    return;
+  }
+  grid.innerHTML = list.map(function(ing) {
+    var swatchHtml = ing.color_swatch
+      ? '<div class="card-swatch" style="background:' + escHtml(ing.color_swatch) + '"></div>'
+      : '<div class="card-img" style="font-size:40px;color:var(--muted)">&#9711;</div>';
+    var funcs = (ing.function || []).slice(0, 3).map(function(f) { return '<span class="tag">' + escHtml(f) + '</span>'; }).join('');
+    var ap = ing.approval || {};
+    var apBadge = Object.keys(ap).length ? '<span class="tag ' + (ap.EU === 'prohibited' || ap.USA === 'prohibited' || ap.China === 'prohibited' ? 'tag-bad' : ap.EU === 'restricted' ? 'tag-warn' : 'tag-ok') + '">' + (ap.EU === 'prohibited' || ap.USA === 'prohibited' || ap.China === 'prohibited' ? 'Prohibited' : ap.EU === 'restricted' ? 'Restricted' : 'Approved') + '</span>' : '';
+    return '<div class="card" onclick="window.location.href=\'ingredient.html?id=' + escHtml(ing.id) + '\'">' +
+      swatchHtml +
+      '<div class="card-body">' +
+        '<div class="card-name">' + escHtml(ing.inci_name_en) + '</div>' +
+        (ing.name_zh ? '<div class="card-name-zh">' + escHtml(ing.name_zh) + (ing.common_name_en ? ' &middot; ' + escHtml(ing.common_name_en) : '') + '</div>' : '') +
+        '<div class="tags">' + funcs + apBadge + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function resetFilters() {
+  document.getElementById('f-search').value = '';
+  document.getElementById('f-type').value = '';
+  document.getElementById('f-concern').value = '';
+  document.getElementById('f-brand').value = '';
+  document.getElementById('f-crossref').value = '';
+  document.getElementById('f-func').value = '';
+  document.getElementById('f-safety').value = '';
+  applyFilters();
+}
+
+function escHtml(s) { return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+</script>
+</body>
+</html>

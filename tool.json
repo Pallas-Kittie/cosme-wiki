@@ -1,0 +1,11 @@
+{
+  "name": "Cosme Wiki",
+  "description": "Browse cosmetics products and ingredients. Bilingual EN/ZH, cross-referenced database with regulatory approval and usage area data.",
+  "type": "url",
+  "target": "file:///E:/cosme-wiki/index.html",
+  "icon": "COS",
+  "iconBg": "#fff0f6",
+  "iconColor": "#c25fa8",
+  "accentBar": "linear-gradient(90deg, #c25fa8, #e8a04a)",
+  "category": "Personal"
+}

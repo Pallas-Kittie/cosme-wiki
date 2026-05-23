@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Source — Cosme Wiki</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<div class="ingest-container">
+
+  <div class="ingest-card">
+    <div class="section-label">What are you adding?</div>
+    <div class="entry-type-row" id="entry-type-row">
+      <button class="entry-type-btn active" data-etype="auto" onclick="setEntryType('auto', this)">Auto-detect</button>
+      <button class="entry-type-btn" data-etype="product" onclick="setEntryType('product', this)">Product</button>
+      <button class="entry-type-btn" data-etype="ingredient" onclick="setEntryType('ingredient', this)">Ingredient</button>
+    </div>
+
+    <div class="section-label">Source type</div>
+    <div class="type-tabs">
+      <button class="type-tab active" data-type="url" onclick="setType('url', this)">URL</button>
+      <button class="type-tab" data-type="image" onclick="setType('image', this)">Image path</button>
+      <button class="type-tab" data-type="text" onclick="setType('text', this)">Paste text</button>
+    </div>
+
+    <div id="input-url">
+      <input class="ingest-input" type="url" id="url-input" placeholder="Paste URL — product page, ingredient reference, article..." />
+    </div>
+
+    <div id="input-image" style="display:none">
+      <input class="ingest-input" type="text" id="image-input" placeholder="Paste full file path, e.g. C:\Users\shanshan\Pictures\ingredient-label.jpg" />
+      <div style="font-size:11px; color:var(--muted); margin-top:6px;">Tip: in File Explorer, click the address bar to copy the path, then add the filename.</div>
+    </div>
+
+    <div id="input-text" style="display:none">
+      <textarea class="ingest-textarea" id="text-input" placeholder="Paste any content — ingredient list from a product page, a formulation note, a supplier spec sheet..."></textarea>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <div class="section-label">Note (optional)</div>
+      <input class="ingest-input" type="text" id="note-input" placeholder="e.g. INCI list from CeraVe bottle, check Retinol concentration" />
+    </div>
+
+    <div style="margin-top: 20px;">
+      <button class="btn-primary" onclick="addToQueue()">Add to queue &rarr;</button>
+    </div>
+  </div>
+
+  <!-- Queue -->
+  <div class="ingest-card">
+    <div class="queue-header">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-weight:600; font-size:15px;">Queue</span>
+        <span class="queue-count" id="queue-count">0</span>
+        <span id="queue-status" style="font-size:12px; color:var(--muted);"></span>
+      </div>
+      <button onclick="refreshQueue()" title="Refresh from GitHub" style="background:none; border:none; cursor:pointer; font-size:16px; color:var(--muted); padding:2px 6px; font-family:inherit;">&#8635;</button>
+    </div>
+
+    <div id="queue-list">
+      <div class="queue-empty">No sources yet. Add one above.</div>
+    </div>
+
+    <div class="queue-actions" id="queue-actions" style="display:none;">
+      <button class="btn-copy" onclick="copyQueueForClaude()">Copy for Claude</button>
+      <button class="btn-ghost" onclick="clearQueue()">Clear all</button>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="ingest-card" style="font-size:13px; color:var(--text2); line-height:1.7;">
+    <div class="section-label" style="margin-bottom:12px;">How it works</div>
+    <p><strong>1. Add sources</strong> — paste a URL, image path, or text from any page about a product or ingredient.</p>
+    <p style="margin-top:8px;"><strong>2. Click "Copy for Claude"</strong> — generates a prompt with all queued items.</p>
+    <p style="margin-top:8px;"><strong>3. Paste into Claude Code</strong> — Claude extracts structured data, updates <code>data/products.json</code> or <code>data/ingredients.json</code>, and commits.</p>
+    <p style="margin-top:8px;"><strong>4. Refresh the Browse page</strong> — your new entries appear with full cross-references.</p>
+  </div>
+
+</div>
+
+<!-- Token banner -->
+<div id="token-banner" style="display:none; position:fixed; inset:0; background:rgba(26,21,16,0.55); backdrop-filter:blur(4px); z-index:200; align-items:center; justify-content:center; padding:16px;">
+  <div style="background:white; border-radius:20px; padding:28px; max-width:420px; width:100%; box-shadow:0 8px 40px rgba(0,0,0,0.2);">
+    <div style="font-weight:700; font-size:17px; margin-bottom:8px; color:var(--text);">Connect to GitHub</div>
+    <div style="font-size:13px; color:var(--muted); margin-bottom:16px; line-height:1.5;">Enter your GitHub token so the queue syncs to the cosme-wiki repo.</div>
+    <input id="token-input" type="password" placeholder="ghp_ or gho_ token..."
+      style="width:100%; padding:11px 14px; border:1.5px solid var(--border); border-radius:10px; font-size:14px; margin-bottom:12px; outline:none; font-family:inherit;"
+      onkeydown="if(event.key==='Enter') saveToken()" />
+    <button onclick="saveToken()" style="width:100%; padding:13px; background:linear-gradient(135deg,#c25fa8,#d97840); color:white; border:none; border-radius:12px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit;">Connect &rarr;</button>
+    <div style="font-size:11px; color:var(--muted); margin-top:10px; text-align:center;">Saved only in your browser. Never uploaded.</div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../assets/nav.js"></script>
+<script>
+  var REPO = 'Pallas-Kittie/cosme-wiki';
+  var QUEUE_PATH = '_sources/queue.json';
+  var ghToken = localStorage.getItem('cosme-wiki-token') || '';
+  var queueSha = '';
+  var queue = [];
+  var githubLoaded = false;
+  var currentType = 'url';
+  var currentEntryType = 'auto';
+
+  var SOURCE_LABELS = { url: 'URL', image: 'Image', text: 'Pasted Text' };
+  var ENTRY_LABELS = { auto: 'Auto-detect', product: 'Product', ingredient: 'Ingredient' };
+
+  window.addEventListener('DOMContentLoaded', function() {
+    renderNav('ingest');
+    if (!ghToken) showTokenPrompt(); else loadQueueFromGitHub();
+  });
+
+  function showTokenPrompt() { document.getElementById('token-banner').style.display = 'flex'; }
+
+  function saveToken() {
+    var t = document.getElementById('token-input').value.trim();
+    if (!t) return;
+    ghToken = t;
+    localStorage.setItem('cosme-wiki-token', t);
+    document.getElementById('token-banner').style.display = 'none';
+    loadQueueFromGitHub();
+  }
+
+  function setType(type, el) {
+    currentType = type;
+    document.querySelectorAll('.type-tab').forEach(function(t) { t.classList.remove('active'); });
+    el.classList.add('active');
+    ['url','image','text'].forEach(function(t) {
+      document.getElementById('input-' + t).style.display = t === type ? 'block' : 'none';
+    });
+  }
+
+  function setEntryType(etype, el) {
+    currentEntryType = etype;
+    document.querySelectorAll('.entry-type-btn').forEach(function(b) { b.classList.remove('active'); });
+    el.classList.add('active');
+  }
+
+  function getSourceValue() {
+    if (currentType === 'url') return document.getElementById('url-input').value.trim();
+    if (currentType === 'image') return document.getElementById('image-input').value.trim();
+    if (currentType === 'text') return document.getElementById('text-input').value.trim();
+    return '';
+  }
+
+  function clearInputs() {
+    document.getElementById('url-input').value = '';
+    document.getElementById('image-input').value = '';
+    document.getElementById('text-input').value = '';
+    document.getElementById('note-input').value = '';
+  }
+
+  function addToQueue() {
+    var source = getSourceValue();
+    if (!source) { showToast('Please add a source first', true); return; }
+    if (!githubLoaded) { showToast('Queue not loaded yet — wait a moment', true); return; }
+    var note = document.getElementById('note-input').value.trim();
+    var item = {
+      id: Date.now(),
+      type: currentType,
+      entry_type: currentEntryType,
+      source: currentType === 'text' ? '[pasted text]' : source,
+      content: currentType === 'text' ? source : undefined,
+      note: note,
+      added: new Date().toISOString()
+    };
+    queue.push(item);
+    renderQueue();
+    clearInputs();
+    showToast('Saving...');
+    saveQueueToGitHub(function() { showToast('Added to queue'); });
+  }
+
+  function removeFromQueue(id) {
+    queue = queue.filter(function(item) { return item.id !== id; });
+    renderQueue();
+    saveQueueToGitHub(function() { showToast('Removed'); });
+  }
+
+  function clearQueue() {
+    if (!confirm('Clear all ' + queue.length + ' items from the queue?')) return;
+    queue = [];
+    renderQueue();
+    saveQueueToGitHub(function() { showToast('Queue cleared'); });
+  }
+
+  function renderQueue() {
+    var list = document.getElementById('queue-list');
+    var count = document.getElementById('queue-count');
+    var actions = document.getElementById('queue-actions');
+    count.textContent = queue.length;
+    actions.style.display = queue.length ? 'flex' : 'none';
+    if (!queue.length) {
+      list.innerHTML = '<div class="queue-empty">No sources yet. Add one above.</div>';
+      return;
+    }
+    list.innerHTML = queue.map(function(item) {
+      return '<div class="queue-item">' +
+        '<div class="queue-item-icon">' + escHtml((item.entry_type || 'auto').slice(0,3).toUpperCase()) + '</div>' +
+        '<div class="queue-item-body">' +
+          '<div class="queue-item-source">' + (item.type === 'text' ? escHtml(truncate(item.content || '', 60)) : escHtml(truncate(item.source, 60))) + '</div>' +
+          '<div class="queue-item-meta">' +
+            '<span class="meta-pill">' + escHtml(SOURCE_LABELS[item.type] || item.type) + '</span>' +
+            '<span class="meta-pill">' + escHtml(ENTRY_LABELS[item.entry_type] || item.entry_type) + '</span>' +
+            (item.note ? '<span class="meta-pill">' + escHtml(truncate(item.note, 30)) + '</span>' : '') +
+          '</div>' +
+        '</div>' +
+        '<div class="queue-item-remove" onclick="removeFromQueue(' + item.id + ')" title="Remove">&#10005;</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  function copyQueueForClaude() {
+    if (!queue.length) return;
+    var lines = [
+      'Please ingest the following sources into the Cosme Wiki at E:\\cosme-wiki\\',
+      '',
+      'For each source, extract structured data and add it to the correct JSON file:',
+      '- Products → E:\\cosme-wiki\\data\\products.json',
+      '- Ingredients → E:\\cosme-wiki\\data\\ingredients.json',
+      '',
+      'See E:\\cosme-wiki\\_schema\\cosme-rules.md for field definitions and extraction rules.',
+      'After updating the data files, run: cd E:\\cosme-wiki && git add data/ && git commit -m "ingest: add entries from queue"',
+      ''
+    ];
+    queue.forEach(function(item, i) {
+      lines.push((i + 1) + '. **Type:** ' + SOURCE_LABELS[item.type] + ' | **Entry type:** ' + ENTRY_LABELS[item.entry_type]);
+      if (item.type === 'text') {
+        lines.push('   **Content:**');
+        lines.push('');
+        lines.push(item.content || '');
+        lines.push('');
+      } else {
+        lines.push('   **Source:** ' + item.source);
+      }
+      if (item.note) lines.push('   **Note:** ' + item.note);
+      lines.push('');
+    });
+    navigator.clipboard.writeText(lines.join('\n')).then(function() {
+      showToast('Copied! Paste into Claude Code');
+    });
+  }
+
+  function loadQueueFromGitHub() {
+    setQueueStatus('loading');
+    fetch('https://api.github.com/repos/' + REPO + '/contents/' + QUEUE_PATH, {
+      headers: { 'Authorization': 'token ' + ghToken, 'Accept': 'application/vnd.github.v3+json' }
+    })
+    .then(function(r) {
+      if (r.status === 401) { ghToken = ''; localStorage.removeItem('cosme-wiki-token'); showTokenPrompt(); throw new Error('Bad token'); }
+      if (!r.ok) throw new Error('Load failed: ' + r.status);
+      return r.json();
+    })
+    .then(function(file) {
+      queueSha = file.sha;
+      var decoded = atob(file.content.replace(/\n/g, ''));
+      queue = JSON.parse(decoded) || [];
+      githubLoaded = true;
+      setQueueStatus('loaded');
+      renderQueue();
+    })
+    .catch(function(err) {
+      if (err.message !== 'Bad token') {
+        setQueueStatus('error');
+        githubLoaded = true;
+      }
+    });
+  }
+
+  function saveQueueToGitHub(onDone) {
+    var content = btoa(unescape(encodeURIComponent(JSON.stringify(queue, null, 2))));
+    var body = { message: 'Update queue', content: content, sha: queueSha };
+    fetch('https://api.github.com/repos/' + REPO + '/contents/' + QUEUE_PATH, {
+      method: 'PUT',
+      headers: { 'Authorization': 'token ' + ghToken, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+    .then(function(r) {
+      if (r.status === 409) {
+        showToast('Queue changed elsewhere — resyncing...', true);
+        return fetch('https://api.github.com/repos/' + REPO + '/contents/' + QUEUE_PATH, {
+          headers: { 'Authorization': 'token ' + ghToken, 'Accept': 'application/vnd.github.v3+json' }
+        }).then(function(r2) { return r2.json(); }).then(function(file) {
+          queueSha = file.sha;
+          return saveQueueToGitHub(onDone);
+        });
+      }
+      if (!r.ok) throw new Error('Save failed: ' + r.status);
+      return r.json();
+    })
+    .then(function(data) {
+      if (data && data.content && data.content.sha) queueSha = data.content.sha;
+      if (onDone) onDone();
+    })
+    .catch(function() { showToast('Could not save to GitHub', true); });
+  }
+
+  function setQueueStatus(state) {
+    var el = document.getElementById('queue-status');
+    if (state === 'loading') el.textContent = 'Loading...';
+    else if (state === 'loaded') el.textContent = '';
+    else if (state === 'error') el.innerHTML = 'Could not load — <a href="#" onclick="refreshQueue();return false;" style="color:var(--accent)">retry</a>';
+  }
+
+  function refreshQueue() { githubLoaded = false; loadQueueFromGitHub(); }
+
+  function escHtml(s) { return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function truncate(str, n) { return str.length > n ? str.slice(0, n) + '...' : str; }
+
+  var toastTimer;
+  function showToast(msg, isWarning) {
+    var toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.style.background = isWarning ? '#c03020' : '#2e7d32';
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() { toast.classList.remove('show'); }, 2500);
+  }
+</script>
+</body>
+</html>

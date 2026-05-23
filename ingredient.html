@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingredient — Cosme Wiki</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<div class="page">
+  <a href="index.html" class="back-link">&#8592; Back to Browse</a>
+  <div id="ingredient-root"></div>
+</div>
+
+<script src="assets/nav.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  renderNav('index');
+  var id = new URLSearchParams(window.location.search).get('id');
+  if (!id) { showError('No ingredient ID specified.'); return; }
+
+  Promise.all([
+    fetch('data/ingredients.json').then(function(r) { return r.json(); }),
+    fetch('data/products.json').then(function(r) { return r.json(); })
+  ]).then(function(results) {
+    var ingredients = results[0];
+    var products = results[1];
+    var ing = ingredients.find(function(i) { return i.id === id; });
+    if (!ing) { showError('Ingredient not found: ' + id); return; }
+    document.title = ing.inci_name_en + ' — Cosme Wiki';
+    renderIngredient(ing, products);
+  }).catch(function(e) {
+    showError('Could not load data: ' + e.message);
+  });
+});
+
+function renderIngredient(ing, allProducts) {
+  // Find products containing this ingredient
+  var containingProducts = allProducts.filter(function(p) {
+    return (p.ingredients_inci || []).some(function(name) {
+      return name.toLowerCase() === (ing.inci_name_en || '').toLowerCase();
+    });
+  });
+
+  // Swatch or photo
+  var visualHtml;
+  if (ing.photo) {
+    visualHtml = '<img src="' + escHtml(ing.photo) + '" alt="' + escHtml(ing.inci_name_en) + '">';
+  } else if (ing.color_swatch) {
+    visualHtml = '<div style="width:100%;height:100%;background:' + escHtml(ing.color_swatch) + ';border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(0,0,0,0.3);">' + escHtml(ing.color_swatch) + '</div>';
+  } else {
+    visualHtml = '<span style="font-size:80px">&#9711;</span>';
+  }
+
+  // Approval table
+  var ap = ing.approval || {};
+  var countries = ['EU', 'USA', 'China'];
+  var approvalHtml = '<div class="approval-grid">' + countries.map(function(c) {
+    var val = ap[c] || 'not-listed';
+    var cls = { approved: 'badge-approved', restricted: 'badge-restricted', prohibited: 'badge-prohibited', 'not-listed': 'badge-notlisted' }[val] || 'badge-notlisted';
+    var label = { approved: 'Approved', restricted: 'Restricted', prohibited: 'Prohibited', 'not-listed': 'Not Listed' }[val] || val;
+    return '<div class="approval-cell"><div class="approval-country">' + escHtml(c) + '</div><div class="approval-badge ' + cls + '">' + label + '</div></div>';
+  }).join('') + '</div>';
+
+  // Usage area table
+  var ua = ing.usage_area || {};
+  var areas = ['Face', 'Eye', 'Lip', 'Nail'];
+  var usageHtml = '<div class="usage-grid">' + areas.map(function(a) {
+    var code = ua[a] || '—';
+    var cls = { M: 'code-M', S: 'code-S', NR: 'code-NR', X: 'code-X' }[code] || '';
+    var labels = { M: 'Major use', S: 'Some use', NR: 'Not recommended', X: 'Prohibited' };
+    return '<div class="usage-cell" title="' + escHtml(labels[code] || '') + '">' +
+      '<div class="usage-area">' + escHtml(a) + '</div>' +
+      '<div class="usage-code ' + cls + '">' + escHtml(code) + '</div>' +
+    '</div>';
+  }).join('') + '</div>';
+
+  // Function tags
+  var funcTags = (ing.function || []).map(function(f) { return '<span class="tag tag-accent">' + escHtml(f) + '</span>'; }).join('');
+
+  // Products grid
+  var productsHtml = containingProducts.length
+    ? containingProducts.map(function(p) {
+        return '<div class="mini-card" onclick="window.location.href=\'product.html?id=' + escHtml(p.id) + '\'">' +
+          '<div class="mini-card-name">' + escHtml(p.name) + '</div>' +
+          '<div class="mini-card-sub">' + escHtml(p.brand || '') + ' &middot; ' + escHtml(p.type || '') + '</div>' +
+          (p.color_swatch ? '<div class="swatch-strip" style="background:' + escHtml(p.color_swatch) + '"></div>' : '') +
+        '</div>';
+      }).join('')
+    : '<div style="font-size:13px; color:var(--muted);">No products in the database contain this ingredient yet.</div>';
+
+  var pctRange = '';
+  if (ing.typical_pct_min != null && ing.typical_pct_max != null) {
+    pctRange = ing.typical_pct_min + '% – ' + ing.typical_pct_max + '%';
+  }
+
+  document.getElementById('ingredient-root').innerHTML =
+    '<div class="detail-grid">' +
+      '<div class="detail-photo">' + visualHtml + '</div>' +
+
+      '<div class="detail-panel">' +
+
+        '<div class="detail-section">' +
+          '<div class="detail-name">' + escHtml(ing.inci_name_en) + '</div>' +
+          (ing.name_zh ? '<div class="detail-name-zh">' + escHtml(ing.name_zh) + '</div>' : '') +
+          '<div class="tags" style="margin-bottom:14px;">' + funcTags + '</div>' +
+          '<table class="kv-table">' +
+            (ing.inci_name_eu && ing.inci_name_eu !== ing.inci_name_en ? '<tr><td>EU INCI</td><td>' + escHtml(ing.inci_name_eu) + '</td></tr>' : '') +
+            (ing.common_name_en ? '<tr><td>Common name (EN)</td><td>' + escHtml(ing.common_name_en) + '</td></tr>' : '') +
+            (ing.common_name_zh ? '<tr><td>Common name (ZH)</td><td>' + escHtml(ing.common_name_zh) + '</td></tr>' : '') +
+            (pctRange ? '<tr><td>Typical %</td><td>' + escHtml(pctRange) + '</td></tr>' : '') +
+            (ing.comedogenic_rating != null ? '<tr><td>Comedogenic</td><td>' + ing.comedogenic_rating + ' / 5</td></tr>' : '') +
+            (ing.allergen != null ? '<tr><td>Allergen</td><td>' + (ing.allergen ? '<span class="tag tag-warn">Yes</span>' : '<span class="tag tag-ok">No</span>') + '</td></tr>' : '') +
+            (ing.supplier ? '<tr><td>Supplier</td><td>' + escHtml(ing.supplier) + '</td></tr>' : '') +
+            (ing.supplier_info ? '<tr><td>Supplier info</td><td style="color:var(--text2);">' + escHtml(ing.supplier_info) + '</td></tr>' : '') +
+            '<tr><td>Updated</td><td>' + escHtml(ing.updated || ing.added || '') + '</td></tr>' +
+          '</table>' +
+        '</div>' +
+
+        '<div class="detail-section">' +
+          '<div class="detail-section-title">Benefits</div>' +
+          (ing.benefits_en ? '<p style="font-size:14px;line-height:1.65;margin-bottom:8px;">' + escHtml(ing.benefits_en) + '</p>' : '') +
+          (ing.benefits_zh ? '<p style="font-size:14px;line-height:1.65;color:var(--text2);">' + escHtml(ing.benefits_zh) + '</p>' : '') +
+        '</div>' +
+
+        (ing.concerns_en || ing.concerns_zh ? '<div class="detail-section">' +
+          '<div class="detail-section-title">Concerns &amp; Cautions</div>' +
+          (ing.concerns_en ? '<p style="font-size:14px;line-height:1.65;margin-bottom:8px;">' + escHtml(ing.concerns_en) + '</p>' : '') +
+          (ing.concerns_zh ? '<p style="font-size:14px;line-height:1.65;color:var(--text2);">' + escHtml(ing.concerns_zh) + '</p>' : '') +
+        '</div>' : '') +
+
+        '<div class="detail-section">' +
+          '<div class="detail-section-title">Regulatory Approval</div>' +
+          approvalHtml +
+          '<div style="font-size:11px;color:var(--muted);margin-top:10px;">M = Major use &nbsp; S = Some use &nbsp; NR = Not recommended &nbsp; X = Prohibited</div>' +
+        '</div>' +
+
+        '<div class="detail-section">' +
+          '<div class="detail-section-title">Usage by Area</div>' +
+          usageHtml +
+        '</div>' +
+
+        '<div class="detail-section">' +
+          '<div class="detail-section-title">Found in ' + containingProducts.length + ' product' + (containingProducts.length !== 1 ? 's' : '') + '</div>' +
+          '<div class="products-grid">' + productsHtml + '</div>' +
+        '</div>' +
+
+      '</div>' +
+    '</div>';
+}
+
+function showError(msg) {
+  document.getElementById('ingredient-root').innerHTML = '<div class="empty-state">' + escHtml(msg) + '</div>';
+}
+
+function escHtml(s) { return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+</script>
+</body>
+</html>
