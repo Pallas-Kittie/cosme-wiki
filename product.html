@@ -19,91 +19,132 @@
 <script src="data/ingredients.js"></script>
 <script src="assets/nav.js"></script>
 <script>
-var product = null;
+var currentProduct = null;
+var allProducts = [];
 var allIngredients = [];
+var editRating = 0;
+var editBuyLinks = [];
+var editPhotoDataUrl = '';
+
+function loadMergedProducts() {
+  var base = typeof COSME_PRODUCTS !== 'undefined' ? COSME_PRODUCTS : [];
+  var newProds = [];
+  try { newProds = JSON.parse(localStorage.getItem('cosme-new-products') || '[]'); } catch(e){}
+  return base.concat(newProds).map(function(p) {
+    var edit = null;
+    try { edit = JSON.parse(localStorage.getItem('cosme-edits-product-' + p.id)); } catch(e){}
+    return edit ? Object.assign({}, p, edit) : p;
+  });
+}
 
 window.addEventListener('DOMContentLoaded', function() {
   renderNav('index');
+  allIngredients = loadMergedIngredients();
+  allProducts = loadMergedProducts();
   var id = new URLSearchParams(window.location.search).get('id');
   if (!id) { showError('No product ID specified.'); return; }
-
-  var products = typeof COSME_PRODUCTS !== 'undefined' ? COSME_PRODUCTS : [];
-  allIngredients = typeof COSME_INGREDIENTS !== 'undefined' ? COSME_INGREDIENTS : [];
-  product = products.find(function(p) { return p.id === id; });
-  if (!product) { showError('Product not found: ' + id); return; }
-  document.title = product.name + ' — Cosme Wiki';
-  renderProduct(product, products);
+  currentProduct = allProducts.find(function(p) { return p.id === id; });
+  if (!currentProduct) { showError('Product not found: ' + id); return; }
+  document.title = currentProduct.name + ' — Cosme Wiki';
+  renderProduct();
 });
 
-function renderProduct(p, allProducts) {
+function loadMergedIngredients() {
+  var base = typeof COSME_INGREDIENTS !== 'undefined' ? COSME_INGREDIENTS : [];
+  return base.map(function(i) {
+    var edit = null;
+    try { edit = JSON.parse(localStorage.getItem('cosme-edits-ingredient-' + i.id)); } catch(e){}
+    return edit ? Object.assign({}, i, edit) : i;
+  });
+}
+
+// ── VIEW MODE ──────────────────────────────────────────────────────────────
+
+function renderProduct() {
+  var p = currentProduct;
   var root = document.getElementById('product-root');
 
-  // Photo
   var photoHtml = p.photo
     ? '<img src="' + escHtml(p.photo) + '" alt="' + escHtml(p.name) + '">'
     : '<span style="font-size:80px">&#128250;</span>';
 
-  // Concern tags
-  var tags = (p.concern_tags || []).map(function(t) { return '<span class="tag">' + escHtml(t) + '</span>'; }).join('');
-  var skinTags = (p.skin_type || []).map(function(t) { return '<span class="tag tag-accent">' + escHtml(t) + ' skin</span>'; }).join('');
-
-  // Stars
-  var stars = p.my_rating ? '<span class="rating">' + '★'.repeat(p.my_rating) + '☆'.repeat(5 - p.my_rating) + '</span>' : '';
-
-  // Buy links
-  var buyHtml = '';
-  if (p.buy_links && p.buy_links.length) {
-    buyHtml = p.buy_links.map(function(b) {
-      return b.url ? '<a href="' + escHtml(b.url) + '" target="_blank" class="tag tag-accent" style="cursor:pointer">' + escHtml(b.store) + '</a>' : '<span class="tag">' + escHtml(b.store) + '</span>';
-    }).join(' ');
+  var stars = '';
+  if (p.my_rating) {
+    for (var i = 1; i <= 5; i++) stars += i <= p.my_rating ? '&#9733;' : '&#9734;';
+    stars = '<span class="rating">' + stars + '</span>';
   }
 
-  // Ingredient list — each item linked if ingredient exists in DB
+  var buyHtml = '';
+  (p.buy_links || []).forEach(function(b) {
+    if (!b.store) return;
+    buyHtml += b.url
+      ? '<a href="' + escHtml(b.url) + '" target="_blank" class="tag tag-accent">' + escHtml(b.store) + '</a> '
+      : '<span class="tag">' + escHtml(b.store) + '</span> ';
+  });
+
+  var tags = (p.concern_tags || []).map(function(t) { return '<span class="tag">' + escHtml(t) + '</span>'; }).join('');
+  var skinTags = (p.skin_type || []).map(function(t) { return '<span class="tag tag-accent">' + escHtml(t) + '</span>'; }).join('');
+
+  // Ingredient list with EN + ZH + pct
+  var pctMap = p.ingredients_pct || {};
   var ingListHtml = (p.ingredients_inci || []).map(function(inci, idx) {
     var matched = allIngredients.find(function(i) { return i.inci_name_en.toLowerCase() === inci.toLowerCase(); });
-    var inner = matched
+    var nameLink = matched
       ? '<a href="ingredient.html?id=' + escHtml(matched.id) + '">' + escHtml(inci) + '</a>'
-      : '<span>' + escHtml(inci) + '</span>';
-    return '<div class="ingredient-item' + (matched ? '' : ' no-link') + '">' +
-      '<span class="ingredient-idx">' + (idx + 1) + '</span>' + inner +
+      : '<span class="ing-unlinked">' + escHtml(inci) + '</span>';
+    var zhSpan = matched && matched.name_zh
+      ? '<span class="ing-zh">' + escHtml(matched.name_zh) + '</span>'
+      : '';
+    var pctSpan = pctMap[inci]
+      ? '<span class="ing-pct">' + escHtml(pctMap[inci]) + '</span>'
+      : '';
+    return '<div class="ingredient-item">' +
+      '<span class="ingredient-idx">' + (idx + 1) + '</span>' +
+      '<span class="ing-name-block">' + nameLink + zhSpan + '</span>' +
+      pctSpan +
     '</div>';
   }).join('');
 
-  // Same brand products
   var sameBrand = allProducts.filter(function(op) { return op.brand === p.brand && op.id !== p.id; });
   var sameBrandHtml = sameBrand.length
     ? sameBrand.map(function(op) {
-        return '<div class="mini-card" onclick="window.location.href=\'product.html?id=' + escHtml(op.id) + '\'">' +
+        return '<div class="mini-card" onclick="location.href=\'product.html?id=' + escHtml(op.id) + '\'">' +
           '<div class="mini-card-name">' + escHtml(op.name) + '</div>' +
           '<div class="mini-card-sub">' + escHtml(op.type || '') + '</div>' +
         '</div>';
       }).join('')
-    : '<div style="font-size:13px; color:var(--muted);">No other products from this brand yet.</div>';
+    : '<p style="font-size:13px;color:var(--muted);">No other products from this brand yet.</p>';
 
   root.innerHTML =
     '<div class="detail-grid">' +
-      '<div class="detail-photo">' + photoHtml + '</div>' +
-
+      '<div><div class="detail-photo">' + photoHtml + '</div></div>' +
       '<div class="detail-panel">' +
 
-        '<div class="detail-section">' +
-          '<div class="detail-name">' + escHtml(p.name) + '</div>' +
-          (p.name_zh ? '<div class="detail-name-zh">' + escHtml(p.name_zh) + '</div>' : '') +
-          '<div class="detail-brand">' + escHtml(p.brand || '') + '</div>' +
-          '<div class="tags">' + tags + skinTags + '</div>' +
-          '<table class="kv-table" style="margin-top:14px;">' +
+        '<div class="detail-section" id="section-main">' +
+          '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">' +
+            '<div>' +
+              '<div class="detail-name">' + escHtml(p.name) + '</div>' +
+              (p.name_zh ? '<div class="detail-name-zh">' + escHtml(p.name_zh) + '</div>' : '') +
+              '<div class="detail-brand">' + escHtml(p.brand || '') +
+                (p.is_homemade ? ' <span class="tag tag-ok" style="font-size:10px;margin-left:6px;">Homemade</span>' : '') +
+              '</div>' +
+            '</div>' +
+            '<button class="edit-toggle-btn" onclick="enterEditMode()">Edit</button>' +
+          '</div>' +
+          '<div class="tags" style="margin:12px 0 4px;">' + tags + skinTags + '</div>' +
+          '<table class="kv-table">' +
             '<tr><td>Type</td><td>' + escHtml(p.type || '—') + (p.type_zh ? ' / ' + escHtml(p.type_zh) : '') + '</td></tr>' +
             (p.price ? '<tr><td>Price</td><td>' + escHtml(p.price) + '</td></tr>' : '') +
-            (buyHtml ? '<tr><td>Buy</td><td>' + buyHtml + '</td></tr>' : '') +
-            (stars ? '<tr><td>My rating</td><td>' + stars + '</td></tr>' : '') +
-            (p.my_notes ? '<tr><td>My notes</td><td style="color:var(--text2);font-style:italic;">' + escHtml(p.my_notes) + '</td></tr>' : '') +
+            (buyHtml ? '<tr><td>Buy</td><td>' + buyHtml + '</td></tr>' : '<tr><td>Buy</td><td style="color:var(--muted);font-size:12px;">—</td></tr>') +
+            '<tr><td>My rating</td><td>' + (stars || '<span style="color:var(--muted);font-size:12px;">—</span>') + '</td></tr>' +
+            '<tr><td>My notes</td><td style="color:var(--text2);">' + (p.my_notes ? escHtml(p.my_notes) : '<span style="color:var(--muted);font-size:12px;">—</span>') + '</td></tr>' +
             '<tr><td>Updated</td><td>' + escHtml(p.updated || p.added || '') + '</td></tr>' +
           '</table>' +
         '</div>' +
 
         '<div class="detail-section">' +
           '<div class="detail-section-title">Ingredients (' + (p.ingredients_inci || []).length + ')</div>' +
-          '<div style="font-size:11px; color:var(--muted); margin-bottom:10px;">Listed in order of concentration (highest first). Linked names have a full profile.</div>' +
+          '<div style="font-size:11px;color:var(--muted);margin-bottom:10px;">Highest concentration first &middot; Linked names have a full profile &middot; ZH name shown where known</div>' +
           '<div class="ingredient-list">' + ingListHtml + '</div>' +
         '</div>' +
 
@@ -115,6 +156,128 @@ function renderProduct(p, allProducts) {
       '</div>' +
     '</div>';
 }
+
+// ── EDIT MODE ──────────────────────────────────────────────────────────────
+
+function enterEditMode() {
+  var p = currentProduct;
+  editRating = p.my_rating || 0;
+  editBuyLinks = JSON.parse(JSON.stringify(p.buy_links && p.buy_links.length ? p.buy_links : [{ store: '', url: '' }]));
+  editPhotoDataUrl = '';
+
+  document.getElementById('section-main').innerHTML = buildEditForm(p);
+  renderBuyLinksEditor();
+}
+
+function buildEditForm(p) {
+  var starsHtml = [1,2,3,4,5].map(function(n) {
+    return '<span class="star-btn" data-val="' + n + '" onclick="setRating(' + n + ')">' +
+      (n <= editRating ? '&#9733;' : '&#9734;') + '</span>';
+  }).join('');
+
+  return '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:18px;">Editing</div>' +
+
+    '<div class="edit-field">' +
+      '<div class="edit-field-label">Photo</div>' +
+      '<div id="photo-preview" style="margin-bottom:8px;">' +
+        (p.photo ? '<img src="' + escHtml(p.photo) + '" style="width:72px;height:72px;object-fit:cover;border-radius:8px;">' : '') +
+      '</div>' +
+      '<input type="file" id="edit-photo-input" accept="image/*" onchange="handlePhotoUpload(this)">' +
+    '</div>' +
+
+    '<div class="edit-field">' +
+      '<div class="edit-field-label">My Rating</div>' +
+      '<div class="star-picker" id="star-picker-edit">' + starsHtml + '</div>' +
+    '</div>' +
+
+    '<div class="edit-field">' +
+      '<div class="edit-field-label">Where to Buy</div>' +
+      '<div id="buy-links-editor"></div>' +
+      '<button class="btn-ghost" style="margin-top:8px;font-size:12px;padding:6px 12px;" onclick="addBuyLinkRow()">+ Add store</button>' +
+    '</div>' +
+
+    '<div class="edit-field">' +
+      '<div class="edit-field-label">My Notes</div>' +
+      '<textarea id="edit-notes" class="ingest-textarea" style="min-height:70px;">' + escHtml(p.my_notes || '') + '</textarea>' +
+    '</div>' +
+
+    '<div class="edit-field">' +
+      '<div class="edit-field-label">Price</div>' +
+      '<input type="text" id="edit-price" class="ingest-input" value="' + escHtml(p.price || '') + '" placeholder="e.g. $18 / ¥120">' +
+    '</div>' +
+
+    '<div style="display:flex;gap:10px;margin-top:20px;">' +
+      '<button class="btn-primary" style="padding:11px;flex:1;" onclick="saveEdit()">Save</button>' +
+      '<button class="btn-ghost" onclick="renderProduct()">Cancel</button>' +
+    '</div>';
+}
+
+function handlePhotoUpload(input) {
+  if (!input.files || !input.files[0]) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    editPhotoDataUrl = e.target.result;
+    var preview = document.getElementById('photo-preview');
+    if (preview) {
+      preview.innerHTML = '<img src="' + editPhotoDataUrl + '" style="width:72px;height:72px;object-fit:cover;border-radius:8px;">';
+    }
+    // Also update the left-column photo immediately
+    var detailPhoto = document.querySelector('.detail-photo');
+    if (detailPhoto) detailPhoto.innerHTML = '<img src="' + editPhotoDataUrl + '" alt="preview">';
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function setRating(n) {
+  editRating = n;
+  document.querySelectorAll('#star-picker-edit .star-btn').forEach(function(s) {
+    s.innerHTML = parseInt(s.dataset.val) <= n ? '&#9733;' : '&#9734;';
+  });
+}
+
+function renderBuyLinksEditor() {
+  var container = document.getElementById('buy-links-editor');
+  if (!container) return;
+  if (!editBuyLinks.length) editBuyLinks = [{ store: '', url: '' }];
+  container.innerHTML = editBuyLinks.map(function(b, i) {
+    return '<div class="buy-link-row">' +
+      '<input type="text" class="ingest-input" value="' + escHtml(b.store || '') + '" placeholder="Store name" ' +
+        'oninput="editBuyLinks[' + i + '].store=this.value" style="width:130px;">' +
+      '<input type="text" class="ingest-input" value="' + escHtml(b.url || '') + '" placeholder="URL (optional)" ' +
+        'oninput="editBuyLinks[' + i + '].url=this.value" style="flex:1;">' +
+      '<button class="btn-ghost" style="padding:8px 10px;" onclick="removeBuyLink(' + i + ')">&#10005;</button>' +
+    '</div>';
+  }).join('');
+}
+
+function addBuyLinkRow() {
+  editBuyLinks.push({ store: '', url: '' });
+  renderBuyLinksEditor();
+}
+
+function removeBuyLink(i) {
+  editBuyLinks.splice(i, 1);
+  renderBuyLinksEditor();
+}
+
+function saveEdit() {
+  var edits = {
+    my_rating: editRating || null,
+    my_notes: document.getElementById('edit-notes').value.trim(),
+    buy_links: editBuyLinks.filter(function(b) { return b.store.trim(); }),
+    price: document.getElementById('edit-price').value.trim(),
+    updated: new Date().toISOString().split('T')[0]
+  };
+  if (editPhotoDataUrl) edits.photo = editPhotoDataUrl;
+
+  var existing = {};
+  try { existing = JSON.parse(localStorage.getItem('cosme-edits-product-' + currentProduct.id) || '{}'); } catch(e){}
+  localStorage.setItem('cosme-edits-product-' + currentProduct.id, JSON.stringify(Object.assign({}, existing, edits)));
+  currentProduct = Object.assign({}, currentProduct, edits);
+  renderProduct();
+}
+
+// ── UTILS ──────────────────────────────────────────────────────────────────
 
 function showError(msg) {
   document.getElementById('product-root').innerHTML = '<div class="empty-state">' + escHtml(msg) + '</div>';

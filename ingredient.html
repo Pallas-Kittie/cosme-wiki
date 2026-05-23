@@ -19,48 +19,72 @@
 <script src="data/ingredients.js"></script>
 <script src="assets/nav.js"></script>
 <script>
+var currentIngredient = null;
+var allProducts = [];
+var editPhotoDataUrl = '';
+
+function loadMergedProducts() {
+  var base = typeof COSME_PRODUCTS !== 'undefined' ? COSME_PRODUCTS : [];
+  var newProds = [];
+  try { newProds = JSON.parse(localStorage.getItem('cosme-new-products') || '[]'); } catch(e){}
+  return base.concat(newProds).map(function(p) {
+    var edit = null;
+    try { edit = JSON.parse(localStorage.getItem('cosme-edits-product-' + p.id)); } catch(e){}
+    return edit ? Object.assign({}, p, edit) : p;
+  });
+}
+
 window.addEventListener('DOMContentLoaded', function() {
   renderNav('index');
+  allProducts = loadMergedProducts();
   var id = new URLSearchParams(window.location.search).get('id');
   if (!id) { showError('No ingredient ID specified.'); return; }
 
-  var ingredients = typeof COSME_INGREDIENTS !== 'undefined' ? COSME_INGREDIENTS : [];
-  var products = typeof COSME_PRODUCTS !== 'undefined' ? COSME_PRODUCTS : [];
-  var ing = ingredients.find(function(i) { return i.id === id; });
+  var base = typeof COSME_INGREDIENTS !== 'undefined' ? COSME_INGREDIENTS : [];
+  var ing = base.find(function(i) { return i.id === id; });
   if (!ing) { showError('Ingredient not found: ' + id); return; }
-  document.title = ing.inci_name_en + ' — Cosme Wiki';
-  renderIngredient(ing, products);
+
+  var edit = null;
+  try { edit = JSON.parse(localStorage.getItem('cosme-edits-ingredient-' + id)); } catch(e){}
+  currentIngredient = edit ? Object.assign({}, ing, edit) : ing;
+
+  document.title = currentIngredient.inci_name_en + ' — Cosme Wiki';
+  renderIngredient();
 });
 
-function renderIngredient(ing, allProducts) {
-  // Find products containing this ingredient
+// ── VIEW MODE ──────────────────────────────────────────────────────────────
+
+function renderIngredient() {
+  var ing = currentIngredient;
+
   var containingProducts = allProducts.filter(function(p) {
     return (p.ingredients_inci || []).some(function(name) {
       return name.toLowerCase() === (ing.inci_name_en || '').toLowerCase();
     });
   });
 
-  // Swatch or photo
+  // Visual: photo > swatch > placeholder
   var visualHtml;
   if (ing.photo) {
     visualHtml = '<img src="' + escHtml(ing.photo) + '" alt="' + escHtml(ing.inci_name_en) + '">';
   } else if (ing.color_swatch) {
-    visualHtml = '<div style="width:100%;height:100%;background:' + escHtml(ing.color_swatch) + ';border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(0,0,0,0.3);">' + escHtml(ing.color_swatch) + '</div>';
+    visualHtml = '<div style="width:100%;height:100%;background:' + escHtml(ing.color_swatch) +
+      ';border-radius:var(--radius);display:flex;align-items:flex-end;justify-content:flex-start;padding:16px;">' +
+      '<span style="font-size:12px;color:rgba(0,0,0,0.3);font-family:monospace;">' + escHtml(ing.color_swatch) + '</span></div>';
   } else {
     visualHtml = '<span style="font-size:80px">&#9711;</span>';
   }
 
-  // Approval table
   var ap = ing.approval || {};
   var countries = ['EU', 'USA', 'China'];
   var approvalHtml = '<div class="approval-grid">' + countries.map(function(c) {
     var val = ap[c] || 'not-listed';
     var cls = { approved: 'badge-approved', restricted: 'badge-restricted', prohibited: 'badge-prohibited', 'not-listed': 'badge-notlisted' }[val] || 'badge-notlisted';
     var label = { approved: 'Approved', restricted: 'Restricted', prohibited: 'Prohibited', 'not-listed': 'Not Listed' }[val] || val;
-    return '<div class="approval-cell"><div class="approval-country">' + escHtml(c) + '</div><div class="approval-badge ' + cls + '">' + label + '</div></div>';
+    return '<div class="approval-cell"><div class="approval-country">' + escHtml(c) + '</div>' +
+      '<div class="approval-badge ' + cls + '">' + label + '</div></div>';
   }).join('') + '</div>';
 
-  // Usage area table
   var ua = ing.usage_area || {};
   var areas = ['Face', 'Eye', 'Lip', 'Nail'];
   var usageHtml = '<div class="usage-grid">' + areas.map(function(a) {
@@ -73,19 +97,16 @@ function renderIngredient(ing, allProducts) {
     '</div>';
   }).join('') + '</div>';
 
-  // Function tags
   var funcTags = (ing.function || []).map(function(f) { return '<span class="tag tag-accent">' + escHtml(f) + '</span>'; }).join('');
 
-  // Products grid
   var productsHtml = containingProducts.length
     ? containingProducts.map(function(p) {
-        return '<div class="mini-card" onclick="window.location.href=\'product.html?id=' + escHtml(p.id) + '\'">' +
+        return '<div class="mini-card" onclick="location.href=\'product.html?id=' + escHtml(p.id) + '\'">' +
           '<div class="mini-card-name">' + escHtml(p.name) + '</div>' +
           '<div class="mini-card-sub">' + escHtml(p.brand || '') + ' &middot; ' + escHtml(p.type || '') + '</div>' +
-          (p.color_swatch ? '<div class="swatch-strip" style="background:' + escHtml(p.color_swatch) + '"></div>' : '') +
         '</div>';
       }).join('')
-    : '<div style="font-size:13px; color:var(--muted);">No products in the database contain this ingredient yet.</div>';
+    : '<p style="font-size:13px;color:var(--muted);">No products in the database contain this ingredient yet.</p>';
 
   var pctRange = '';
   if (ing.typical_pct_min != null && ing.typical_pct_max != null) {
@@ -94,15 +115,20 @@ function renderIngredient(ing, allProducts) {
 
   document.getElementById('ingredient-root').innerHTML =
     '<div class="detail-grid">' +
-      '<div class="detail-photo">' + visualHtml + '</div>' +
+      '<div><div class="detail-photo" id="detail-visual">' + visualHtml + '</div></div>' +
 
       '<div class="detail-panel">' +
 
-        '<div class="detail-section">' +
-          '<div class="detail-name">' + escHtml(ing.inci_name_en) + '</div>' +
-          (ing.name_zh ? '<div class="detail-name-zh">' + escHtml(ing.name_zh) + '</div>' : '') +
-          '<div class="tags" style="margin-bottom:14px;">' + funcTags + '</div>' +
-          '<table class="kv-table">' +
+        '<div class="detail-section" id="section-main">' +
+          '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">' +
+            '<div>' +
+              '<div class="detail-name">' + escHtml(ing.inci_name_en) + '</div>' +
+              (ing.name_zh ? '<div class="detail-name-zh">' + escHtml(ing.name_zh) + '</div>' : '') +
+              '<div class="tags" style="margin-top:10px;">' + funcTags + '</div>' +
+            '</div>' +
+            '<button class="edit-toggle-btn" onclick="enterEditMode()">Edit</button>' +
+          '</div>' +
+          '<table class="kv-table" style="margin-top:14px;">' +
             (ing.inci_name_eu && ing.inci_name_eu !== ing.inci_name_en ? '<tr><td>EU INCI</td><td>' + escHtml(ing.inci_name_eu) + '</td></tr>' : '') +
             (ing.common_name_en ? '<tr><td>Common name (EN)</td><td>' + escHtml(ing.common_name_en) + '</td></tr>' : '') +
             (ing.common_name_zh ? '<tr><td>Common name (ZH)</td><td>' + escHtml(ing.common_name_zh) + '</td></tr>' : '') +
@@ -111,6 +137,7 @@ function renderIngredient(ing, allProducts) {
             (ing.allergen != null ? '<tr><td>Allergen</td><td>' + (ing.allergen ? '<span class="tag tag-warn">Yes</span>' : '<span class="tag tag-ok">No</span>') + '</td></tr>' : '') +
             (ing.supplier ? '<tr><td>Supplier</td><td>' + escHtml(ing.supplier) + '</td></tr>' : '') +
             (ing.supplier_info ? '<tr><td>Supplier info</td><td style="color:var(--text2);">' + escHtml(ing.supplier_info) + '</td></tr>' : '') +
+            (ing.my_notes ? '<tr><td>My notes</td><td style="color:var(--text2);">' + escHtml(ing.my_notes) + '</td></tr>' : '') +
             '<tr><td>Updated</td><td>' + escHtml(ing.updated || ing.added || '') + '</td></tr>' +
           '</table>' +
         '</div>' +
@@ -130,12 +157,12 @@ function renderIngredient(ing, allProducts) {
         '<div class="detail-section">' +
           '<div class="detail-section-title">Regulatory Approval</div>' +
           approvalHtml +
-          '<div style="font-size:11px;color:var(--muted);margin-top:10px;">M = Major use &nbsp; S = Some use &nbsp; NR = Not recommended &nbsp; X = Prohibited</div>' +
         '</div>' +
 
         '<div class="detail-section">' +
           '<div class="detail-section-title">Usage by Area</div>' +
           usageHtml +
+          '<div style="font-size:11px;color:var(--muted);margin-top:10px;">M = Major use &nbsp; S = Some use &nbsp; NR = Not recommended &nbsp; X = Prohibited</div>' +
         '</div>' +
 
         '<div class="detail-section">' +
@@ -146,6 +173,96 @@ function renderIngredient(ing, allProducts) {
       '</div>' +
     '</div>';
 }
+
+// ── EDIT MODE ──────────────────────────────────────────────────────────────
+
+function enterEditMode() {
+  var ing = currentIngredient;
+  editPhotoDataUrl = '';
+
+  document.getElementById('section-main').innerHTML =
+    '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:18px;">Editing</div>' +
+
+    '<div class="edit-field">' +
+      '<div class="edit-field-label">Photo</div>' +
+      '<div id="photo-preview" style="margin-bottom:8px;">' +
+        (ing.photo ? '<img src="' + escHtml(ing.photo) + '" style="width:72px;height:72px;object-fit:cover;border-radius:8px;">' : '') +
+      '</div>' +
+      '<input type="file" id="edit-photo-input" accept="image/*" onchange="handlePhotoUpload(this)">' +
+    '</div>' +
+
+    '<div class="edit-field">' +
+      '<div class="edit-field-label">Color swatch (hex)</div>' +
+      '<div style="display:flex;gap:8px;align-items:center;">' +
+        '<input type="color" id="edit-swatch-picker" value="' + escHtml(ing.color_swatch || '#ffffff') + '" ' +
+          'oninput="document.getElementById(\'edit-swatch-hex\').value=this.value; updateSwatchPreview(this.value)" ' +
+          'style="width:40px;height:36px;border:1px solid var(--border);border-radius:8px;cursor:pointer;padding:2px;">' +
+        '<input type="text" id="edit-swatch-hex" class="ingest-input" value="' + escHtml(ing.color_swatch || '') + '" ' +
+          'placeholder="#f5d16b" oninput="updateSwatchPreview(this.value)" style="width:100px;">' +
+        '<div id="swatch-live" style="width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:' + escHtml(ing.color_swatch || '#fff') + ';"></div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="edit-field">' +
+      '<div class="edit-field-label">My Notes</div>' +
+      '<textarea id="edit-notes" class="ingest-textarea" style="min-height:70px;">' + escHtml(ing.my_notes || '') + '</textarea>' +
+    '</div>' +
+
+    '<div class="edit-field">' +
+      '<div class="edit-field-label">Supplier</div>' +
+      '<input type="text" id="edit-supplier" class="ingest-input" value="' + escHtml(ing.supplier || '') + '" placeholder="e.g. BASF, Lonza">' +
+    '</div>' +
+
+    '<div class="edit-field">' +
+      '<div class="edit-field-label">Supplier info</div>' +
+      '<input type="text" id="edit-supplier-info" class="ingest-input" value="' + escHtml(ing.supplier_info || '') + '" placeholder="Grade, order code, notes...">' +
+    '</div>' +
+
+    '<div style="display:flex;gap:10px;margin-top:20px;">' +
+      '<button class="btn-primary" style="padding:11px;flex:1;" onclick="saveEdit()">Save</button>' +
+      '<button class="btn-ghost" onclick="renderIngredient()">Cancel</button>' +
+    '</div>';
+}
+
+function updateSwatchPreview(val) {
+  var live = document.getElementById('swatch-live');
+  if (live && /^#[0-9a-fA-F]{3,6}$/.test(val)) live.style.background = val;
+  var picker = document.getElementById('edit-swatch-picker');
+  if (picker && /^#[0-9a-fA-F]{6}$/.test(val)) picker.value = val;
+}
+
+function handlePhotoUpload(input) {
+  if (!input.files || !input.files[0]) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    editPhotoDataUrl = e.target.result;
+    var preview = document.getElementById('photo-preview');
+    if (preview) preview.innerHTML = '<img src="' + editPhotoDataUrl + '" style="width:72px;height:72px;object-fit:cover;border-radius:8px;">';
+    var visual = document.getElementById('detail-visual');
+    if (visual) visual.innerHTML = '<img src="' + editPhotoDataUrl + '" alt="preview">';
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function saveEdit() {
+  var hexInput = document.getElementById('edit-swatch-hex').value.trim();
+  var edits = {
+    my_notes: document.getElementById('edit-notes').value.trim(),
+    supplier: document.getElementById('edit-supplier').value.trim(),
+    supplier_info: document.getElementById('edit-supplier-info').value.trim(),
+    updated: new Date().toISOString().split('T')[0]
+  };
+  if (editPhotoDataUrl) edits.photo = editPhotoDataUrl;
+  if (hexInput && /^#[0-9a-fA-F]{3,6}$/.test(hexInput)) edits.color_swatch = hexInput;
+
+  var existing = {};
+  try { existing = JSON.parse(localStorage.getItem('cosme-edits-ingredient-' + currentIngredient.id) || '{}'); } catch(e){}
+  localStorage.setItem('cosme-edits-ingredient-' + currentIngredient.id, JSON.stringify(Object.assign({}, existing, edits)));
+  currentIngredient = Object.assign({}, currentIngredient, edits);
+  renderIngredient();
+}
+
+// ── UTILS ──────────────────────────────────────────────────────────────────
 
 function showError(msg) {
   document.getElementById('ingredient-root').innerHTML = '<div class="empty-state">' + escHtml(msg) + '</div>';

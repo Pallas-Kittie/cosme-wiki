@@ -418,6 +418,11 @@ a:hover { color: var(--accent); }
 .ingredient-item.no-link { color: var(--text2); }
 .ingredient-idx { color: var(--muted); font-size: 11px; min-width: 22px; }
 
+.ing-name-block { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px; flex: 1; min-width: 0; }
+.ing-unlinked { color: var(--text2); }
+.ing-zh { font-size: 11px; color: var(--muted); }
+.ing-pct { font-size: 11px; color: var(--muted); background: var(--tag-bg); padding: 1px 7px; border-radius: 10px; white-space: nowrap; margin-left: auto; flex-shrink: 0; }
+
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -615,6 +620,51 @@ a:hover { color: var(--accent); }
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── EDIT MODE ── */
+.edit-toggle-btn {
+  padding: 7px 16px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text2);
+  font-family: inherit;
+  transition: all 0.12s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.edit-toggle-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+.edit-field { margin-bottom: 18px; }
+.edit-field-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 7px; }
+
+.star-picker { display: flex; gap: 4px; }
+.star-btn { font-size: 26px; cursor: pointer; color: var(--accent); line-height: 1; transition: transform 0.1s; user-select: none; }
+.star-btn:hover { transform: scale(1.2); }
+
+.buy-link-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+
+/* ── NEW PRODUCT BUTTON ── */
+.btn-add-product {
+  padding: 9px 18px;
+  background: linear-gradient(135deg, #c25fa8, #d97840);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 8px rgba(194,95,168,0.2);
+  transition: all 0.12s;
+  white-space: nowrap;
+  align-self: flex-end;
+}
+.btn-add-product:hover { background: linear-gradient(135deg, #a84d91, #c06830); box-shadow: 0 4px 14px rgba(194,95,168,0.35); }
 
 @media (max-width: 768px) {
   .nav { padding: 0 16px; }

@@ -12,15 +12,12 @@
 
 <div class="page">
 
-  <!-- Tabs -->
   <div class="tabs" id="tabs">
     <button class="tab active" onclick="switchTab('products', this)">Products</button>
     <button class="tab" onclick="switchTab('ingredients', this)">Ingredients</button>
   </div>
 
-  <!-- Filter bar -->
   <div class="filter-bar" id="filter-bar">
-    <!-- Products filters -->
     <div class="filter-group filter-search" id="f-search-wrap">
       <div class="filter-label">Search</div>
       <input class="filter-input" id="f-search" type="text" placeholder="Name, brand, ingredient..." oninput="applyFilters()" />
@@ -37,7 +34,6 @@
       <div class="filter-label">Brand</div>
       <select class="filter-select" id="f-brand" onchange="applyFilters()"><option value="">All brands</option></select>
     </div>
-    <!-- Ingredients filters -->
     <div class="filter-group" id="f-func-wrap" style="display:none">
       <div class="filter-label">Function</div>
       <select class="filter-select" id="f-func" onchange="applyFilters()"><option value="">All functions</option></select>
@@ -51,27 +47,162 @@
         <option value="prohibited">Prohibited somewhere</option>
       </select>
     </div>
-    <!-- Cross-ref: find products with ingredient -->
     <div class="filter-group" id="f-crossref-wrap">
       <div class="filter-label">Contains ingredient</div>
       <select class="filter-select" id="f-crossref" onchange="applyFilters()"><option value="">Any ingredient</option></select>
     </div>
     <button class="btn-reset" onclick="resetFilters()">Reset</button>
+    <button class="btn-add-product" id="btn-add-product" onclick="openNewProductModal()">+ New Product</button>
   </div>
 
   <div class="result-count" id="result-count"></div>
-
   <div class="card-grid" id="card-grid"></div>
 
+</div>
+
+<!-- ── NEW PRODUCT MODAL ── -->
+<div id="new-product-overlay" style="display:none;position:fixed;inset:0;background:rgba(26,21,16,0.55);backdrop-filter:blur(4px);z-index:300;overflow-y:auto;padding:24px 16px;">
+  <div style="max-width:680px;margin:0 auto;background:var(--surface);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-lg);">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+      <div style="font-size:18px;font-weight:800;">New Product</div>
+      <button onclick="closeNewProductModal()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);padding:2px 6px;">&times;</button>
+    </div>
+
+    <!-- Homemade toggle -->
+    <div class="edit-field">
+      <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;">
+        <input type="checkbox" id="np-homemade" style="width:16px;height:16px;">
+        <span>This is a product I made myself (homemade / DIY)</span>
+      </label>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div class="edit-field">
+        <div class="edit-field-label">Product name (EN) *</div>
+        <input type="text" id="np-name" class="ingest-input" placeholder="e.g. CeraVe Moisturizing Cream">
+      </div>
+      <div class="edit-field">
+        <div class="edit-field-label">Product name (ZH)</div>
+        <input type="text" id="np-name-zh" class="ingest-input" placeholder="中文名称">
+      </div>
+      <div class="edit-field">
+        <div class="edit-field-label">Brand *</div>
+        <input type="text" id="np-brand" class="ingest-input" placeholder="e.g. CeraVe (or your name for homemade)">
+      </div>
+      <div class="edit-field">
+        <div class="edit-field-label">Product type</div>
+        <input type="text" id="np-type" class="ingest-input" list="np-type-list" placeholder="Moisturizer, Serum...">
+        <datalist id="np-type-list">
+          <option value="Moisturizer"><option value="Serum"><option value="Cleanser">
+          <option value="Toner"><option value="Sunscreen"><option value="Foundation">
+          <option value="Lipstick"><option value="Eyeshadow"><option value="Blush">
+          <option value="Primer"><option value="Mask"><option value="Eye Cream">
+          <option value="Body Lotion"><option value="Oil"><option value="Other">
+        </datalist>
+      </div>
+      <div class="edit-field">
+        <div class="edit-field-label">Type (ZH)</div>
+        <input type="text" id="np-type-zh" class="ingest-input" placeholder="保湿霜, 精华...">
+      </div>
+      <div class="edit-field">
+        <div class="edit-field-label">Price</div>
+        <input type="text" id="np-price" class="ingest-input" placeholder="e.g. $18 / ¥120">
+      </div>
+    </div>
+
+    <div class="edit-field">
+      <div class="edit-field-label">Skin type (comma-separated)</div>
+      <input type="text" id="np-skin-type" class="ingest-input" placeholder="Dry, Normal, Oily, Sensitive, All">
+    </div>
+
+    <div class="edit-field">
+      <div class="edit-field-label">Concern tags (comma-separated)</div>
+      <input type="text" id="np-concerns" class="ingest-input" placeholder="Hydration, Anti-aging, Brightening...">
+    </div>
+
+    <!-- Ingredient list builder -->
+    <div class="edit-field">
+      <div class="edit-field-label">Ingredients (INCI list)</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px;">One ingredient per row. Add percentage or grammage in the second column if known.</div>
+      <div id="np-ing-list"></div>
+      <button class="btn-ghost" style="margin-top:8px;font-size:12px;padding:6px 12px;" onclick="addIngredientRow()">+ Add ingredient</button>
+    </div>
+
+    <!-- Where to buy -->
+    <div class="edit-field">
+      <div class="edit-field-label">Where to Buy</div>
+      <div id="np-buy-list"></div>
+      <button class="btn-ghost" style="margin-top:8px;font-size:12px;padding:6px 12px;" onclick="addNpBuyRow()">+ Add store</button>
+    </div>
+
+    <!-- Photo -->
+    <div class="edit-field">
+      <div class="edit-field-label">Photo</div>
+      <div id="np-photo-preview" style="margin-bottom:8px;"></div>
+      <input type="file" id="np-photo-input" accept="image/*" onchange="handleNpPhoto(this)">
+    </div>
+
+    <!-- My rating -->
+    <div class="edit-field">
+      <div class="edit-field-label">My Rating</div>
+      <div class="star-picker" id="np-star-picker">
+        <span class="star-btn" data-val="1" onclick="setNpRating(1)">&#9734;</span>
+        <span class="star-btn" data-val="2" onclick="setNpRating(2)">&#9734;</span>
+        <span class="star-btn" data-val="3" onclick="setNpRating(3)">&#9734;</span>
+        <span class="star-btn" data-val="4" onclick="setNpRating(4)">&#9734;</span>
+        <span class="star-btn" data-val="5" onclick="setNpRating(5)">&#9734;</span>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="edit-field">
+      <div class="edit-field-label">My Notes</div>
+      <textarea id="np-notes" class="ingest-textarea" style="min-height:70px;" placeholder="Texture, scent, how it works for you..."></textarea>
+    </div>
+
+    <div id="np-error" style="color:#c03020;font-size:13px;margin-bottom:12px;display:none;"></div>
+
+    <div style="display:flex;gap:10px;">
+      <button class="btn-primary" style="flex:1;padding:14px;" onclick="saveNewProduct()">Add Product</button>
+      <button class="btn-ghost" onclick="closeNewProductModal()">Cancel</button>
+    </div>
+
+  </div>
 </div>
 
 <script src="data/products.js"></script>
 <script src="data/ingredients.js"></script>
 <script src="assets/nav.js"></script>
 <script>
-var products = typeof COSME_PRODUCTS !== 'undefined' ? COSME_PRODUCTS : [];
-var ingredients = typeof COSME_INGREDIENTS !== 'undefined' ? COSME_INGREDIENTS : [];
 var currentTab = 'products';
+var npRating = 0;
+var npPhotoDataUrl = '';
+var npIngRows = [{ inci: '', pct: '' }];
+var npBuyRows = [{ store: '', url: '' }];
+
+function loadMergedProducts() {
+  var base = typeof COSME_PRODUCTS !== 'undefined' ? COSME_PRODUCTS : [];
+  var newProds = [];
+  try { newProds = JSON.parse(localStorage.getItem('cosme-new-products') || '[]'); } catch(e){}
+  return base.concat(newProds).map(function(p) {
+    var edit = null;
+    try { edit = JSON.parse(localStorage.getItem('cosme-edits-product-' + p.id)); } catch(e){}
+    return edit ? Object.assign({}, p, edit) : p;
+  });
+}
+
+function loadMergedIngredients() {
+  var base = typeof COSME_INGREDIENTS !== 'undefined' ? COSME_INGREDIENTS : [];
+  return base.map(function(i) {
+    var edit = null;
+    try { edit = JSON.parse(localStorage.getItem('cosme-edits-ingredient-' + i.id)); } catch(e){}
+    return edit ? Object.assign({}, i, edit) : i;
+  });
+}
+
+var products = loadMergedProducts();
+var ingredients = loadMergedIngredients();
 
 window.addEventListener('DOMContentLoaded', function() {
   renderNav('index');
@@ -80,29 +211,24 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 function populateFilters() {
-  // Product types
   var types = [...new Set(products.map(function(p) { return p.type; }).filter(Boolean))].sort();
   var typeEl = document.getElementById('f-type');
   types.forEach(function(t) { typeEl.innerHTML += '<option value="' + escHtml(t) + '">' + escHtml(t) + '</option>'; });
 
-  // Concerns
   var concerns = [...new Set(products.flatMap(function(p) { return p.concern_tags || []; }))].sort();
   var concernEl = document.getElementById('f-concern');
   concerns.forEach(function(c) { concernEl.innerHTML += '<option value="' + escHtml(c) + '">' + escHtml(c) + '</option>'; });
 
-  // Brands
   var brands = [...new Set(products.map(function(p) { return p.brand; }).filter(Boolean))].sort();
   var brandEl = document.getElementById('f-brand');
   brands.forEach(function(b) { brandEl.innerHTML += '<option value="' + escHtml(b) + '">' + escHtml(b) + '</option>'; });
 
-  // Ingredient functions
   var funcs = [...new Set(ingredients.flatMap(function(i) { return i.function || []; }))].sort();
   var funcEl = document.getElementById('f-func');
   funcs.forEach(function(f) { funcEl.innerHTML += '<option value="' + escHtml(f) + '">' + escHtml(f) + '</option>'; });
 
-  // Cross-ref dropdown
   var crossEl = document.getElementById('f-crossref');
-  ingredients.sort(function(a,b) { return (a.inci_name_en||'').localeCompare(b.inci_name_en||''); }).forEach(function(ing) {
+  [...ingredients].sort(function(a,b) { return (a.inci_name_en||'').localeCompare(b.inci_name_en||''); }).forEach(function(ing) {
     crossEl.innerHTML += '<option value="' + escHtml(ing.id) + '">' + escHtml(ing.inci_name_en) + (ing.name_zh ? ' / ' + escHtml(ing.name_zh) : '') + '</option>';
   });
 }
@@ -111,7 +237,6 @@ function switchTab(tab, el) {
   currentTab = tab;
   document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
   el.classList.add('active');
-
   var isProd = tab === 'products';
   document.getElementById('f-type-wrap').style.display = isProd ? '' : 'none';
   document.getElementById('f-concern-wrap').style.display = isProd ? '' : 'none';
@@ -119,47 +244,38 @@ function switchTab(tab, el) {
   document.getElementById('f-crossref-wrap').style.display = isProd ? '' : 'none';
   document.getElementById('f-func-wrap').style.display = isProd ? 'none' : '';
   document.getElementById('f-safety-wrap').style.display = isProd ? 'none' : '';
+  document.getElementById('btn-add-product').style.display = isProd ? '' : 'none';
   document.getElementById('f-search').placeholder = isProd ? 'Name, brand, ingredient...' : 'Name, function, Chinese name...';
-
   applyFilters();
 }
 
 function applyFilters() {
   var q = document.getElementById('f-search').value.trim().toLowerCase();
-
   if (currentTab === 'products') {
     var typeVal = document.getElementById('f-type').value;
     var concernVal = document.getElementById('f-concern').value;
     var brandVal = document.getElementById('f-brand').value;
     var crossVal = document.getElementById('f-crossref').value;
-
     var filtered = products.filter(function(p) {
       if (typeVal && p.type !== typeVal) return false;
       if (brandVal && p.brand !== brandVal) return false;
       if (concernVal && !(p.concern_tags || []).includes(concernVal)) return false;
       if (crossVal) {
-        // Find ingredient INCI name
         var ing = ingredients.find(function(i) { return i.id === crossVal; });
         if (!ing) return false;
-        var hasIt = (p.ingredients_inci || []).some(function(name) {
-          return name.toLowerCase() === ing.inci_name_en.toLowerCase();
-        });
-        if (!hasIt) return false;
+        if (!(p.ingredients_inci || []).some(function(n) { return n.toLowerCase() === ing.inci_name_en.toLowerCase(); })) return false;
       }
       if (q) {
-        var searchable = ((p.name || '') + ' ' + (p.name_zh || '') + ' ' + (p.brand || '') + ' ' + (p.ingredients_inci || []).join(' ')).toLowerCase();
-        if (!searchable.includes(q)) return false;
+        var s = ((p.name||'') + ' ' + (p.name_zh||'') + ' ' + (p.brand||'') + ' ' + (p.ingredients_inci||[]).join(' ')).toLowerCase();
+        if (!s.includes(q)) return false;
       }
       return true;
     });
-
     renderProductCards(filtered);
     document.getElementById('result-count').textContent = filtered.length + ' product' + (filtered.length !== 1 ? 's' : '');
-
   } else {
     var funcVal = document.getElementById('f-func').value;
     var safetyVal = document.getElementById('f-safety').value;
-
     var filtered = ingredients.filter(function(ing) {
       if (funcVal && !(ing.function || []).includes(funcVal)) return false;
       if (safetyVal === 'concern' && !ing.concerns_en) return false;
@@ -169,12 +285,11 @@ function applyFilters() {
         if (ap.EU !== 'prohibited' && ap.USA !== 'prohibited' && ap.China !== 'prohibited') return false;
       }
       if (q) {
-        var searchable = ((ing.inci_name_en || '') + ' ' + (ing.name_zh || '') + ' ' + (ing.common_name_en || '') + ' ' + (ing.common_name_zh || '') + ' ' + (ing.function || []).join(' ')).toLowerCase();
-        if (!searchable.includes(q)) return false;
+        var s = ((ing.inci_name_en||'') + ' ' + (ing.name_zh||'') + ' ' + (ing.common_name_en||'') + ' ' + (ing.common_name_zh||'') + ' ' + (ing.function||[]).join(' ')).toLowerCase();
+        if (!s.includes(q)) return false;
       }
       return true;
     });
-
     renderIngredientCards(filtered);
     document.getElementById('result-count').textContent = filtered.length + ' ingredient' + (filtered.length !== 1 ? 's' : '');
   }
@@ -182,22 +297,20 @@ function applyFilters() {
 
 function renderProductCards(list) {
   var grid = document.getElementById('card-grid');
-  if (!list.length) {
-    grid.innerHTML = '<div class="empty-state">No products match your filters.</div>';
-    return;
-  }
+  if (!list.length) { grid.innerHTML = '<div class="empty-state">No products match your filters.</div>'; return; }
   grid.innerHTML = list.map(function(p) {
     var imgHtml = p.photo
       ? '<div class="card-img"><img src="' + escHtml(p.photo) + '" alt="' + escHtml(p.name) + '" loading="lazy"></div>'
       : '<div class="card-img" style="font-size:40px;color:var(--muted)">&#128250;</div>';
     var tags = (p.concern_tags || []).slice(0, 3).map(function(t) { return '<span class="tag">' + escHtml(t) + '</span>'; }).join('');
-    var stars = p.my_rating ? '<span class="tag tag-accent">' + '★'.repeat(p.my_rating) + '</span>' : '';
-    return '<div class="card" onclick="window.location.href=\'product.html?id=' + escHtml(p.id) + '\'">' +
+    var stars = p.my_rating ? '<span class="tag tag-accent">' + '&#9733;'.repeat(p.my_rating) + '</span>' : '';
+    var homemadeBadge = p.is_homemade ? '<span class="tag tag-ok" style="font-size:10px;">Homemade</span>' : '';
+    return '<div class="card" onclick="location.href=\'product.html?id=' + escHtml(p.id) + '\'">' +
       imgHtml +
       '<div class="card-body">' +
         '<div class="card-name">' + escHtml(p.name) + '</div>' +
         (p.name_zh ? '<div class="card-name-zh">' + escHtml(p.name_zh) + '</div>' : '') +
-        '<div class="tags">' + tags + stars + '</div>' +
+        '<div class="tags">' + tags + stars + homemadeBadge + '</div>' +
         '<div class="card-brand">' + escHtml(p.brand || '') + ' &middot; ' + escHtml(p.type || '') + '</div>' +
       '</div>' +
     '</div>';
@@ -206,18 +319,19 @@ function renderProductCards(list) {
 
 function renderIngredientCards(list) {
   var grid = document.getElementById('card-grid');
-  if (!list.length) {
-    grid.innerHTML = '<div class="empty-state">No ingredients match your filters.</div>';
-    return;
-  }
+  if (!list.length) { grid.innerHTML = '<div class="empty-state">No ingredients match your filters.</div>'; return; }
   grid.innerHTML = list.map(function(ing) {
     var swatchHtml = ing.color_swatch
       ? '<div class="card-swatch" style="background:' + escHtml(ing.color_swatch) + '"></div>'
       : '<div class="card-img" style="font-size:40px;color:var(--muted)">&#9711;</div>';
     var funcs = (ing.function || []).slice(0, 3).map(function(f) { return '<span class="tag">' + escHtml(f) + '</span>'; }).join('');
     var ap = ing.approval || {};
-    var apBadge = Object.keys(ap).length ? '<span class="tag ' + (ap.EU === 'prohibited' || ap.USA === 'prohibited' || ap.China === 'prohibited' ? 'tag-bad' : ap.EU === 'restricted' ? 'tag-warn' : 'tag-ok') + '">' + (ap.EU === 'prohibited' || ap.USA === 'prohibited' || ap.China === 'prohibited' ? 'Prohibited' : ap.EU === 'restricted' ? 'Restricted' : 'Approved') + '</span>' : '';
-    return '<div class="card" onclick="window.location.href=\'ingredient.html?id=' + escHtml(ing.id) + '\'">' +
+    var anyProhibited = ap.EU === 'prohibited' || ap.USA === 'prohibited' || ap.China === 'prohibited';
+    var anyRestricted = ap.EU === 'restricted' || ap.USA === 'restricted' || ap.China === 'restricted';
+    var apBadge = Object.keys(ap).length
+      ? '<span class="tag ' + (anyProhibited ? 'tag-bad' : anyRestricted ? 'tag-warn' : 'tag-ok') + '">' + (anyProhibited ? 'Prohibited' : anyRestricted ? 'Restricted' : 'Approved') + '</span>'
+      : '';
+    return '<div class="card" onclick="location.href=\'ingredient.html?id=' + escHtml(ing.id) + '\'">' +
       swatchHtml +
       '<div class="card-body">' +
         '<div class="card-name">' + escHtml(ing.inci_name_en) + '</div>' +
@@ -229,14 +343,178 @@ function renderIngredientCards(list) {
 }
 
 function resetFilters() {
-  document.getElementById('f-search').value = '';
-  document.getElementById('f-type').value = '';
-  document.getElementById('f-concern').value = '';
-  document.getElementById('f-brand').value = '';
-  document.getElementById('f-crossref').value = '';
-  document.getElementById('f-func').value = '';
+  ['f-search','f-type','f-concern','f-brand','f-crossref','f-func'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.value = '';
+  });
   document.getElementById('f-safety').value = '';
   applyFilters();
+}
+
+// ── NEW PRODUCT MODAL ──────────────────────────────────────────────────────
+
+function openNewProductModal() {
+  npRating = 0;
+  npPhotoDataUrl = '';
+  npIngRows = [{ inci: '', pct: '' }];
+  npBuyRows = [{ store: '', url: '' }];
+  document.getElementById('np-homemade').checked = false;
+  ['np-name','np-name-zh','np-brand','np-type','np-type-zh','np-price','np-skin-type','np-concerns','np-notes'].forEach(function(id) {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('np-photo-preview').innerHTML = '';
+  document.getElementById('np-error').style.display = 'none';
+  setNpRating(0);
+  renderNpIngRows();
+  renderNpBuyRows();
+  document.getElementById('new-product-overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeNewProductModal() {
+  document.getElementById('new-product-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function setNpRating(n) {
+  npRating = n;
+  document.querySelectorAll('#np-star-picker .star-btn').forEach(function(s) {
+    s.innerHTML = parseInt(s.dataset.val) <= n ? '&#9733;' : '&#9734;';
+  });
+}
+
+function handleNpPhoto(input) {
+  if (!input.files || !input.files[0]) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    npPhotoDataUrl = e.target.result;
+    document.getElementById('np-photo-preview').innerHTML =
+      '<img src="' + npPhotoDataUrl + '" style="width:80px;height:80px;object-fit:cover;border-radius:8px;">';
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function renderNpIngRows() {
+  var container = document.getElementById('np-ing-list');
+  if (!container) return;
+  if (!npIngRows.length) npIngRows = [{ inci: '', pct: '' }];
+  container.innerHTML = npIngRows.map(function(row, i) {
+    return '<div class="buy-link-row" style="align-items:center;">' +
+      '<span style="font-size:11px;color:var(--muted);min-width:22px;text-align:right;">' + (i+1) + '</span>' +
+      '<input type="text" class="ingest-input" value="' + escHtml(row.inci || '') + '" placeholder="INCI name (e.g. Glycerin)" ' +
+        'oninput="npIngRows[' + i + '].inci=this.value" style="flex:2;">' +
+      '<input type="text" class="ingest-input" value="' + escHtml(row.pct || '') + '" placeholder="% or g (optional)" ' +
+        'oninput="npIngRows[' + i + '].pct=this.value" style="width:110px;">' +
+      '<button class="btn-ghost" style="padding:8px 10px;" onclick="removeIngRow(' + i + ')">&#10005;</button>' +
+    '</div>';
+  }).join('');
+}
+
+function addIngredientRow() {
+  npIngRows.push({ inci: '', pct: '' });
+  renderNpIngRows();
+}
+
+function removeIngRow(i) {
+  npIngRows.splice(i, 1);
+  if (!npIngRows.length) npIngRows = [{ inci: '', pct: '' }];
+  renderNpIngRows();
+}
+
+function renderNpBuyRows() {
+  var container = document.getElementById('np-buy-list');
+  if (!container) return;
+  if (!npBuyRows.length) npBuyRows = [{ store: '', url: '' }];
+  container.innerHTML = npBuyRows.map(function(b, i) {
+    return '<div class="buy-link-row">' +
+      '<input type="text" class="ingest-input" value="' + escHtml(b.store || '') + '" placeholder="Store name" ' +
+        'oninput="npBuyRows[' + i + '].store=this.value" style="width:130px;">' +
+      '<input type="text" class="ingest-input" value="' + escHtml(b.url || '') + '" placeholder="URL (optional)" ' +
+        'oninput="npBuyRows[' + i + '].url=this.value" style="flex:1;">' +
+      '<button class="btn-ghost" style="padding:8px 10px;" onclick="removeNpBuyRow(' + i + ')">&#10005;</button>' +
+    '</div>';
+  }).join('');
+}
+
+function addNpBuyRow() {
+  npBuyRows.push({ store: '', url: '' });
+  renderNpBuyRows();
+}
+
+function removeNpBuyRow(i) {
+  npBuyRows.splice(i, 1);
+  renderNpBuyRows();
+}
+
+function saveNewProduct() {
+  var name = document.getElementById('np-name').value.trim();
+  var brand = document.getElementById('np-brand').value.trim();
+  var errEl = document.getElementById('np-error');
+
+  if (!name) { errEl.textContent = 'Product name is required.'; errEl.style.display = 'block'; return; }
+  if (!brand) { errEl.textContent = 'Brand is required.'; errEl.style.display = 'block'; return; }
+  errEl.style.display = 'none';
+
+  var id = (brand + '-' + name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + Date.now();
+
+  var ingList = npIngRows.map(function(r) { return r.inci.trim(); }).filter(Boolean);
+  var pctMap = {};
+  npIngRows.forEach(function(r) {
+    if (r.inci.trim() && r.pct.trim()) pctMap[r.inci.trim()] = r.pct.trim();
+  });
+
+  var skinTypes = document.getElementById('np-skin-type').value.split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+  var concernTags = document.getElementById('np-concerns').value.split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+  var buyLinks = npBuyRows.filter(function(b) { return b.store.trim(); });
+
+  var product = {
+    id: id,
+    name: name,
+    name_zh: document.getElementById('np-name-zh').value.trim(),
+    brand: brand,
+    type: document.getElementById('np-type').value.trim(),
+    type_zh: document.getElementById('np-type-zh').value.trim(),
+    skin_type: skinTypes,
+    concern_tags: concernTags,
+    ingredients_inci: ingList,
+    ingredients_pct: pctMap,
+    photo: npPhotoDataUrl || '',
+    price: document.getElementById('np-price').value.trim(),
+    buy_links: buyLinks,
+    my_rating: npRating || null,
+    my_notes: document.getElementById('np-notes').value.trim(),
+    is_homemade: document.getElementById('np-homemade').checked,
+    added: new Date().toISOString().split('T')[0],
+    updated: new Date().toISOString().split('T')[0]
+  };
+
+  var newProds = [];
+  try { newProds = JSON.parse(localStorage.getItem('cosme-new-products') || '[]'); } catch(e){}
+  newProds.push(product);
+  localStorage.setItem('cosme-new-products', JSON.stringify(newProds));
+
+  closeNewProductModal();
+
+  // Refresh data and re-render
+  products = loadMergedProducts();
+  // Refresh type/brand dropdowns to include new values
+  var typeEl = document.getElementById('f-type');
+  var brandEl = document.getElementById('f-brand');
+  var concernEl = document.getElementById('f-concern');
+  typeEl.innerHTML = '<option value="">All types</option>';
+  brandEl.innerHTML = '<option value="">All brands</option>';
+  concernEl.innerHTML = '<option value="">All concerns</option>';
+  var types = [...new Set(products.map(function(p) { return p.type; }).filter(Boolean))].sort();
+  types.forEach(function(t) { typeEl.innerHTML += '<option value="' + escHtml(t) + '">' + escHtml(t) + '</option>'; });
+  var brands = [...new Set(products.map(function(p) { return p.brand; }).filter(Boolean))].sort();
+  brands.forEach(function(b) { brandEl.innerHTML += '<option value="' + escHtml(b) + '">' + escHtml(b) + '</option>'; });
+  var concerns = [...new Set(products.flatMap(function(p) { return p.concern_tags || []; }))].sort();
+  concerns.forEach(function(c) { concernEl.innerHTML += '<option value="' + escHtml(c) + '">' + escHtml(c) + '</option>'; });
+
+  applyFilters();
+
+  // Jump to the new product
+  location.href = 'product.html?id=' + encodeURIComponent(id);
 }
 
 function escHtml(s) { return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
