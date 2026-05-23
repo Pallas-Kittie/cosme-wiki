@@ -11,7 +11,7 @@
 <div id="nav-placeholder"></div>
 
 <div class="page">
-  <a href="index.html" class="back-link">&#8592; Back to Browse</a>
+  <a id="back-link" href="index.html" class="back-link">&#8592; Back to Browse</a>
   <div id="ingredient-root"></div>
 </div>
 
@@ -69,7 +69,12 @@ function loadMergedProducts() {
 window.addEventListener('DOMContentLoaded', function() {
   renderNav('index');
   allProducts = loadMergedProducts();
-  var id = new URLSearchParams(window.location.search).get('id');
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+  if (params.get('from') === 'ingredients') {
+    document.getElementById('back-link').href = 'index.html?tab=ingredients';
+    document.getElementById('back-link').textContent = '← Back to Ingredients';
+  }
   if (!id) { showError('No ingredient ID specified.'); return; }
 
   var base = typeof COSME_INGREDIENTS !== 'undefined' ? COSME_INGREDIENTS : [];

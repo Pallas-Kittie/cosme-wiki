@@ -254,6 +254,14 @@ var ingredients = loadMergedIngredients();
 
 window.addEventListener('DOMContentLoaded', function() {
   renderNav('index');
+  var tabParam = new URLSearchParams(window.location.search).get('tab');
+  if (tabParam === 'ingredients') {
+    currentTab = 'ingredients';
+    var tabBtns = document.querySelectorAll('.tab');
+    tabBtns[0].classList.remove('active');
+    tabBtns[1].classList.add('active');
+    switchTab('ingredients', tabBtns[1]);
+  }
   populateFilters();
   applyFilters();
 });
@@ -393,7 +401,7 @@ function renderIngredientCards(list) {
       : '';
     var haveBadge = ing.i_have ? '<span class="tag tag-used" style="font-size:10px;">&#10003; Have</span>'
                   : ing.wishlist ? '<span class="tag tag-wishlist" style="font-size:10px;">&#9825; Wish</span>' : '';
-    return '<div class="card" onclick="location.href=\'ingredient.html?id=' + escHtml(ing.id) + '\'">' +
+    return '<div class="card" onclick="location.href=\'ingredient.html?id=' + escHtml(ing.id) + '&from=ingredients\'">' +
       swatchHtml +
       '<div class="card-body">' +
         '<div class="card-name">' + escHtml(ing.inci_name_en) + '</div>' +
